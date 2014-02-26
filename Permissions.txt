@@ -1,0 +1,1 @@
+mbes.cmds.kill - use the /kill command.
