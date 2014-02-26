@@ -41,6 +41,7 @@ public class Commands implements CommandExecutor{
 				{
 					temp.teleport(temp.getLocation().getBlockX(),1, temp.getLocation().getBlockZ());
 					sender.sendMessage("Player '" + temp.getDisplayName() + "' has been killed!");
+					temp = null;
 				}
 			}
 		}
