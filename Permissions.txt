@@ -1,1 +1,1 @@
-mbes.cmds.kill - use the /kill command.
+mbes.cmds.kill - permission to use the /kill <playerName> command.
