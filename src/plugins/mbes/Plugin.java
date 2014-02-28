@@ -10,7 +10,7 @@ import plugins.mbes.commands.Tpto;
 public class Plugin extends MBServerPlugin{
 	@Override
 	public void onEnable() {
-		this.getLogger().info("Thanks for using MBEssentials by AAAA and TheMushypeas!");
+		this.getLogger().info("Thanks for using MBEssentials by AAAA, Abiram and TheMushypeas!");
 		this.getLogger().info("Please report any bugs and glitches to the forums!");
         this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
 		this.getLogger().info("Successfully registered command: /kill");
