@@ -1,4 +1,4 @@
-package Commands;
+package plugins.mbes.Commands;
 
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
