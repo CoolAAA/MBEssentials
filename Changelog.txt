@@ -19,3 +19,9 @@
 [Mushy] improved readme.md
 
 [Mushy] Added a download folder, and put a temp file in it
+
+[Mushy] Added a "Commands" and "EventHandlers" folder. Please can you transfer existing classes to the relevant folder!
+
+[Mushy] Added a placeholder for /tpto <playername> /tphere <playername> and /freeze <playername>
+
+[Mushy] Changed some things on plugin startup

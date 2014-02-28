@@ -8,8 +8,12 @@ public class Plugin extends MBServerPlugin{
 	@Override
 	public void onEnable() {
 		this.getlogger().info("Thanks for using MBEssentials by AAAA and TheMushypeas!");
-                this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
+		this.getlogger().info("Please report any bugs and glitches to the forums!");
+        this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
+		this.getlogger().info("Successfully registered command: /kill");
 		this.getPluginManager().registerCommand("sudo",new ModCmds(this.getServer()));
+		this.getlogger().info("Successfully registered command: /sudo");
 		this.getPluginManager().registerCommand("kickall",new ModCmds(this.getServer()));
+		this.getlogger().info("Successfully registered command: /kickall");
 	}
 }
