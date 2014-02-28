@@ -3,5 +3,15 @@
 ######################################################
 
 [Mushy] changed readme.md to include this file
+
 [Mushy] created this file
+
 [Mushy] added a minor startup change
+
+[AAAA] added /sudo <name> <Command> [args] - runs a command as another player
+
+[AAAA] added /kickall - kicks all players on server if run from console it will kick everybody
+       if run from player it will kick everybody but the player who ran it.
+       
+[AAAA] added /kill <name> - kills the person you wan't. You can kill yourself. It teleports you into a block which
+      causes them to die.
