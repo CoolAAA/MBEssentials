@@ -34,3 +34,6 @@
         requires: mbes.cmds.tpto
 
 [Mushy] Re-orginised some stuff to make sure that the packages and imports work correctly!
+
+[AAAA] Fixed a small package misspell in /tpto and added a check to see if the command is        beingran from the console. And if the player arg was not entered. So errors don't occur.
+

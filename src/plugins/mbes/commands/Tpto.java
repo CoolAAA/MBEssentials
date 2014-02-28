@@ -1,4 +1,4 @@
-package plugins.mbes.Commands;
+package plugins.mbes.commands;
 
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
@@ -12,35 +12,50 @@ public class Tpto implements CommandExecutor {
     public Tpto( Server server ) {
         this.server = server;
     }
+    
     @Override
     public void execute( String command, CommandSender sender, String[] args, String label ) {
-        Player player = (Player)sender;
-        Player sendplayer = server.getPlayerExact(args[0]);
+    	Player player = null;
+    	
+    	
+    	if(args.length != 0)
+    	{
+    		if(!(sender instanceof Player))
+    			sender.sendMessage("Cannot execute as console!");
+    			
+    		
+    		else
+    		{
+    			player = (Player)sender;
         
-        if (sender.hasPermission("mbes.cmds.tpto")){
+        		Player sendplayer = server.getPlayerExact(args[0]);
+        
+        		if (sender.hasPermission("mbes.cmds.tpto")){
         	
-        	if (sendplayer != null){
+        			if (sendplayer != null){
         				
-        		Location loc = sendplayer.getLocation();
+        				Location loc = sendplayer.getLocation();
                 		
-                	player.teleport(loc);
+        				player.teleport(loc);
                 		
-                	sender.sendMessage("You were teleported to " + args[0]);
+                		sender.sendMessage("You were teleported to " + args[0]);
                 		
-                	}
+        				}
                 	
-                else{
-                	
-        		sender.sendMessage("The specified player could not be found");
-
+                	else{
+                			sender.sendMessage("The specified player could not be found");
+                		}
         	}
 
-        }
-
-        else {
+        	else {
         	sender.sendMessage("You don't have permission to use this command!");
-        }
+        	}
+    	}
         
-    }
+    	}
+    	
+    	else
+    		sender.sendMessage("Syntax:/tpto <playerName>");
 
+    }
 }
