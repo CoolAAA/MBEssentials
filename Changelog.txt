@@ -32,3 +32,5 @@
 
 [Mushy] Added comand /tpto <playername> - This is designed to make teleporting easier. This will teleport the player to <playername>
         requires: mbes.cmds.tpto
+
+[Mushy] Re-orginised some stuff to make sure that the packages and imports work correctly!
