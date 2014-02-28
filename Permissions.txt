@@ -1,1 +1,3 @@
-mbes.cmds.kill - permission to use the /kill <playerName> command.
+mbes.cmds.kill - permission to use the /kill command.
+mbes.mod.kickall - permission to use /kickall command.
+mbes.mod.sudo - permission to use /sudo command.
