@@ -15,3 +15,7 @@
        
 [AAAA] added /kill <name> - kills the person you wan't. You can kill yourself. It teleports you into a block which
       causes them to die.
+
+[Mushy] improved readme.md
+
+[Mushy] Added a download folder, and put a temp file in it
