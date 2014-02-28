@@ -8,5 +8,7 @@ public class Plugin extends MBServerPlugin{
 	@Override
 	public void onEnable() {
 		this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
+		this.getPluginManager().registerCommand("sudo",new ModCmds(this.getServer()));
+		this.getPluginManager().registerCommand("kickall",new ModCmds(this.getServer()));
 	}
 }
