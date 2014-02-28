@@ -1,8 +1,8 @@
-MBEssentials By AAAA and TheMushyPeas
+MBEssentials By AAAA, Abiram and TheMushyPeas
 =====================================
 
 Welcome to the source of MBEssentials, a server plugin for the game minebuilder!
-This project is currently run by AAAA and TheMushyPeas
+This project is currently run by AAAA, Abiram and TheMushyPeas
 If you make a command and it needs permission add it in the permission.txt 
 so we can keep track of the permissions.
 
@@ -21,7 +21,7 @@ If you have any problems, do not hesitate to use the built in issue tracker prov
 Legal
 =====
 
-© 2014 AAAA and TheMushypeas
+© 2014 AAAA, Abiram and TheMushypeas
 Feel free to learn from and use the source, but please.could you credit us!
 
-Thankyou - AAAA and TheMushyPeas
+Thankyou - The MbEssentials Team
