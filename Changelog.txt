@@ -25,3 +25,10 @@
 [Mushy] Added a placeholder for /tpto <playername> /tphere <playername> and /freeze <playername>
 
 [Mushy] Changed some things on plugin startup
+
+[Mushy] Changed stuff so that it mentions abiram!
+
+[Mushy] Added nice, sweet message when the server shuts down! :)
+
+[Mushy] Added comand /tpto <playername> - This is designed to make teleporting easier. This will teleport the player to <playername>
+        requires: mbes.cmds.tpto
