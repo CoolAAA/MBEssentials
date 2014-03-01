@@ -2,6 +2,9 @@ package plugins.mbes;
 
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
+
+import plugins.mbes.commands.Commands;
+import plugins.mbes.commands.ModCmds;
 import plugins.mbes.commands.Tpto;
 
 
