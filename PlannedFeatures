@@ -3,10 +3,17 @@
 #Otherwise, just pick a random entry from the list, implement it, then delete the entry when you are don!
 
 [mushy] /freeze <playername> - stops the player from moving and breaking/placing. handy for if someone is griefing!
-[AAAA] Money syetm using /balance and /pay <playername> maybe even an API that other plugins can use! :D
+
+[AAAA] Money system using /balance and /pay <playername> maybe even an API that other plugins can use! :D
+
+[AAAA] Api for the money system
+
 *Antigrief - disable blocks and tools. ( abes could do that)
+
 [AAAA] /thru - go through the block in front of you, without breaking it.
+
 *Advancsd logging features - log Deaths, pvp, commands etc to individual .Txt files in the Mbessentials folder
+
 *Config system - enable/disabke Any feature of MBEssentials you want.
 
 
