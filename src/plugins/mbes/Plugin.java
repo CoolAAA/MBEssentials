@@ -27,6 +27,10 @@ public class Plugin extends MBServerPlugin{
 		this.getPluginManager().registerCommand("kickall",new ModCmds(this.getServer()));
 		this.getLogger().info("Successfully registered command: /kickall");
 		
+		this.getPluginManager().registerCommand("sayas",new ModCmds(this.getServer()));
+		this.getLogger().info("Successfully registered command: /sayas");
+		//send a message using a different playername (who is online)
+		
 		this.getPluginManager().registerCommand("tpto",new Tpto(this.getServer()));
 		this.getLogger().info("Successfully registered command: /tpto");
 		
