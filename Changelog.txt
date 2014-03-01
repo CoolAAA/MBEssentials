@@ -22,20 +22,29 @@
 
 [Mushy] Added a "Commands" and "EventHandlers" folder. Please can you transfer existing classes to the relevant folder!
 
-[Mushy] Added a placeholder for /tpto <playername> /tphere <playername> and /freeze <playername>
+[Mushy] Added a placeholder for /tpto <name> /tphere <name> and /freeze <name>
 
 [Mushy] Changed some things on plugin startup
 
-[Mushy] Changed stuff so that it mentions abiram!
+[Mushy] Changed stuff so that it mentions Abiram!
 
 [Mushy] Added nice, sweet message when the server shuts down! :)
 
-[Mushy] Added comand /tpto <playername> - This is designed to make teleporting easier. This will teleport the player to <playername>
+[Mushy] Added command /tpto <playerName> - This is designed to make teleporting easier. This will teleport the player to <playername>
         requires: mbes.cmds.tpto
 
-[Mushy] Re-orginised some stuff to make sure that the packages and imports work correctly!
+[Mushy] Re-organized some stuff to make sure that the packages and imports work correctly!
 
-[AAAA] Fixed a small package misspell in /tpto and added a check to see if the command is               being ran from the console. And if the player arg was not entered. So errors don't occur.
+[AAAA] Fixed a small package misspell in /tpto and added a check to see if the command is
+       being ran from the console. And if the player arg was not entered. So errors don't occur.
 
 [AAAA] Added the handler package and moved commands to the commands package.
+
+[AAAA] Added /pm <name> <msg>,/block <name>,/unblock <name>,/blockall,/unblockall
+
+[AAAA] Deleted unused PM handler
+
+[AAAA] Added /mute <name> - mutes that person from global chat
+
+[AAAA] Added Mutehandler - Listens for chats and mutes if person has been muted from global chat
 

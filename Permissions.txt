@@ -2,3 +2,5 @@ mbes.cmds.kill - permission to use the /kill command.
 mbes.mod.kickall - permission to use /kickall command.
 mbes.mod.sudo - permission to use /sudo command.
 mbes.cmds.tpto - permission to use /tpto command.
+mbes.pm - permission to use /pm,/unblock,/block,/blockall,/unblockall
+mbes.mod.mute - permission to use /mute
