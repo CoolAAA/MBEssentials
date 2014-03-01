@@ -49,3 +49,10 @@
 [AAAA] Added Mutehandler - Listens for chats and mutes if person has been muted from global chat
 
 [Mushy] Added /tphere <playername> - requires mbes.cmds.tphere
+
+[AAAA] added /pay <name> <amount>,/addmoney <name> <amount> ,/rmvmoney <name> <amount> - removes money
+       /balance,/resetmoney <name> - set there money to 0
+    
+[AAAA] added AccountMaker handler.
+
+[AAAA] Implimented the Config. 

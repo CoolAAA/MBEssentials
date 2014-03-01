@@ -1,18 +1,20 @@
-//TODO: CREATE CONFIG FILE
-
-//PLANNED CONFIGURATIONS: (PUT ALL PLANNED CONFIGS HERE)
-// *enable-money enables / disables the money system
-// *
-
-package a.package.name; //idk the name o.O
+package plugins.mbes;
 
 public class Config {
 	 	private boolean enableMoneySystem;
+	 	private boolean enableDebug;
 	 	
-	 	 	public Config() {
-	        this.setEnableMoneySystem(false);
+	 	 public Config() {
+	       this.setEnableMoneySystem(true);
+	       this.setEnableDebug(true);
 	 	}
-	 		 	public boolean isEnableMoneySystem() {
+	 	public boolean isEnableDebug() {
+			return enableDebug;
+		}
+		public void setEnableDebug(boolean enableDebug) {
+			this.enableDebug = enableDebug;
+		}
+		public boolean isEnableMoneySystem() {
 			return this.enableMoneySystem;
 		}
 		public void setEnableMoneySystem(boolean in) {

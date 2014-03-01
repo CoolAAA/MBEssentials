@@ -7,6 +7,13 @@ mbes.cmds.tphere - permission to use /tphere command.
 mbes.mod.mute - permission to use /mute
 mbes.mod.kickall - permission to use /kickall command.
 mbes.mod.sudo - permission to use /sudo command.
+mbes.mod.addmoney - permission to use /addmoney
+mbes.mod.rmvmoney - permission to use /rmvmoney
+mbes.mod.resetmoney - permission to use /resetmoney
+
 
 //Pm Permissions
 mbes.pm - permission to use /pm,/unblock,/block,/blockall,/unblockall
+
+//Money Permission
+mbes.money - permission to use /balance,/pay
