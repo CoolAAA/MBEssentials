@@ -1,3 +1,9 @@
+// This command is kinda useless in my opinion...
+// you can already use "/tpto" -> "/tp <name>"
+// yes, with the normal /tp command. (with 1 argument)
+// - Abiram
+
+
 package plugins.mbes.commands;
 
 import com.mbserver.api.CommandExecutor;
