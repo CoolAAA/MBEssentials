@@ -1,5 +1,7 @@
 package plugins.mbes.commands;
 
+import plugins.mbes.misc.PMEvent;
+
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
 import com.mbserver.api.Server;
@@ -45,8 +47,11 @@ public class PMCmds implements CommandExecutor{
 							{
 								msg = msg + args[a];
 							}
-						
-							send.sendMessage("From '" + sender.getName() + "': " + msg);
+							
+							PMEvent event = new PMEvent((Player)sender,send, msg);
+							server.getPluginManager().triggerEvent(event);
+							if(!event.isCancelled())
+								send.sendMessage("From '" + sender.getName() + "': " + msg);
 						}
 					}
 				}

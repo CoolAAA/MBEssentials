@@ -56,3 +56,5 @@
 [AAAA] added AccountMaker handler.
 
 [AAAA] Implimented the Config. 
+
+[AAAA] Added a cancellable PMEvent thats is triggered when ever a pm is sent. You can catch it with a EventHandler.
