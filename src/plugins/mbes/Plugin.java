@@ -8,6 +8,7 @@ import plugins.mbes.commands.ModCmds;
 import plugins.mbes.commands.Mute;
 import plugins.mbes.commands.PMCmds;
 import plugins.mbes.commands.Tpto;
+import plugins.mbes.commands.Tphere;
 import plugins.mbes.handler.MuteHandler;
 
 @Manifest(name="MBEssentials",authors = {"TheMushyPeas","AAAA","Abiram"})
@@ -28,6 +29,9 @@ public class Plugin extends MBServerPlugin{
 		
 		this.getPluginManager().registerCommand("tpto",new Tpto(this.getServer()));
 		this.getLogger().info("Successfully registered command: /tpto");
+		
+		this.getPluginManager().registerCommand("tphere",new Tphere(this.getServer()));
+		this.getLogger().info("Successfully registered command: /tphere");
 		
 		this.getPluginManager().registerCommand("pm",new PMCmds(this.getServer()));
 		this.getLogger().info("Successfully registered command: /pm");
