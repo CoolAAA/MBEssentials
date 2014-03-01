@@ -48,3 +48,4 @@
 
 [AAAA] Added Mutehandler - Listens for chats and mutes if person has been muted from global chat
 
+[Mushy] Added /tphere <playername> - requires mbes.cmds.tphere
