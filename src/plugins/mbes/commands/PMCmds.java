@@ -46,9 +46,13 @@ public class PMCmds implements CommandExecutor{
 							for(int a = 1; a < args.length;a++)
 							{
 								msg = msg + args[a];
+								msg = msg + " ";
 							}
-							
-							PMEvent event = new PMEvent((Player)sender,send, msg);
+							PMEvent event;
+							if(sender instanceof Player)
+								event = new PMEvent((Player)sender,send, msg);
+							else
+								event = new PMEvent(null,send,msg);
 							server.getPluginManager().triggerEvent(event);
 							if(!event.isCancelled())
 								send.sendMessage("From '" + sender.getName() + "': " + msg);

@@ -31,9 +31,4 @@ public class AccountMaker implements Listener{
 				e.getServer().getLogger().info("Account unsuccesfully made for '" + e.getPlayer().getDisplayName() + "'");
 		}
 	}
-	
-	@EventHandler
-	public void onPM(PMEvent e){
-		e.setCancelled(true);
-	}
 }

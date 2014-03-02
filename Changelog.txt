@@ -63,3 +63,6 @@
 
 [AAAA] Tested most of the commands and everything works good. Nice job TheMushyPeas and Abiram
 
+[AAAA] Fixed a bug with the command /pm. I deleted /thru from the PlannedFeatures because you need to be able
+       to know which direction the player is facing and its not possible to see that with the current server api.
+
