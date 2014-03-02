@@ -5,6 +5,13 @@ public class Config {
 		private boolean enablePmSystem;
 	 	private boolean enableDebug;
 	 	private boolean enablePlaceBlocker;
+	 	private boolean enableLogs;
+	 	private boolean enableDeathLog;
+	 	private boolean enablePvPLog;
+	 	private boolean enableKillLog;
+	 	private boolean enableCommandLog;
+	 	
+		
 		private int[] blockedBlockIDs;
 	    	private boolean enableToolBlocker;
 	    	private int[] blockedToolIDs;
@@ -15,11 +22,15 @@ public class Config {
 		  
 	       this.setEnableDebug(true);
 	       this.setEnablePlaceBlocker(false);
-	        this.setBlockedBlockIDs(new int[0]);
-	        this.setEnableToolBlocker(false);
-	        this.setBlockedToolIDs(new int [0]);
-	       
-	       
+	       this.setBlockedBlockIDs(new int[0]);
+	       this.setEnableToolBlocker(false);
+	       this.setBlockedToolIDs(new int [0]);
+	       this.setEnableLogs(true);
+	       this.setEnableDeathLog(true);
+	       this.setEnableCommandLog(true);
+	       this.setEnableKillLog(false);
+	       this.setEnablePvPLog(true);
+	  
 	 	}
 	 	public boolean isEnableDebug() {
 			return enableDebug;
@@ -75,6 +86,42 @@ public class Config {
 			this.blockedToolIDs = blockedToolIDs;
 		}
 		//End placeblock + usetool disabler here
+		
+		
+		//Begin log disbaler/enabler
+		
+		public boolean isEnableLogs() {
+			return enableLogs;
+		}
+		public void setEnableLogs(boolean enableLogs) {
+			this.enableLogs = enableLogs;
+		}
+		public boolean isEnableDeathLog() {
+			return enableDeathLog;
+		}
+		public void setEnableDeathLog(boolean enableDeathLog) {
+			this.enableDeathLog = enableDeathLog;
+		}
+		public boolean isEnablePvPLog() {
+			return enablePvPLog;
+		}
+		public void setEnablePvPLog(boolean enablePvPLog) {
+			this.enablePvPLog = enablePvPLog;
+		}
+		public boolean isEnableKillLog() {
+			return enableKillLog;
+		}
+		public void setEnableKillLog(boolean enableKillLog) {
+			this.enableKillLog = enableKillLog;
+		}
+		public boolean isEnableCommandLog() {
+			return enableCommandLog;
+		}
+		public void setEnableCommandLog(boolean enableCommandLog) {
+			this.enableCommandLog = enableCommandLog;
+		}
+		//end log disabler/enabler
+
 	 	
 }
 	 	

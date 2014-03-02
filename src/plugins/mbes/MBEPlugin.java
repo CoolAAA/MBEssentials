@@ -1,7 +1,10 @@
 package plugins.mbes;
 
+import java.io.IOException;
+
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
+
 import plugins.mbes.commands.Commands;
 import plugins.mbes.commands.ModCmds;
 import plugins.mbes.commands.MoneyCmds;
@@ -10,12 +13,14 @@ import plugins.mbes.commands.PMCmds;
 import plugins.mbes.commands.Tpto;
 import plugins.mbes.commands.Tphere;
 import plugins.mbes.handler.AccountMaker;
+import plugins.mbes.handler.LogHandler;
 import plugins.mbes.handler.MuteHandler;
+import plugins.mbes.misc.LogManager;
 import plugins.mbes.misc.MoneyManager;
 
 @Manifest(name="MBEssentials",authors = {"TheMushyPeas","AAAA","Abiram"})
 public class MBEPlugin extends MBServerPlugin{
-	
+	LogManager logm;
 	MoneyManager bank;
 	Config config = new Config();
 	@Override
@@ -51,25 +56,25 @@ public class MBEPlugin extends MBServerPlugin{
 		if(config.isEnablePmSystem())
 		{
 		
-		this.getPluginManager().registerCommand("pm",new PMCmds(this.getServer()));
-		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered command: /pm");
+			this.getPluginManager().registerCommand("pm",new PMCmds(this.getServer()));
+			if(config.isEnableDebug())
+				this.getLogger().info("Successfully registered command: /pm");
 		
-		this.getPluginManager().registerCommand("unblock",new PMCmds(this.getServer()));
-		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered command: /unblock");
+			this.getPluginManager().registerCommand("unblock",new PMCmds(this.getServer()));
+			if(config.isEnableDebug())
+				this.getLogger().info("Successfully registered command: /unblock");
 		
-		this.getPluginManager().registerCommand("block",new PMCmds(this.getServer()));
-		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered command: /block");
+			this.getPluginManager().registerCommand("block",new PMCmds(this.getServer()));
+			if(config.isEnableDebug())
+				this.getLogger().info("Successfully registered command: /block");
 		
-		this.getPluginManager().registerCommand("blockall",new PMCmds(this.getServer()));
-		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered command: /blockall");
+			this.getPluginManager().registerCommand("blockall",new PMCmds(this.getServer()));
+			if(config.isEnableDebug())
+				this.getLogger().info("Successfully registered command: /blockall");
 		
-		this.getPluginManager().registerCommand("unblockall",new PMCmds(this.getServer()));
-		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered command: /unblockall");
+			this.getPluginManager().registerCommand("unblockall",new PMCmds(this.getServer()));
+			if(config.isEnableDebug())
+				this.getLogger().info("Successfully registered command: /unblockall");
 		
 		}
 		
@@ -112,10 +117,26 @@ public class MBEPlugin extends MBServerPlugin{
 				 this.getLogger().info("Successfully registered event handler: AccountMaker");
 		 }
 		 
+		 if(config.isEnableLogs())
+		 {
+			 try {
+				logm = new LogManager(config);
+				if(config.isEnableDebug())
+					this.getLogger().info("Successfully created logs!");
+				this.getPluginManager().registerEventHandler(new LogHandler(config, logm));
+				if(config.isEnableDebug())
+					this.getLogger().info("Successfully registered event handler: LogHandler");
+			} catch (IOException e) {
+				this.getLogger().severe("Could not create logs!");
+				e.printStackTrace();
+			}
+		 }
 		this.getLogger().info("MBEssentials Startup Finished!");
 	}
 	@Override
 	public void onDisable(){
+		if(config.isEnableLogs())
+			logm.close();
 		this.getServer().getConfigurationManager().save(this,bank);
 		this.getLogger().info("Have a nice day - from the MBEssentials Team!");
 	}

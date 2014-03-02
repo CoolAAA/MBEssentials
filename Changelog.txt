@@ -65,4 +65,6 @@
 
 [AAAA] Fixed a bug with the command /pm. I deleted /thru from the PlannedFeatures because you need to be able
        to know which direction the player is facing and its not possible to see that with the current server api.
+       
+[AAAA] Added death,command,pvp,killed Logs but killed is not working because i have to find a way to detect when a player killed a player
 

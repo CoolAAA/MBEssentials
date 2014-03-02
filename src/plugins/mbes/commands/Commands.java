@@ -6,9 +6,9 @@ import com.mbserver.api.Server;
 import com.mbserver.api.game.Player;
 
 public class Commands implements CommandExecutor{
-	boolean isPlayer = false;
-	Player p,temp;
-	Server s;
+	private boolean isPlayer = false;
+	private Player p,temp;
+	private Server s;
 	
 	public Commands(Server s) {
 		this.s = s;
@@ -39,13 +39,7 @@ public class Commands implements CommandExecutor{
 					sender.sendMessage("The player '" + args[0] + "' was not found!");
 				else
 				{
-					temp.teleport(temp.getLocation().getBlockX(),1, temp.getLocation().getBlockZ());
-					//Stuck method does NOT always work!!!
-					//My idea: make a 3 by 3 AIR-box at 10000,0,10000 to 10002,2,10002 (in onEnable()
-					//         save the CURRENT gamemode
-					//	   teleport player to 10001,1,10001 so he will FALL out of the world
-					//	   make him Survival (so he will fall)
-					//	   restore gamemode
+					temp.teleport(temp.getLocation().getBlockX(),-5, temp.getLocation().getBlockZ()); // teleports him under the world and dies instantly
 					sender.sendMessage("Player '" + temp.getDisplayName() + "' has been killed!");
 					temp = null;
 				}
