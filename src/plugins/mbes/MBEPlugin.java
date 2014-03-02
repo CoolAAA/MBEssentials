@@ -24,9 +24,9 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getLogger().info("Thanks for using MBEssentials by AAAA, Abiram and TheMushypeas!");
 		this.getLogger().info("Please report any bugs and glitches to the forums!");
 		
-        this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
-         if(config.isEnableDebug())
-        	this.getLogger().info("Successfully registered command: /kill");
+        	this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
+         	 if(config.isEnableDebug())
+        		 this.getLogger().info("Successfully registered command: /kill");
 		
 		this.getPluginManager().registerCommand("sudo",new ModCmds(this.getServer()));
 		 if(config.isEnableDebug())
@@ -49,6 +49,9 @@ public class MBEPlugin extends MBServerPlugin{
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered command: /tphere");
 		
+		if(config.isEnablePmSystem())
+		{
+		
 		this.getPluginManager().registerCommand("pm",new PMCmds(this.getServer()));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered command: /pm");
@@ -68,6 +71,8 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getPluginManager().registerCommand("unblockall",new PMCmds(this.getServer()));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered command: /unblockall");
+		
+		}
 		
 		this.getPluginManager().registerCommand("mute",new Mute(this.getServer()));
 		 if(config.isEnableDebug())
@@ -120,3 +125,5 @@ public class MBEPlugin extends MBServerPlugin{
 		return bank;
 	}
 }
+
+
