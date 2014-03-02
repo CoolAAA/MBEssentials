@@ -32,6 +32,8 @@ public class Config {
 		}
 		
 		//Start placeblock + usetool disabler config stuff here
+		//Should I use in-game adding/deleting blocks or tools ID's too? (by command)
+		//I should switch to ArrayList in that case...
 		public boolean isEnablePlaceBlocker() {
 			return enablePlaceBlocker;
 		}
