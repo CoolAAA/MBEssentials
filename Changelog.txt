@@ -68,3 +68,5 @@
        
 [AAAA] Added death,command,pvp,killed Logs but killed is not working because i have to find a way to detect when a player killed a player
 
+[AAAA] /kill now teleports the player under the world causing them to die instantly.
+
