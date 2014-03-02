@@ -2,6 +2,7 @@ package plugins.mbes;
 
 public class Config {
 	 	private boolean enableMoneySystem;
+		private boolean enablePmSystem;
 	 	private boolean enableDebug;
 	 	private boolean enablePlaceBlocker;
 		private int[] blockedBlockIDs;
@@ -9,7 +10,9 @@ public class Config {
 	    	private int[] blockedToolIDs;
 	 	
 	 	 public Config() {
-	       this.setEnableMoneySystem(true); //why true? :o
+	       this.setEnableMoneySystem(true);
+		   this.setEnablePmSystem(true);
+		  
 	       this.setEnableDebug(true);
 	       this.setEnablePlaceBlocker(false);
 	        this.setBlockedBlockIDs(new int[0]);
@@ -27,8 +30,14 @@ public class Config {
 		public boolean isEnableMoneySystem() {
 			return this.enableMoneySystem;
 		}
+		public boolean isEnablePmSystem() {
+			return this.enablePmSystem;
+		}
 		public void setEnableMoneySystem(boolean in) {
 			this.enableMoneySystem=in;
+		}
+		public void setEnablePmSystem(boolean in2) {
+			this.enablePmSystem=in2;
 		}
 		
 		//Start placeblock + usetool disabler config stuff here
