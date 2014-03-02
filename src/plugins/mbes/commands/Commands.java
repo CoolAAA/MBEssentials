@@ -40,6 +40,12 @@ public class Commands implements CommandExecutor{
 				else
 				{
 					temp.teleport(temp.getLocation().getBlockX(),1, temp.getLocation().getBlockZ());
+					//Stuck method does NOT always work!!!
+					//My idea: make a 3 by 3 AIR-box at 10000,0,10000 to 10002,2,10002 (in onEnable()
+					//         save the CURRENT gamemode
+					//	   teleport player to 10001,1,10001 so he will FALL out of the world
+					//	   make him Survival (so he will fall)
+					//	   restore gamemode
 					sender.sendMessage("Player '" + temp.getDisplayName() + "' has been killed!");
 					temp = null;
 				}
