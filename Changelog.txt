@@ -58,3 +58,6 @@
 [AAAA] Implimented the Config. 
 
 [AAAA] Added a cancellable PMEvent thats is triggered when ever a pm is sent. You can catch it with a EventHandler.
+
+[Abiram] Added Config code for Money (enable-option), ToolUseBlocker (enable-option, array of ID's), BlockPlaceBlocker (enable-option, array of ID's)
+
