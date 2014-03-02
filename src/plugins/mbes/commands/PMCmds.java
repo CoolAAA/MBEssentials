@@ -23,7 +23,7 @@ public class PMCmds implements CommandExecutor{
 		{
 			if(sender.hasPermission("mbes.pm"))
 			{
-				if(args.length < 2)
+				if(args.length >= 2)
 				{
 					Player send;
 					

@@ -1,7 +1,9 @@
 package plugins.mbes.handler;
 
 import plugins.mbes.Config;
+import plugins.mbes.misc.MoneyAccount;
 import plugins.mbes.misc.MoneyManager;
+import plugins.mbes.misc.PMEvent;
 
 import com.mbserver.api.events.EventHandler;
 import com.mbserver.api.events.Listener;
@@ -19,7 +21,7 @@ public class AccountMaker implements Listener{
 	
 	@EventHandler
 	public void onLogin(PlayerLoginEvent e){
-		boolean made = bank.addAccount(e.getPlayer());
+		boolean made = bank.addAccount(new MoneyAccount(e.getPlayer()));
 		
 		if(config.isEnableDebug())
 		{
@@ -28,5 +30,10 @@ public class AccountMaker implements Listener{
 			else
 				e.getServer().getLogger().info("Account unsuccesfully made for '" + e.getPlayer().getDisplayName() + "'");
 		}
+	}
+	
+	@EventHandler
+	public void onPM(PMEvent e){
+		e.setCancelled(true);
 	}
 }

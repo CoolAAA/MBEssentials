@@ -61,3 +61,5 @@
 
 [Abiram] Added Config code for Money (enable-option), ToolUseBlocker (enable-option, array of ID's), BlockPlaceBlocker (enable-option, array of ID's)
 
+[AAAA] Tested most of the commands and everything works good. Nice job TheMushyPeas and Abiram
+

@@ -1,7 +1,5 @@
 package plugins.mbes.commands;
 
-import java.util.ArrayList;
-
 import plugins.mbes.misc.MoneyManager;
 import plugins.mbes.misc.MoneyAccount;
 
@@ -47,7 +45,7 @@ public class MoneyCmds implements CommandExecutor{
 							try{
 								int amount = Integer.parseInt(args[1]);
 								
-								amount = bank.giveMoney((Player)sender,to,amount);
+								amount = bank.giveMoney(new MoneyAccount((Player)sender),new MoneyAccount(to),amount);
 								sender.sendMessage("$" + amount + " was given to '" + to.getDisplayName() + "' from your account!");
 							}catch(NumberFormatException e){
 								sender.sendMessage("Enter a valid amount of money!");
@@ -58,7 +56,7 @@ public class MoneyCmds implements CommandExecutor{
 							try{
 								int amount = Integer.valueOf(args[1]);
 								
-								bank.addMoney(to, amount);
+								bank.addMoney(new MoneyAccount(to), amount);
 								sender.sendMessage("$" + amount + " was given to '" + to.getDisplayName() + "'");
 							}catch(NumberFormatException e){
 								sender.sendMessage("Enter a valid amount of money!");
@@ -77,7 +75,7 @@ public class MoneyCmds implements CommandExecutor{
 			{
 				if(sender instanceof Player)
 				{
-					int amount = bank.getMoney((Player)sender);
+					int amount = bank.getMoney(new MoneyAccount((Player)sender));
 					
 					if(amount == -1)
 						sender.sendMessage("You don't have a bank account!");
@@ -110,7 +108,7 @@ public class MoneyCmds implements CommandExecutor{
 					{
 						try{
 							int amount = Integer.parseInt(args[1]);
-							bank.addMoney(temp, amount);
+							bank.addMoney(new MoneyAccount(temp), amount);
 							sender.sendMessage("$" + amount + " was given to '" + temp.getDisplayName() + "'");
 						}catch(NumberFormatException e){
 							sender.sendMessage("Please enter a valid amount!");
@@ -139,7 +137,7 @@ public class MoneyCmds implements CommandExecutor{
 					{
 						try{
 							int amount = Integer.parseInt(args[1]);
-							amount = bank.removeMoney(temp, amount);
+							amount = bank.removeMoney(new MoneyAccount(temp), amount);
 							sender.sendMessage("$" + amount + " was removed from '" + temp.getDisplayName() + "' account!");
 						}catch(NumberFormatException e){
 							sender.sendMessage("Please enter a valid amount!");
@@ -167,7 +165,7 @@ public class MoneyCmds implements CommandExecutor{
 					
 					else
 					{
-							bank.resetAccount(temp);
+							bank.resetAccount(new MoneyAccount(temp));
 							sender.sendMessage(temp.getDisplayName() + "' account was reset!");
 						
 					}

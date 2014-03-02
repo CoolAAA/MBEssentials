@@ -1,20 +1,19 @@
 package plugins.mbes.misc;
 
+import com.mbserver.api.Server;
 import com.mbserver.api.game.Player;
 
 public class MoneyAccount {
 	
-	Player player;
 	int amount;
 	String name;
 	boolean inf; 
 	
-	public Player getPlayer() {
-		return player;
+	public Player getPlayer(Server s) {
+		return s.getPlayerExact(name);
 	}
 	
 	public MoneyAccount(final Player player) {
-		this.player = player;
 		this.setName(player.getDisplayName());
 		inf = false;
 		amount = 0;
@@ -29,7 +28,7 @@ public class MoneyAccount {
 		return this;
 	}
 	
-	public String getName() {
+	public String getName() {    
 		return name;
 	}
 	
@@ -48,7 +47,8 @@ public class MoneyAccount {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if(((Player)obj).getDisplayName().equals(this.getName()))
+		
+		if(((MoneyAccount)obj).getName().equals(this.getName()))
 			return true;
 		
 		return false;

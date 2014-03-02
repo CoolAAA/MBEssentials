@@ -16,8 +16,9 @@ import plugins.mbes.misc.MoneyManager;
 
 @Manifest(name="MBEssentials",authors = {"TheMushyPeas","AAAA","Abiram"})
 public class MBEPlugin extends MBServerPlugin{
-	Config config = new Config();
+	
 	MoneyManager bank;
+	Config config = new Config();
 	@Override
 	public void onEnable() {
 		this.getLogger().info("Thanks for using MBEssentials by AAAA, Abiram and TheMushypeas!");

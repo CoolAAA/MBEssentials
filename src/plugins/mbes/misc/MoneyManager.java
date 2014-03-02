@@ -8,24 +8,24 @@ import com.mbserver.api.game.Player;
 public class MoneyManager{
 	ArrayList<MoneyAccount>bank = new ArrayList<MoneyAccount>();
 	
-	public boolean addAccount(Player p){
+	public boolean addAccount(MoneyAccount p){
 		if(bank.contains(p))
 			return false;
-		bank.add(new MoneyAccount(p));
+		bank.add(p);
 		return true;
 	}
 	
-	public boolean resetAccount(Player p){
+	public boolean resetAccount(MoneyAccount p){
 		int ind = bank.indexOf(p);
 		
 		if(ind == -1)
 			return false;
 		
-		bank.set(ind,new MoneyAccount(p));
+		bank.set(ind,p);
 		return true;
 	}
 	
-	public boolean addMoney(Player p,int amount){
+	public boolean addMoney(MoneyAccount p,int amount){
 		int ind = bank.indexOf(p);
 		
 		if(ind == -1)
@@ -35,20 +35,17 @@ public class MoneyManager{
 		return true;
 	}
 	
-	public int removeMoney(Player p,int amount){
+	public int removeMoney(MoneyAccount p,int amount){
 		int ind = bank.indexOf(p);
 		
 		if(ind == -1)
 			return -1;
 		MoneyAccount temp = bank.get(ind);
 		
-		if(temp.getAmount() - amount < 0)
-			amount = Math.abs(temp.getAmount() - amount);
-		
-		if(temp.getAmount() == 0)
-			amount = 0;
-		
 		bank.set(ind,temp.setAmount(temp.getAmount() - amount));
+		
+		if(bank.get(ind).getAmount() < 0)
+			bank.set(ind,temp.setAmount(0));
 		
 		return amount;
 	}
@@ -64,7 +61,7 @@ public class MoneyManager{
 		return true;
 	}
 	
-	public int getMoney(Player p){
+	public int getMoney(MoneyAccount p){
 		int ind = bank.indexOf(p);
 		
 		if(ind == -1)
@@ -73,7 +70,7 @@ public class MoneyManager{
 		return bank.get(ind).getAmount();
 	}
 	
-	public int giveMoney(Player from, Player to,int amount){
+	public int giveMoney(MoneyAccount from,MoneyAccount to,int amount){
 		int ind = bank.indexOf(from);
 		
 		if(ind == -1)

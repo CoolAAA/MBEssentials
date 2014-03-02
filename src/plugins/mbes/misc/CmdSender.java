@@ -29,7 +29,13 @@ public class CmdSender implements CommandSender{
 	}
 	
 	public String[] getMsg(){
-		return (String[]) msg.toArray();
+		String rt[] = new String[msg.size()];
+		
+		for(int a = 0;a < msg.size();a++)
+		{
+			rt[a] = msg.get(a);
+		}
+		return rt;
 	}
 
 }

@@ -1,7 +1,6 @@
 package plugins.mbes.misc;
 
 import com.mbserver.api.events.CancellableEvent;
-import com.mbserver.api.exceptions.ThreadedEventModificationException;
 import com.mbserver.api.game.Player;
 
 public class PMEvent extends CancellableEvent{
