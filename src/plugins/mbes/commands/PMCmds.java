@@ -8,7 +8,7 @@ import com.mbserver.api.game.Player;
 
 public class PMCmds implements CommandExecutor{
 
-	Server server;
+	private Server server;
 	
 	public PMCmds(Server server) {
 		this.server = server;

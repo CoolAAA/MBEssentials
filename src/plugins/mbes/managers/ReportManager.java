@@ -5,7 +5,7 @@ import plugins.mbes.misc.Report;
 
 public class ReportManager{
 	private ArrayList<Report>report = new ArrayList<Report>();
-	int id = 0;
+	private  int id = 0;
 	
 	public void newReport(Report e){
 		e.setId(id);
@@ -28,6 +28,8 @@ public class ReportManager{
 	}
 	
 	public Report[] getAll(){
+		if(report.isEmpty())
+			return null;
 		return (Report[])report.toArray();
 	}
 }

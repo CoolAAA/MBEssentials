@@ -75,3 +75,7 @@
 [mushy] Added block place/break logging support. Thanks to Abiram for providing the original source on the forums!
 
 [AAAA] Fixed some errors with github.
+
+[AAAA] Changed a class values to private remeber to make them private in the future
+
+[AAAA] Added /report <player> <name>,/vwreport - view all reports,/vwreport <num> - view a specific report,/delreport <num> - delete a report

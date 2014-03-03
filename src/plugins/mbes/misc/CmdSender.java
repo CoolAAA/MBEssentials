@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import com.mbserver.api.CommandSender;
 
 public class CmdSender implements CommandSender{
-	ArrayList<String>msg = new ArrayList<String>();
-	CommandSender cms; 
+	private ArrayList<String>msg = new ArrayList<String>();
+	private CommandSender cms; 
 	
 	public CmdSender(CommandSender s) {
 		cms = s;

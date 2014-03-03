@@ -11,7 +11,15 @@ public class Config {
 	 	private boolean enableKillLog;
 	 	private boolean enablePlaceLog;
 	 	private boolean enableBreakLog;
-	 	private boolean enableCommandLog;
+	 	private boolean enableReport;
+	 	public boolean isEnableReport() {
+			return enableReport;
+		}
+
+		public void setEnableReport(boolean enableReport) {
+			this.enableReport = enableReport;
+		}
+		private boolean enableCommandLog;
 		private int[] blockedBlockIDs;
 	    	private boolean enableToolBlocker;
 	    	private int[] blockedToolIDs;
@@ -19,7 +27,7 @@ public class Config {
 	 	 public Config() {
 	       this.setEnableMoneySystem(true);
 		   this.setEnablePmSystem(true);
-
+		   
 	       this.setEnableDebug(true);
 	       this.setEnablePlaceBlocker(false);
 	       this.setBlockedBlockIDs(new int[0]);
@@ -32,6 +40,7 @@ public class Config {
 	       this.setEnablePvPLog(true);
 	       this.setEnablePlaceLog(false);
 	       this.setEnableBreakLog(false);
+	       this.setEnableReport(true);
 	 	}
 	 	 
 	 	public void setEnablePlaceLog(boolean enablePlaceLog) {

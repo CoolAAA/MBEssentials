@@ -9,9 +9,9 @@ import com.mbserver.api.game.Player;
 
 public class ModCmds implements CommandExecutor{
 
-	boolean isPlayer = false;
-	Player p;
-	Server s;
+	private boolean isPlayer = false;
+	private Player p;
+	private Server s;
 	
 	public  ModCmds(Server s) {
 		this.s = s;

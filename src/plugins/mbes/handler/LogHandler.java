@@ -3,8 +3,6 @@ package plugins.mbes.handler;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.events.BlockPlaceEvent;
 import com.mbserver.api.events.EventHandler;
 import com.mbserver.api.events.Listener;
@@ -18,8 +16,8 @@ import plugins.mbes.managers.LogManager;
 
 public class LogHandler implements Listener{
 
-	Config config;
-	LogManager logger;
+	private Config config;
+	private LogManager logger;
 	public LogHandler(Config config,LogManager logger) {
 		this.config = config;
 		this.logger = logger;

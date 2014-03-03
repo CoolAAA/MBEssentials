@@ -10,6 +10,7 @@ import plugins.mbes.commands.ModCmds;
 import plugins.mbes.commands.MoneyCmds;
 import plugins.mbes.commands.Mute;
 import plugins.mbes.commands.PMCmds;
+import plugins.mbes.commands.ReportCmds;
 import plugins.mbes.commands.Tpto;
 import plugins.mbes.commands.Tphere;
 import plugins.mbes.handler.AccountMaker;
@@ -17,12 +18,15 @@ import plugins.mbes.handler.LogHandler;
 import plugins.mbes.handler.MuteHandler;
 import plugins.mbes.managers.LogManager;
 import plugins.mbes.managers.MoneyManager;
+import plugins.mbes.managers.ReportManager;
 
 @Manifest(name="MBEssentials",authors = {"TheMushyPeas","AAAA","Abiram"})
 public class MBEPlugin extends MBServerPlugin{
-	LogManager logm;
-	MoneyManager bank;
-	Config config = new Config();
+	private LogManager logm;
+	private MoneyManager bank;
+	private Config config = new Config();
+	private ReportManager report = new ReportManager();
+	
 	@Override
 	public void onEnable() {
 		this.getLogger().info("Thanks for using MBEssentials by AAAA, Abiram and TheMushypeas!");
@@ -130,6 +134,26 @@ public class MBEPlugin extends MBServerPlugin{
 				this.getLogger().severe("Could not create logs!");
 				e.printStackTrace();
 			}
+		 }
+		 
+		 if(config.isEnableReport())
+		 {
+			 report = this.getServer().getConfigurationManager().load(this,ReportManager.class);
+			 
+			 if(report == null)
+				 report = new ReportManager();
+			 
+			 this.getPluginManager().registerCommand("report",new ReportCmds(this.getServer(),report));
+			 if(config.isEnableDebug())
+				 this.getLogger().info("Successfully registered command: /report");
+			 
+			 this.getPluginManager().registerCommand("vwreport",new ReportCmds(this.getServer(),report));
+			 if(config.isEnableDebug())
+				 this.getLogger().info("Successfully registered command: /vwreport");
+			 
+			 this.getPluginManager().registerCommand("delreport",new ReportCmds(this.getServer(),report));
+			 if(config.isEnableDebug())
+				 this.getLogger().info("Successfully registered command: /delreport");
 		 }
 		this.getLogger().info("MBEssentials Startup Finished!");
 	}

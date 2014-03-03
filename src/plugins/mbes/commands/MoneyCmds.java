@@ -10,8 +10,8 @@ import com.mbserver.api.game.Player;
 
 public class MoneyCmds implements CommandExecutor{
 	
-	Server s;
-	MoneyManager bank;
+	private Server s;
+	private MoneyManager bank;
 	
 	public MoneyCmds(Server s,MoneyManager bank) {
 		this.bank = bank;

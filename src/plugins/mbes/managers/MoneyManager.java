@@ -6,7 +6,7 @@ import plugins.mbes.misc.MoneyAccount;
 import com.mbserver.api.game.Player;
 
 public class MoneyManager{
-	ArrayList<MoneyAccount>bank = new ArrayList<MoneyAccount>();
+	private ArrayList<MoneyAccount>bank = new ArrayList<MoneyAccount>();
 	
 	public boolean addAccount(MoneyAccount p){
 		if(bank.contains(p))

@@ -9,8 +9,8 @@ import com.mbserver.api.events.PlayerLoginEvent;
 
 public class AccountMaker implements Listener{
 	
-	MoneyManager bank;
-	Config config;
+	private MoneyManager bank;
+	private Config config;
 	
 	public AccountMaker(MoneyManager m,Config config) {
 		this.bank = m;
