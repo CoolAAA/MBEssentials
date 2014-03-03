@@ -12,16 +12,6 @@ public class Config {
 	 	private boolean enablePlaceLog;
 	 	private boolean enableBreakLog;
 	 	private boolean enableCommandLog;
-<<<<<<< HEAD
-
-
-
-=======
-	 	
-	 	
-	 	
-		
->>>>>>> d72152bcfbde206b66d8a9843473eead5d61b219
 		private int[] blockedBlockIDs;
 	    	private boolean enableToolBlocker;
 	    	private int[] blockedToolIDs;
@@ -42,15 +32,8 @@ public class Config {
 	       this.setEnablePvPLog(true);
 	       this.setEnablePlaceLog(false);
 	       this.setEnableBreakLog(false);
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-=======
->>>>>>> d7a6d0b4c6829d2d9644ceab68748091a1e85377
-	  
->>>>>>> d72152bcfbde206b66d8a9843473eead5d61b219
 	 	}
+	 	 
 	 	public void setEnablePlaceLog(boolean enablePlaceLog) {
 			this.enablePlaceLog = enablePlaceLog;
 		}
@@ -121,9 +104,6 @@ public class Config {
 		public boolean isEnableDeathLog() {
 			return enableDeathLog;
 		}
-		public void setEnableDeathLog(boolean enableDeathLog) {
-			this.enableDeathLog = enableDeathLog;
-		}
 		public boolean isEnablePvPLog() {
 			return enablePvPLog;
 		}
@@ -145,19 +125,10 @@ public class Config {
 		public boolean isEnablePlaceLog() {
 			return enablePlaceLog;
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
-		
-=======
 		public void setEnableDeathLog(boolean enablePlaceLog) {
 			this.enablePlaceLog = enablePlaceLog;
 		}
->>>>>>> d72152bcfbde206b66d8a9843473eead5d61b219
-=======
-		public void setEnableDeathLog(boolean enablePlaceLog) {
-			this.enablePlaceLog = enablePlaceLog;
-		}
->>>>>>> d7a6d0b4c6829d2d9644ceab68748091a1e85377
+
 		public boolean isEnableBreakLog() {
 			return enableBreakLog;
 		}
