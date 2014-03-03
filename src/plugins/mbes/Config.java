@@ -9,7 +9,10 @@ public class Config {
 	 	private boolean enableDeathLog;
 	 	private boolean enablePvPLog;
 	 	private boolean enableKillLog;
+	 	private boolean enablePlaceLog;
+	 	private boolean enableBreakLog;
 	 	private boolean enableCommandLog;
+	 	
 	 	
 		
 		private int[] blockedBlockIDs;
@@ -30,6 +33,8 @@ public class Config {
 	       this.setEnableCommandLog(true);
 	       this.setEnableKillLog(false);
 	       this.setEnablePvPLog(true);
+	       this.setEnablePlaceLog(false);
+	       this.setEnableBreakLog(false);
 	  
 	 	}
 	 	public boolean isEnableDebug() {
@@ -119,6 +124,18 @@ public class Config {
 		}
 		public void setEnableCommandLog(boolean enableCommandLog) {
 			this.enableCommandLog = enableCommandLog;
+		}
+		public boolean isEnablePlaceLog() {
+			return enablePlaceLog;
+		}
+		public void setEnableDeathLog(boolean enablePlaceLog) {
+			this.enablePlaceLog = enablePlaceLog;
+		}
+		public boolean isEnableBreakLog() {
+			return enableBreakLog;
+		}
+		public void setEnableBreakLog(boolean enableBreakLog) {
+			this.enableBreakLog = enableBreakLog;
 		}
 		//end log disabler/enabler
 
