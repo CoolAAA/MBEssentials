@@ -14,10 +14,17 @@ public class LogManager {
 	private String date;
 	private Config config;
 	public static final int KLOG = 0,DLOG = 1,PLOG = 2,CLOG = 3,PLCLOG = 4, BLOG = 5;
+<<<<<<< HEAD:src/plugins/mbes/managers/LogManager.java
 
 	private String[] dirs = {"Kill_Logs","Death_Logs","PvP Logs","Command_Logs", "Place_Logs", "Break_Logs"};
 	private BufferedWriter[] logWriter = new BufferedWriter[5];
 
+=======
+	
+	private String[] dirs = {"Kill_Logs","Death_Logs","PvP Logs","Command_Logs", "Place_Logs", "Break_Logs"};
+	private BufferedWriter[] logWriter = new BufferedWriter[4];
+	
+>>>>>>> d72152bcfbde206b66d8a9843473eead5d61b219:src/plugins/mbes/misc/LogManager.java
 	public LogManager(Config config) throws IOException {
 		this.config = config;
 		if(System.getProperty("os.name").toLowerCase().contains("windows"))
@@ -49,7 +56,11 @@ public class LogManager {
 			logWriter[4] = new BufferedWriter(new FileWriter("logs\\MBE_Logs\\" + dirs[4] + "\\" + date));
 		if(config.isEnableBreakLog())
 			logWriter[5] = new BufferedWriter(new FileWriter("logs\\MBE_Logs\\" + dirs[5] + "\\" + date));
+<<<<<<< HEAD:src/plugins/mbes/managers/LogManager.java
 
+=======
+		
+>>>>>>> d72152bcfbde206b66d8a9843473eead5d61b219:src/plugins/mbes/misc/LogManager.java
 	}
 
 	public void writeEntry(String what,final int log) throws IOException{
@@ -71,6 +82,7 @@ public class LogManager {
 
 				if(config.isEnableCommandLog())
 					logWriter[3].close();
+<<<<<<< HEAD:src/plugins/mbes/managers/LogManager.java
 
 				if(config.isEnablePlaceLog())
 					logWriter[4].close();
@@ -78,6 +90,15 @@ public class LogManager {
 				if(config.isEnableBreakLog())
 					logWriter[5].close();
 
+=======
+					
+				if(config.isPlaceCommandLog())
+					logWriter[4].close();
+					
+				if(config.isBreakCommandLog())
+					logWriter[5].close();
+				
+>>>>>>> d72152bcfbde206b66d8a9843473eead5d61b219:src/plugins/mbes/misc/LogManager.java
 			} catch (IOException e) {
 
 			}

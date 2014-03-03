@@ -92,6 +92,7 @@ public class LogHandler implements Listener{
 				e1.printStackTrace();
 			}
 	}
+<<<<<<< HEAD
         }
         @EventHandler
         public void onBlockBreak(BlockPlaceEvent event1){
@@ -100,6 +101,30 @@ public class LogHandler implements Listener{
         		String name = event1.getPlayer().getDisplayName();
         		String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
 			String log = time + " " + event1.getPlayer().getName() + " broke a block of " + event1.getMaterial();
+=======
+	
+	@EventHandler
+        public void onBlockPlace(BlockPlaceEvent event1){
+        	if(config.isEnablePlaceLog())
+        	{
+        		String name = event1.getSender().getName();
+        		String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
+			String log = time + " " + event1.getPlayer().getName() + " placed a block of " + event1.getMaterial());
+			try {
+				logger.writeEntry(log,LogManager.PLCLOG);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+	}
+        }
+        @EventHandler
+        public void onBlockBreak(BlockPlaceEvent event2){
+        	if(config.isEnableBreakLog())
+        	{
+        		String name = event2.getSender().getName();
+        		String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
+			String log = time + " " + event1.getPlayer().getName() + " broke a block of " + event1.getMaterial());
+>>>>>>> d72152bcfbde206b66d8a9843473eead5d61b219
 			try {
 				logger.writeEntry(log,LogManager.BLOG);
 			} catch (IOException e1) {
@@ -107,6 +132,12 @@ public class LogHandler implements Listener{
 			}
 	}
         }
+<<<<<<< HEAD
+=======
+}
+	
+	
+>>>>>>> d72152bcfbde206b66d8a9843473eead5d61b219
 }
 
 
