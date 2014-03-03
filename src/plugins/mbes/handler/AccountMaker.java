@@ -2,9 +2,7 @@ package plugins.mbes.handler;
 
 import plugins.mbes.Config;
 import plugins.mbes.misc.MoneyAccount;
-import plugins.mbes.misc.MoneyManager;
-import plugins.mbes.misc.PMEvent;
-
+import plugins.mbes.managers.MoneyManager;
 import com.mbserver.api.events.EventHandler;
 import com.mbserver.api.events.Listener;
 import com.mbserver.api.events.PlayerLoginEvent;

@@ -9,17 +9,20 @@ public class Config {
 	 	private boolean enableDeathLog;
 	 	private boolean enablePvPLog;
 	 	private boolean enableKillLog;
+	 	private boolean enablePlaceLog;
+	 	private boolean enableBreakLog;
 	 	private boolean enableCommandLog;
-	 	
-		
+
+
+
 		private int[] blockedBlockIDs;
 	    	private boolean enableToolBlocker;
 	    	private int[] blockedToolIDs;
-	 	
+
 	 	 public Config() {
 	       this.setEnableMoneySystem(true);
 		   this.setEnablePmSystem(true);
-		  
+
 	       this.setEnableDebug(true);
 	       this.setEnablePlaceBlocker(false);
 	       this.setBlockedBlockIDs(new int[0]);
@@ -30,9 +33,14 @@ public class Config {
 	       this.setEnableCommandLog(true);
 	       this.setEnableKillLog(false);
 	       this.setEnablePvPLog(true);
-	  
+	       this.setEnablePlaceLog(false);
+	       this.setEnableBreakLog(false);
+
 	 	}
-	 	public boolean isEnableDebug() {
+	 	public void setEnablePlaceLog(boolean enablePlaceLog) {
+			this.enablePlaceLog = enablePlaceLog;
+		}
+		public boolean isEnableDebug() {
 			return enableDebug;
 		}
 		public void setEnableDebug(boolean enableDebug) {
@@ -50,7 +58,7 @@ public class Config {
 		public void setEnablePmSystem(boolean in2) {
 			this.enablePmSystem=in2;
 		}
-		
+
 		//Start placeblock + usetool disabler config stuff here
 		//Should I use in-game adding/deleting blocks or tools ID's too? (by command)
 		//I should switch to ArrayList in that case...
@@ -86,10 +94,10 @@ public class Config {
 			this.blockedToolIDs = blockedToolIDs;
 		}
 		//End placeblock + usetool disabler here
-		
-		
+
+
 		//Begin log disbaler/enabler
-		
+
 		public boolean isEnableLogs() {
 			return enableLogs;
 		}
@@ -120,8 +128,18 @@ public class Config {
 		public void setEnableCommandLog(boolean enableCommandLog) {
 			this.enableCommandLog = enableCommandLog;
 		}
+		public boolean isEnablePlaceLog() {
+			return enablePlaceLog;
+		}
+		
+		public boolean isEnableBreakLog() {
+			return enableBreakLog;
+		}
+		public void setEnableBreakLog(boolean enableBreakLog) {
+			this.enableBreakLog = enableBreakLog;
+		}
 		//end log disabler/enabler
 
-	 	
+
 }
-	 	
+

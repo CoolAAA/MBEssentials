@@ -1,6 +1,6 @@
 package plugins.mbes.commands;
 
-import plugins.mbes.misc.MoneyManager;
+import plugins.mbes.managers.MoneyManager;
 import plugins.mbes.misc.MoneyAccount;
 
 import com.mbserver.api.CommandExecutor;

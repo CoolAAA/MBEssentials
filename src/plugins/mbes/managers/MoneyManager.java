@@ -1,4 +1,4 @@
-package plugins.mbes.misc;
+package plugins.mbes.managers;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,6 @@
 package plugins.mbes.commands;
 
-import plugins.mbes.misc.PMEvent;
-
+import plugins.mbes.misc.events.PMEvent;
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
 import com.mbserver.api.Server;

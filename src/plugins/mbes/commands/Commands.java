@@ -6,8 +6,7 @@ import com.mbserver.api.Server;
 import com.mbserver.api.game.Player;
 
 public class Commands implements CommandExecutor{
-	private boolean isPlayer = false;
-	private Player p,temp;
+	private Player temp;
 	private Server s;
 	
 	public Commands(Server s) {
@@ -17,12 +16,6 @@ public class Commands implements CommandExecutor{
 	@Override
 	public void execute(String command, CommandSender sender, String[] args,
 			String label) {
-		
-		if(sender instanceof Player) // Check if its a player or console
-		{
-			isPlayer = true;
-			p = (Player)sender;
-		}
 		
 		if(command.equals("kill"))
 		{

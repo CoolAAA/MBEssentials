@@ -15,8 +15,8 @@ import plugins.mbes.commands.Tphere;
 import plugins.mbes.handler.AccountMaker;
 import plugins.mbes.handler.LogHandler;
 import plugins.mbes.handler.MuteHandler;
-import plugins.mbes.misc.LogManager;
-import plugins.mbes.misc.MoneyManager;
+import plugins.mbes.managers.LogManager;
+import plugins.mbes.managers.MoneyManager;
 
 @Manifest(name="MBEssentials",authors = {"TheMushyPeas","AAAA","Abiram"})
 public class MBEPlugin extends MBServerPlugin{

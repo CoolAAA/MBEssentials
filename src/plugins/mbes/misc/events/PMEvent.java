@@ -1,4 +1,4 @@
-package plugins.mbes.misc;
+package plugins.mbes.misc.events;
 
 import com.mbserver.api.events.CancellableEvent;
 import com.mbserver.api.game.Player;

@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.mbserver.api.CommandExecutor;
+import com.mbserver.api.events.BlockPlaceEvent;
 import com.mbserver.api.events.EventHandler;
 import com.mbserver.api.events.Listener;
 import com.mbserver.api.events.PlayerDeathEvent;
@@ -13,17 +14,17 @@ import com.mbserver.api.events.PreCommandEvent;
 import com.mbserver.api.game.Location;
 
 import plugins.mbes.Config;
-import plugins.mbes.misc.LogManager;
+import plugins.mbes.managers.LogManager;
 
 public class LogHandler implements Listener{
-	
+
 	Config config;
 	LogManager logger;
 	public LogHandler(Config config,LogManager logger) {
 		this.config = config;
 		this.logger = logger;
 	}
-	
+
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e){
 		if(config.isEnableDeathLog())
@@ -39,8 +40,8 @@ public class LogHandler implements Listener{
 			}
 		}
 	}
-	
-	
+
+
 	@EventHandler
 	public void onPvP(PlayerPvpEvent e){
 		if(config.isEnablePvPLog())
@@ -56,8 +57,8 @@ public class LogHandler implements Listener{
 			}
 		}
 	}
-	
-	
+
+
 	@EventHandler
 	public void onCmd(PreCommandEvent e){
 		if(config.isEnableCommandLog())
@@ -68,15 +69,44 @@ public class LogHandler implements Listener{
 			for(String a : e.getArguments())
 				args = args + a + " ";
 			String log = time + " Player '" + name + "' Command:" + e.getCommand() + " Args:" + args;
-			
+
 			try {
 				logger.writeEntry(log,LogManager.CLOG);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 		}
-		
+
 	}
-	
-	
+
+	@EventHandler
+        public void onBlockPlace(BlockPlaceEvent event1){
+        	if(config.isEnablePlaceLog())
+        	{
+        		String name = event1.getPlayer().getDisplayName();
+        		String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
+			String log = time + " " + event1.getPlayer().getName() + " placed a block of " + event1.getMaterial();
+			try {
+				logger.writeEntry(log,LogManager.PLCLOG);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+	}
+        }
+        @EventHandler
+        public void onBlockBreak(BlockPlaceEvent event1){
+        	if(config.isEnableBreakLog())
+        	{
+        		String name = event1.getPlayer().getDisplayName();
+        		String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
+			String log = time + " " + event1.getPlayer().getName() + " broke a block of " + event1.getMaterial();
+			try {
+				logger.writeEntry(log,LogManager.BLOG);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+	}
+        }
 }
+
+
