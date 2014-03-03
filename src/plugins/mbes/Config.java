@@ -19,6 +19,7 @@ public class Config {
 =======
 	 	
 	 	
+	 	
 		
 >>>>>>> d72152bcfbde206b66d8a9843473eead5d61b219
 		private int[] blockedBlockIDs;
@@ -42,8 +43,11 @@ public class Config {
 	       this.setEnablePlaceLog(false);
 	       this.setEnableBreakLog(false);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> d7a6d0b4c6829d2d9644ceab68748091a1e85377
 	  
 >>>>>>> d72152bcfbde206b66d8a9843473eead5d61b219
 	 	}
@@ -142,12 +146,18 @@ public class Config {
 			return enablePlaceLog;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 =======
 		public void setEnableDeathLog(boolean enablePlaceLog) {
 			this.enablePlaceLog = enablePlaceLog;
 		}
 >>>>>>> d72152bcfbde206b66d8a9843473eead5d61b219
+=======
+		public void setEnableDeathLog(boolean enablePlaceLog) {
+			this.enablePlaceLog = enablePlaceLog;
+		}
+>>>>>>> d7a6d0b4c6829d2d9644ceab68748091a1e85377
 		public boolean isEnableBreakLog() {
 			return enableBreakLog;
 		}
