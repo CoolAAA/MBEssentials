@@ -13,9 +13,9 @@ public class LogManager {
 	private String seperator;
 	private String date;
 	private Config config;
-	public static final int KLOG = 0,DLOG = 1,PLOG = 2,CLOG = 3;
+	public static final int KLOG = 0,DLOG = 1,PLOG = 2,CLOG = 3,PLCLOG = 4, BLOG = 5;
 	
-	private String[] dirs = {"Kill_Logs","Death_Logs","PvP Logs","Command_Logs"};
+	private String[] dirs = {"Kill_Logs","Death_Logs","PvP Logs","Command_Logs", "Place_Logs", "Break_Logs"};
 	private BufferedWriter[] logWriter = new BufferedWriter[4];
 	
 	public LogManager(Config config) throws IOException {
@@ -45,6 +45,10 @@ public class LogManager {
 			logWriter[2] = new BufferedWriter(new FileWriter("logs\\MBE_Logs\\" + dirs[2] + "\\" + date));
 		if(config.isEnableCommandLog())
 			logWriter[3] = new BufferedWriter(new FileWriter("logs\\MBE_Logs\\" + dirs[3] + "\\" + date));
+		if(config.isEnablePlaceLog())
+			logWriter[4] = new BufferedWriter(new FileWriter("logs\\MBE_Logs\\" + dirs[4] + "\\" + date));
+		if(config.isEnableBreakLog())
+			logWriter[5] = new BufferedWriter(new FileWriter("logs\\MBE_Logs\\" + dirs[5] + "\\" + date));
 		
 	}
 	
@@ -67,6 +71,12 @@ public class LogManager {
 				
 				if(config.isEnableCommandLog())
 					logWriter[3].close();
+					
+				if(config.isPlaceCommandLog())
+					logWriter[4].close();
+					
+				if(config.isBreakCommandLog())
+					logWriter[5].close();
 				
 			} catch (IOException e) {
 				
