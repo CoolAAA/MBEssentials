@@ -84,7 +84,7 @@ public class LogHandler implements Listener{
         	{
         		String name = event1.getPlayer().getDisplayName();
         		String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
-			String log = time + " " + name + " placed a block of " + event1.getMaterial();
+			String log = time + " " + name + " placed a block of " + event1.getMaterial().getName();
 			try {
 				logger.writeEntry(log,LogManager.PLCLOG);
 			} catch (IOException e1) {
@@ -98,7 +98,7 @@ public class LogHandler implements Listener{
         	{
         		String name = event2.getPlayer().getDisplayName();
         		String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
-			String log = time + " " + name + " broke a block of " + event2.getMaterial();
+			String log = time + " " + name + " broke a block of " + event2.getMaterial().getName();
 
 			try {
 				logger.writeEntry(log,LogManager.BLOG);
