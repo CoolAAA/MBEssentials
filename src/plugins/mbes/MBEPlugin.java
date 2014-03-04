@@ -132,6 +132,8 @@ public class MBEPlugin extends MBServerPlugin{
 					this.getLogger().info("Successfully registered event handler: LogHandler");
 			} catch (IOException e) {
 				this.getLogger().severe("Could not create logs!");
+				//logging is still on! creates unnecesary checks...
+				//but it can't be turned off here (looks at onDisable())
 				e.printStackTrace();
 			}
 		 }
