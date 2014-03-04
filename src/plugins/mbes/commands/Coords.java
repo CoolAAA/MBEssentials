@@ -9,45 +9,41 @@ import com.mbserver.api.Server;
 public class Coords implements CommandExecutor {
 	private Server server;
 
-    public Coords( Server server ) {
-        this.server = server;
-    }
-    
-    @Override
-    public void execute( String command, CommandSender sender, String[] args, String label ) {
- 
-    	if(args.length != 0)
-    	{
-    		if(!(sender instanceof Player))
-    			sender.sendMessage("Cannot execute as console!");
-    			
-    		
-    		else
-    		{
-    			Player sendplayer = server.getPlayerExact(args[0]);
-        
-        		if (sender.hasPermission("mbes.cmds.coords")){
-        	
-        			if (sendplayer != null){
-        				
-        				Location loc = sendplayer.getLocation();
-        				sender.sendMessage("The coordinates of " + args[0] + " are X:" + loc.getBlockX() + " Y: " + loc.getBlockY() + " Z: " + loc.getBlockZ());
-                		
-        				}
-                	
-                	else{
-                			sender.sendMessage("The specified player could not be found");
-                		}
-        	}
+	public Coords( Server server ) {
+		this.server = server;
+	}
 
-        	else {
-        	sender.sendMessage("You don't have permission to use this command!");
-        	}
-    	}
-        
-    	}
-    	
-    	else
-    		sender.sendMessage("Syntax: /coords <playerName>");
-    }
+	@Override
+	public void execute( String command, CommandSender sender, String[] args, String label ) {
+		if ( !sender.hasPermission("mbes.cmds.coords") ) {
+			sender.sendMessage("You do not have permission to use /" + label);
+			return;
+		}
+
+		Player target;
+		if ( args.length == 0 && sender instanceof Player )
+			target = (Player) sender;
+		else {
+			if ( args.length == 1 ) {
+				target = this.server.getPlayer(args[0]);
+				
+				if (target == null) {
+					sender.sendMessage("Could not find the player: " + args[0] + ".");
+					return;
+				}
+			else {
+				sender.sendMessage("Usage: /coords <playername>");
+				return;
+			}
+		}
+
+		Location location = target.getLocation();
+		sender.sendMessage(String.format("The coordinates of %s are X: %d, Y: %d, Z: %d in world %s."
+			target.getDisplayName(),
+			location.getBlockX(),
+			location.getBlockY(),
+			location.getBlockZ(),
+			location.getWorld().getName()
+			));
+	}
 }
