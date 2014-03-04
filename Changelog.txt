@@ -79,3 +79,8 @@
 [AAAA] Changed a class values to private remeber to make them private in the future
 
 [AAAA] Added /report <player> <name>,/vwreport - view all reports,/vwreport <num> - view a specific report,/delreport <num> - delete a report
+
+[mushy] Added /coords <player>. This will return the coordinated of the specified player (Doh!) This is useful if server owners want players to find each other,
+        but whant to make it harder than just teleporting. Then a bit of "old school" navigation is requried! :)
+       
+[mushy] Added some extra debug info on server shutdown
