@@ -90,6 +90,15 @@ public class LogHandler implements Listener{
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
+			if(event1.getMaterial()==Material.SIGN){
+				String message = event1.getBlock().getBlockData().toString();
+				String log2 = time + " " + name + " placed a sign saying: " + message;
+				try {
+					logger.writeEntry(log2,LogManager.PLCLOG);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
 	}
         }
         @EventHandler
