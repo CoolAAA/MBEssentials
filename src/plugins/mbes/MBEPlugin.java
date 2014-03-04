@@ -13,6 +13,7 @@ import plugins.mbes.commands.PMCmds;
 import plugins.mbes.commands.ReportCmds;
 import plugins.mbes.commands.Tpto;
 import plugins.mbes.commands.Tphere;
+import plugins.mbes.commands.Coords;
 import plugins.mbes.handler.AccountMaker;
 import plugins.mbes.handler.LogHandler;
 import plugins.mbes.handler.MuteHandler;
@@ -56,6 +57,10 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getPluginManager().registerCommand("tphere",new Tphere(this.getServer()));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered command: /tphere");
+			 
+		this.getPluginManager().registerCommand("coords",new Coords(this.getServer()));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered command: /Coords");
 		
 		if(config.isEnablePmSystem())
 		{
@@ -161,9 +166,14 @@ public class MBEPlugin extends MBServerPlugin{
 	}
 	@Override
 	public void onDisable(){
-		if(config.isEnableLogs())
-			logm.close();
+		if(config.isEnableDebug())
+			if(config.isEnableLogs())
+				logm.close();
+				this.getLogger().info("Successfully closed logger");
 		this.getServer().getConfigurationManager().save(this,bank);
+		if(config.isEnableDebug())
+			this.getLogger().info("Successfully saved config and bank!");
+			
 		this.getLogger().info("Have a nice day - from the MBEssentials Team!");
 	}
 	
