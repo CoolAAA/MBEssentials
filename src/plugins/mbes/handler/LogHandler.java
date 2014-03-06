@@ -3,6 +3,7 @@ package plugins.mbes.handler;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import com.mbserver.api.events.BlockPlaceEvent;
 import com.mbserver.api.events.EventHandler;
 import com.mbserver.api.events.Listener;
@@ -10,6 +11,7 @@ import com.mbserver.api.events.PlayerDeathEvent;
 import com.mbserver.api.events.PlayerPvpEvent;
 import com.mbserver.api.events.PreCommandEvent;
 import com.mbserver.api.game.Location;
+import com.mbserver.api.game.Material;
 
 import plugins.mbes.Config;
 import plugins.mbes.managers.LogManager;
@@ -90,7 +92,7 @@ public class LogHandler implements Listener{
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			if(event1.getMaterial()==Material.SIGN){
+			if(event1.getMaterial() == Material.SIGN){
 				String message = event1.getBlock().getBlockData().toString();
 				String log2 = time + " " + name + " placed a sign saying: " + message;
 				try {

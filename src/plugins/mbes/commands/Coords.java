@@ -20,7 +20,7 @@ public class Coords implements CommandExecutor {
 			return;
 		}
 
-		Player target;
+		Player target = null;
 		if ( args.length == 0 && sender instanceof Player )
 			target = (Player) sender;
 		else {
@@ -39,11 +39,12 @@ public class Coords implements CommandExecutor {
 
 		Location location = target.getLocation();
 		sender.sendMessage(String.format("The coordinates of %s are X: %d, Y: %d, Z: %d in world %s."
-			target.getDisplayName(),
+			,target.getDisplayName(),
 			location.getBlockX(),
 			location.getBlockY(),
 			location.getBlockZ(),
-			location.getWorld().getName()
+			location.getWorld().getWorldName()
 			));
+	}
 	}
 }

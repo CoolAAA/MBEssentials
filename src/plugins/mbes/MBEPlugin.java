@@ -1,5 +1,6 @@
 package plugins.mbes;
 
+import java.io.File;
 import java.io.IOException;
 
 import com.mbserver.api.MBServerPlugin;
@@ -29,9 +30,32 @@ public class MBEPlugin extends MBServerPlugin{
 	private ReportManager report = new ReportManager();
 	
 	@Override
+	public void onLoad() {
+		File dir = new File("plugin//MBEssentials");
+		if(!dir.exists())
+			dir.mkdir();
+	}
+	
+	@Override
 	public void onEnable() {
+		
 		this.getLogger().info("Thanks for using MBEssentials by AAAA, Abiram and TheMushypeas!");
 		this.getLogger().info("Please report any bugs and glitches to the forums!");
+		
+		try {
+			config.readConfig();
+			if(config.isEnableDebug())
+				this.getLogger().info("Succesfully read config");
+		} catch (IOException e1) {
+			try {
+				this.getLogger().info("Config file does not exist or is not readable! ");
+				this.getLogger().info("Creating new config file!");
+				config.createConfig();
+				config.readConfig();
+			} catch (IOException e) {
+				this.getLogger().severe("Could not create config file.Config will use the default values!");
+			}
+		}
 		
         	this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
          	 if(config.isEnableDebug())
@@ -137,8 +161,7 @@ public class MBEPlugin extends MBServerPlugin{
 					this.getLogger().info("Successfully registered event handler: LogHandler");
 			} catch (IOException e) {
 				this.getLogger().severe("Could not create logs!");
-				//logging is still on! creates unnecesary checks...
-				//but it can't be turned off here (looks at onDisable())
+				logm = null;
 				e.printStackTrace();
 			}
 		 }
@@ -164,13 +187,22 @@ public class MBEPlugin extends MBServerPlugin{
 		 }
 		this.getLogger().info("MBEssentials Startup Finished!");
 	}
+	
 	@Override
 	public void onDisable(){
-		if(config.isEnableDebug())
-			if(config.isEnableLogs())
-				logm.close();
+		
+		if(logm != null)
+			if(config.isEnableDebug())
+				if(config.isEnableLogs())
+					logm.close();
 				this.getLogger().info("Successfully closed logger");
-		this.getServer().getConfigurationManager().save(this,bank);
+				if(bank != null)
+				this.getServer().getConfigurationManager().save(this,bank);
+		try {
+			config.createConfig();
+		} catch (IOException e) {
+			this.getLogger().warning("Could not save config file!");
+		}
 		if(config.isEnableDebug())
 			this.getLogger().info("Successfully saved config and bank!");
 			
