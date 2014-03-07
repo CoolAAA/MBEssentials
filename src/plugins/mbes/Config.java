@@ -155,57 +155,7 @@ public class Config {
 		}
 		//end log disabler/enabler
 		
-		private boolean[] getValues(){
-			return new boolean[] { 	 enableMoneySystem ,enablePmSystem ,enableDebug ,enablePlaceBlocker, enableLogs,
-					enableDeathLog, enablePvPLog, enableKillLog, enablePlaceLog	,enableBreakLog,enableReportSystem};
-		}
-		public void createConfig() throws IOException{
-			BufferedWriter bf = new BufferedWriter(new FileWriter("plugins//MBEssentials//config.txt"));
-			boolean []val = getValues();
-			for(int a = 0;a < names.length;a++)
-			{
-				bf.write(names[a] + ":" + String.valueOf(val[a]));
-				bf.newLine();
-			}
-			bf.close();
-		}
 		
-		public void setValues(boolean[] val){
-			enableMoneySystem = val[0];
-			enablePmSystem = val[1];
-			enableDebug = val[2];
-			enablePlaceBlocker = val[3];
-			enableLogs = val[4];
-			enableDeathLog = val[5];
-			enablePvPLog = val[6];
-			enableKillLog = val[7];
-			enablePlaceLog = val[8];
-			enableBreakLog = val[9];
-			enableReportSystem = val[10];
-		}
-		
-		public void readConfig() throws IOException{
-			
-				String line[] = new String[1];
-				boolean[] values = getValues();
-				BufferedReader bf = new BufferedReader(new FileReader("plugins//MBEssentials//config.txt"));
-				
-				for(int a = 0;a < values.length;a++)
-				{
-					line[0] = bf.readLine();
-					
-					if(line[0] == null)
-						break;
-					
-					line = line[0].split(":");
-					if(line.length == 1)
-						continue;
-					values[a] = Boolean.parseBoolean(line[1]);
-				}
-				
-				setValues(values);
-				bf.close();
-				}
 
 }
 

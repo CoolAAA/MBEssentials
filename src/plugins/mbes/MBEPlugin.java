@@ -22,7 +22,8 @@ import plugins.mbes.managers.LogManager;
 import plugins.mbes.managers.MoneyManager;
 import plugins.mbes.managers.ReportManager;
 
-@Manifest(name="MBEssentials",authors = {"TheMushyPeas","AAAA","Abiram"})
+@Manifest(name="MBEssentials",authors = {"TheMushyPeas","AAAA","Abiram"},config = Config.class)
+
 public class MBEPlugin extends MBServerPlugin{
 	private LogManager logm;
 	private MoneyManager bank;
@@ -42,20 +43,7 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getLogger().info("Thanks for using MBEssentials by AAAA, Abiram and TheMushypeas!");
 		this.getLogger().info("Please report any bugs and glitches to the forums!");
 		
-		try {
-			config.readConfig();
-			if(config.isEnableDebug())
-				this.getLogger().info("Succesfully read config");
-		} catch (IOException e1) {
-			try {
-				this.getLogger().info("Config file does not exist or is not readable! ");
-				this.getLogger().info("Creating new config file!");
-				config.createConfig();
-				config.readConfig();
-			} catch (IOException e) {
-				this.getLogger().severe("Could not create config file.Config will use the default values!");
-			}
-		}
+		config = this.getConfig();
 		
         	this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
          	 if(config.isEnableDebug())
@@ -191,6 +179,7 @@ public class MBEPlugin extends MBServerPlugin{
 	@Override
 	public void onDisable(){
 		
+		this.saveConfig();
 		if(logm != null)
 			if(config.isEnableDebug())
 				if(config.isEnableLogs())
@@ -198,11 +187,6 @@ public class MBEPlugin extends MBServerPlugin{
 				this.getLogger().info("Successfully closed logger");
 				if(bank != null)
 				this.getServer().getConfigurationManager().save(this,bank);
-		try {
-			config.createConfig();
-		} catch (IOException e) {
-			this.getLogger().warning("Could not save config file!");
-		}
 		if(config.isEnableDebug())
 			this.getLogger().info("Successfully saved config and bank!");
 			
