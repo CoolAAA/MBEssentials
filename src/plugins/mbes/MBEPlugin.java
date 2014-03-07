@@ -27,7 +27,7 @@ import plugins.mbes.managers.ReportManager;
 public class MBEPlugin extends MBServerPlugin{
 	private LogManager logm;
 	private MoneyManager bank;
-	private Config config = new Config();
+	private Config config;
 	private ReportManager report = new ReportManager();
 	
 	@Override
@@ -44,6 +44,7 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getLogger().info("Please report any bugs and glitches to the forums!");
 		
 		config = this.getConfig();
+		this.saveConfig(); // If no config file exists yet, this one will create it (instead of having to wait for #onDisable)
 		
         	this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
          	 if(config.isEnableDebug())
