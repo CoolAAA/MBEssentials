@@ -86,3 +86,5 @@
 [mushy] Added some extra debug info on server shutdown
 
 [AAAA] Added the config file reader so you can disable/enable any feature you want.
+
+[AAAA] Changed the logging system i will add the api so other plugins can use it later.

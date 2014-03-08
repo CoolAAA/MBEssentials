@@ -26,7 +26,7 @@ import plugins.mbes.misc.Logger;
 public class MBEPlugin extends MBServerPlugin{
 	private LogManager logm;
 	private MoneyManager bank;
-	private Config config;
+	private Config config = new Config();
 	private ReportManager report = new ReportManager();
 	private Logger breakLog,placeLog,deathLog,PvPLog,cmdLog;
 	
@@ -44,7 +44,6 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getLogger().info("Please report any bugs and glitches to the forums!");
 		
 		config = this.getConfig();
-		this.saveConfig(); // If no config file exists yet, this one will create it (instead of having to wait for #onDisable)
 		
         	this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
          	 if(config.isEnableDebug())
@@ -174,7 +173,24 @@ public class MBEPlugin extends MBServerPlugin{
 				 logm.attachLogger(PvPLog);
 			 }
 			 
-			 this.getPluginManager().registerEventHandler(new LogHandler(config, logm,new int[] {deathLog.getId(),PvPLog.getId(),cmdLog.getId(),placeLog.getId(),breakLog.getId()}));
+			 int[] lgs = new int[5];
+			 
+			 if(deathLog != null)
+				 lgs[0] = deathLog.getId();
+			 
+			 if(PvPLog != null)
+				 lgs[1] = PvPLog.getId();
+			 
+			 if(cmdLog != null)
+				 lgs[2] = cmdLog.getId();
+			 
+			 if(placeLog != null)
+				 lgs[3] = placeLog.getId();
+			 
+			 if(breakLog != null)
+				 lgs[4] = breakLog.getId();
+			 
+			 this.getPluginManager().registerEventHandler(new LogHandler(config,logm,lgs));
 			 
 		 }
 		 
