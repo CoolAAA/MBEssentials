@@ -1,95 +1,61 @@
 package plugins.mbes.managers;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
-import plugins.mbes.Config;
+import plugins.mbes.misc.Logger;
 
 public class LogManager {
-	private String seperator;
-	private String date;
-	private Config config;
-	public static final int KLOG = 0,DLOG = 1,PLOG = 2,CLOG = 3,PLCLOG = 4, BLOG = 5;
-
-
-	private String[] dirs = {"Kill_Logs","Death_Logs","PvP Logs","Command_Logs", "Place_Logs", "Break_Logs"};
-	private BufferedWriter[] logWriter = new BufferedWriter[5];
+	private ArrayList<Logger>loggers = new ArrayList<Logger>();
 	
+	public void attachLogger(Logger log){
+		log.setId(loggers.size());
+		loggers.add(log);
+	}
 	
-	public LogManager(Config config) throws IOException {
-		this.config = config;
-		if(System.getProperty("os.name").toLowerCase().contains("windows"))
-			seperator = "\r\n";
-		else
-			seperator = "\n";
-
-		File mbes = new File("logs\\MBE_Logs");
-		if(!mbes.exists())
-			mbes.mkdir();
-			for(int a = 0;a < dirs.length;a++)
-			{
-				mbes = new File("logs\\MBE_Logs\\" + dirs[a]);
-				if(!mbes.exists())
-					mbes.mkdir();
-			}
-
-		date  = new SimpleDateFormat("dd_MMM_yy_HH_mm").format(new Date());
-		date = date + ".txt";
-		if(config.isEnableKillLog())
-			logWriter[0] = new BufferedWriter(new FileWriter("logs\\MBE_Logs\\" + dirs[0] + "\\" + date));
-		if(config.isEnableDeathLog())
-			logWriter[1] = new BufferedWriter(new FileWriter("logs\\MBE_Logs\\" + dirs[1] + "\\" + date));
-		if(config.isEnablePvPLog())
-			logWriter[2] = new BufferedWriter(new FileWriter("logs\\MBE_Logs\\" + dirs[2] + "\\" + date));
-		if(config.isEnableCommandLog())
-			logWriter[3] = new BufferedWriter(new FileWriter("logs\\MBE_Logs\\" + dirs[3] + "\\" + date));
-		if(config.isEnablePlaceLog())
-			logWriter[4] = new BufferedWriter(new FileWriter("logs\\MBE_Logs\\" + dirs[4] + "\\" + date));
-		if(config.isEnableBreakLog())
-			logWriter[5] = new BufferedWriter(new FileWriter("logs\\MBE_Logs\\" + dirs[5] + "\\" + date));
+	public boolean writeLog(String write,Logger log) throws IOException{
+		int ind = loggers.indexOf(log);
+		
+		if(ind == -1)
+			return false;
+		
+		Logger temp = loggers.get(ind);
+		
+		temp.getWriter().write(String.format("[%s] %s",LogManager.getDate(),write));
+		temp.getWriter().newLine();
+		temp.getWriter().flush();
+		
+		return true;
 	}
-
-	public void writeEntry(String what,final int log) throws IOException{
-		logWriter[log].write(what + seperator + seperator);
-		logWriter[log].flush();
+	
+	public boolean writeLog(String write,int ID) throws IOException{
+		
+		if(loggers.size() - 1 < ID)
+			return false;
+		
+		Logger temp = loggers.get(ID);
+		
+		temp.getWriter().write(String.format("[%s] %s",LogManager.getDate(),write));
+		temp.getWriter().newLine();
+		temp.getWriter().newLine();
+		
+		return true;
 	}
-
-	public void close(){
-
-			try {
-				if(config.isEnableKillLog())
-					logWriter[0].close();
-
-				if(config.isEnableDeathLog())
-					logWriter[1].close();
-
-				if(config.isEnablePvPLog())
-					logWriter[2].close();
-
-				if(config.isEnableCommandLog())
-					logWriter[3].close();
-
-
-				if(config.isEnablePlaceLog())
-					logWriter[4].close();
-
-				if(config.isEnableBreakLog())
-					logWriter[5].close();
-
-					
-				if(config.isEnablePlaceLog())
-					logWriter[4].close();
-					
-				if(config.isEnableBreakLog())
-					logWriter[5].close();
-				
-			} catch (IOException e) {
-
-			}
+	
+	public static String getExactDate(){
+		return new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date());
 	}
-
+	
+	public static String getDate(){
+		return new SimpleDateFormat("HH:mm:ss").format(new Date());
+	}
+	public void closeAll() throws IOException{
+		for(int a = 0; a < loggers.size();a++)
+		{
+			loggers.get(a).close();
+		}
+	}
 }

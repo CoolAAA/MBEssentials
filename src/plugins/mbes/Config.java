@@ -19,8 +19,7 @@ public class Config {
 	 	private boolean enablePlaceLog;
 	 	private boolean enableBreakLog;
 	 	private boolean enableReportSystem;
-	 	private String[] names = {"enableMoneySystem" ,"enablePmSystem" ,"enableDebug" ,"enablePlaceBlocker","enableLogs",
-				"enableDeathLog", "enablePvPLog", "enableKillLog", "enablePlaceLog","enableBreakLog","enableReportSystem"};
+	 	
 	 	public boolean isEnableReport() {
 			return enableReportSystem;
 		}

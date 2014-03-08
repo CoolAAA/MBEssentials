@@ -20,21 +20,23 @@ public class LogHandler implements Listener{
 
 	private Config config;
 	private LogManager logger;
-	public LogHandler(Config config,LogManager logger) {
+	private int[] ID = new int[6];
+	
+	public LogHandler(Config config,LogManager logger,int[] ID) {
 		this.config = config;
 		this.logger = logger;
+		this.ID = ID;
 	}
 
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e){
 		if(config.isEnableDeathLog())
 		{
-			String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
 			Location loc = e.getLocation();
-			String log = time + " Player '" + e.getPlayer().getDisplayName() + "' Died At X:"  + loc.getBlockX()
+			String log = "Player '" + e.getPlayer().getDisplayName() + "' Died At X:"  + loc.getBlockX()
 					+ " Y:" + loc.getBlockY() + " Z:" + loc.getBlockZ() + " World:" + loc.getWorld().getWorldName();
 			try {
-				logger.writeEntry(log,LogManager.DLOG);
+				logger.writeLog(log,ID[0]);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -46,12 +48,11 @@ public class LogHandler implements Listener{
 	public void onPvP(PlayerPvpEvent e){
 		if(config.isEnablePvPLog())
 		{
-			String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
 			Location loc = e.getLocation();
-			String log = time + " Player '" + e.getAttacker().getDisplayName() + "' Attacked Player '" +  e.getVictim().getDisplayName() + "X:"  + loc.getBlockX()
+			String log = "Player '" + e.getAttacker().getDisplayName() + "' Attacked Player '" +  e.getVictim().getDisplayName() + "X:"  + loc.getBlockX()
 					+ " Y:" + loc.getBlockY() + " Z:" + loc.getBlockZ() + " World:" + loc.getWorld().getWorldName();
 			try {
-				logger.writeEntry(log,LogManager.PLOG);
+				logger.writeLog(log,ID[1]);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -64,14 +65,13 @@ public class LogHandler implements Listener{
 		if(config.isEnableCommandLog())
 		{
 			String name = e.getSender().getName();
-			String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
 			String args = "";
 			for(String a : e.getArguments())
 				args = args + a + " ";
-			String log = time + " Player '" + name + "' Command:" + e.getCommand() + " Args:" + args;
+			String log = "Player '" + name + "' Command:" + e.getCommand() + " Args:" + args;
 
 			try {
-				logger.writeEntry(log,LogManager.CLOG);
+				logger.writeLog(log,ID[2]);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -86,9 +86,9 @@ public class LogHandler implements Listener{
         	{
         		String name = event1.getPlayer().getDisplayName();
         		String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
-			String log = time + " " + name + " placed a block of " + event1.getMaterial().getName();
+			String log = name + " placed a block of " + event1.getMaterial().getName();
 			try {
-				logger.writeEntry(log,LogManager.PLCLOG);
+				logger.writeLog(log,ID[3]);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -96,7 +96,7 @@ public class LogHandler implements Listener{
 				String message = event1.getBlock().getBlockData().toString();
 				String log2 = time + " " + name + " placed a sign saying: " + message;
 				try {
-					logger.writeEntry(log2,LogManager.PLCLOG);
+					logger.writeLog(log2,ID[4]);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -112,7 +112,7 @@ public class LogHandler implements Listener{
 			String log = time + " " + name + " broke a block of " + event2.getMaterial().getName();
 
 			try {
-				logger.writeEntry(log,LogManager.BLOG);
+				logger.writeLog(log,ID[5]);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}

@@ -2,10 +2,8 @@ package plugins.mbes;
 
 import java.io.File;
 import java.io.IOException;
-
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
-
 import plugins.mbes.commands.Commands;
 import plugins.mbes.commands.ModCmds;
 import plugins.mbes.commands.MoneyCmds;
@@ -21,6 +19,7 @@ import plugins.mbes.handler.MuteHandler;
 import plugins.mbes.managers.LogManager;
 import plugins.mbes.managers.MoneyManager;
 import plugins.mbes.managers.ReportManager;
+import plugins.mbes.misc.Logger;
 
 @Manifest(name="MBEssentials",authors = {"TheMushyPeas","AAAA","Abiram"},config = Config.class)
 
@@ -29,6 +28,7 @@ public class MBEPlugin extends MBServerPlugin{
 	private MoneyManager bank;
 	private Config config = new Config();
 	private ReportManager report = new ReportManager();
+	private Logger breakLog,placeLog,deathLog,PvPLog,cmdLog;
 	
 	@Override
 	public void onLoad() {
@@ -140,18 +140,41 @@ public class MBEPlugin extends MBServerPlugin{
 		 
 		 if(config.isEnableLogs())
 		 {
-			 try {
-				logm = new LogManager(config);
-				if(config.isEnableDebug())
-					this.getLogger().info("Successfully created logs!");
-				this.getPluginManager().registerEventHandler(new LogHandler(config, logm));
-				if(config.isEnableDebug())
-					this.getLogger().info("Successfully registered event handler: LogHandler");
-			} catch (IOException e) {
-				this.getLogger().severe("Could not create logs!");
-				logm = null;
-				e.printStackTrace();
-			}
+			 logm = new LogManager();
+			 
+			 
+			 if(config.isEnableBreakLog())
+			 {
+				 breakLog = new Logger("logs//MBE_Logs//Break_Logs//");
+				 logm.attachLogger(breakLog);
+			 }
+			 
+			 if(config.isEnableCommandLog())
+			 {
+				 cmdLog = new Logger("logs//MBE_Logs//Command_Logs//");
+				 logm.attachLogger(cmdLog);
+			 }
+			 
+			 if(config.isEnableDeathLog())
+			 {
+				 deathLog = new Logger("logs//MBE_Logs//Death_Logs//");
+				 logm.attachLogger(deathLog);
+			 }
+			 
+			 if(config.isEnablePlaceLog())
+			 {
+				 placeLog = new Logger("logs//MBE_Logs//Place_Logs//");
+				 logm.attachLogger(placeLog);
+			 }
+			 
+			 if(config.isEnablePvPLog())
+			 {
+				 PvPLog = new Logger("logs//MBE_Logs//PvP_Logs//");
+				 logm.attachLogger(PvPLog);
+			 }
+			 
+			 this.getPluginManager().registerEventHandler(new LogHandler(config, logm,new int[] {deathLog.getId(),PvPLog.getId(),cmdLog.getId(),placeLog.getId(),breakLog.getId()}));
+			 
 		 }
 		 
 		 if(config.isEnableReport())
@@ -180,13 +203,21 @@ public class MBEPlugin extends MBServerPlugin{
 	public void onDisable(){
 		
 		this.saveConfig();
+		
 		if(logm != null)
 			if(config.isEnableDebug())
 				if(config.isEnableLogs())
-					logm.close();
+					try {
+						logm.closeAll();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+		
 				this.getLogger().info("Successfully closed logger");
+				
 				if(bank != null)
-				this.getServer().getConfigurationManager().save(this,bank);
+					this.getServer().getConfigurationManager().save(this,bank);
+				
 		if(config.isEnableDebug())
 			this.getLogger().info("Successfully saved config and bank!");
 			
@@ -195,6 +226,10 @@ public class MBEPlugin extends MBServerPlugin{
 	
 	public MoneyManager getMoneyManager(){
 		return bank;
+	}
+	
+	public LogManager getLogManager(){
+		return logm;
 	}
 }
 
