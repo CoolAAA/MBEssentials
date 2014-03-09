@@ -20,7 +20,7 @@ public class LogHandler implements Listener{
 
 	private Config config;
 	private LogManager logger;
-	private int[] ID = new int[6];
+	private int[] ID = new int[5];
 	
 	public LogHandler(Config config,LogManager logger,int[] ID) {
 		this.config = config;

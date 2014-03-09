@@ -1,19 +1,21 @@
 //Cmds Permissions
-mbes.cmds.kill - permission to use the /kill command.
-mbes.cmds.tpto - permission to use /tpto command.
-mbes.cmds.tphere - permission to use /tphere command.
-mbes.cmds.coords - permission to use /coords command.
+mbes.cmds.kill - permission to use the /kill 
+mbes.cmds.tpto - permission to use /tpto 
+mbes.cmds.tphere - permission to use /tphere 
+mbes.cmds.coords - permission to use /coords 
 
 //Mod Permissions
 mbes.mod.mute - permission to use /mute
 mbes.mod.unmute - permission to use /unmute
-mbes.mod.kickall - permission to use /kickall command.
-mbes.mod.sudo - permission to use /sudo command.
+mbes.mod.kickall - permission to use /kickall 
+mbes.mod.sudo - permission to use /sudo 
 mbes.mod.addmoney - permission to use /addmoney
 mbes.mod.rmvmoney - permission to use /rmvmoney
 mbes.mod.resetmoney - permission to use /resetmoney
 mbes.mod.vwreport - permission to use /vwreport
 mbes.mod.delreport - permission to use /delreport
+mbes.mod.addword - permission to use /addword
+mbes.mod.delword - permission to use /clearwords
 
 //Pm Permissions
 mbes.pm - permission to use /pm,/unblock,/block,/blockall,/unblockall
@@ -23,4 +25,5 @@ mbes.money - permission to use /balance,/pay
 
 //Report Permissions
 mbes.cmds.report - permission to use /report
+
 

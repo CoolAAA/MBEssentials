@@ -2,8 +2,11 @@ package plugins.mbes;
 
 import java.io.File;
 import java.io.IOException;
+
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
+
+import plugins.mbes.commands.ChatReplaceCmds;
 import plugins.mbes.commands.Commands;
 import plugins.mbes.commands.ModCmds;
 import plugins.mbes.commands.MoneyCmds;
@@ -14,8 +17,10 @@ import plugins.mbes.commands.Tpto;
 import plugins.mbes.commands.Tphere;
 import plugins.mbes.commands.Coords;
 import plugins.mbes.handler.AccountMaker;
+import plugins.mbes.handler.ChatReplacerHandler;
 import plugins.mbes.handler.LogHandler;
 import plugins.mbes.handler.MuteHandler;
+import plugins.mbes.managers.ChatReplacer;
 import plugins.mbes.managers.LogManager;
 import plugins.mbes.managers.MoneyManager;
 import plugins.mbes.managers.ReportManager;
@@ -25,6 +30,7 @@ import plugins.mbes.misc.Logger;
 
 public class MBEPlugin extends MBServerPlugin{
 	private LogManager logm;
+	private ChatReplacer chatrp;
 	private MoneyManager bank;
 	private Config config = new Config();
 	private ReportManager report = new ReportManager();
@@ -32,9 +38,18 @@ public class MBEPlugin extends MBServerPlugin{
 	
 	@Override
 	public void onLoad() {
-		File dir = new File("plugin//MBEssentials");
-		if(!dir.exists())
-			dir.mkdir();
+		String[] fileNames = {"plugin//MBEssentials","logs//MBE_Logs","logs//MBE_Logs//Command_Logs","logs//MBE_Logs//Death_Logs"
+				,"logs//MBE_Logs//PvP_Logs","logs//MBE_Logs//Place_Logs","logs//MBE_Logs//Break_Logs"};
+		
+		File file;
+		
+		for(String e : fileNames)
+		{
+			file = new File(e);
+			
+			if(!file.exists())
+				file.mkdir();
+		}
 	}
 	
 	@Override
@@ -44,6 +59,10 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getLogger().info("Please report any bugs and glitches to the forums!");
 		
 		config = this.getConfig();
+		
+		chatrp = this.getServer().getConfigurationManager().load(this,ChatReplacer.class);
+		if(chatrp == null)
+			chatrp = new ChatReplacer();
 		
         	this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
          	 if(config.isEnableDebug())
@@ -213,6 +232,23 @@ public class MBEPlugin extends MBServerPlugin{
 			 if(config.isEnableDebug())
 				 this.getLogger().info("Successfully registered command: /delreport");
 		 }
+		 
+		 this.getPluginManager().registerCommand("addword",new ChatReplaceCmds(chatrp));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered command: /addword");
+		 
+		 this.getPluginManager().registerCommand("delword",new ChatReplaceCmds(chatrp));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registerd command: /delword");
+		 
+		 this.getPluginManager().registerCommand("clearwords",new ChatReplaceCmds(chatrp));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registerd command: /clearwords");
+		 
+		 this.getPluginManager().registerEventHandler(new ChatReplacerHandler(chatrp));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered handler: ChatReplacerHandler");
+		 
 		this.getLogger().info("MBEssentials Startup Finished!");
 	}
 	
@@ -235,7 +271,8 @@ public class MBEPlugin extends MBServerPlugin{
 				if(bank != null)
 					this.getServer().getConfigurationManager().save(this,bank);
 				
-		if(config.isEnableDebug())
+				this.getServer().getConfigurationManager().save(this,chatrp);
+				
 			this.getLogger().info("Successfully saved config and bank!");
 			
 		this.getLogger().info("Have a nice day - from the MBEssentials Team!");

@@ -41,7 +41,6 @@ public class LogManager {
 		temp.getWriter().write(String.format("[%s] %s",LogManager.getDate(),write));
 		temp.getWriter().newLine();
 		temp.getWriter().newLine();
-		
 		return true;
 	}
 	

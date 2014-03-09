@@ -81,10 +81,13 @@
 [AAAA] Added /report <player> <name>,/vwreport - view all reports,/vwreport <num> - view a specific report,/delreport <num> - delete a report
 
 [mushy] Added /coords <player>. This will return the coordinated of the specified player (Doh!) This is useful if server owners want players to find each other,
-        but whant to make it harder than just teleporting. Then a bit of "old school" navigation is requried! :)
+        but want to make it harder than just teleporting. Then a bit of "old school" navigation is requried! :)
        
 [mushy] Added some extra debug info on server shutdown
 
 [AAAA] Added the config file reader so you can disable/enable any feature you want.
 
 [AAAA] Changed the logging system i will add the api so other plugins can use it later.
+
+[AAAA] Added /addword <wordToReplace> <ReplaceWith> - replace a word with a sentence or word /delword <word> - delete a word from the replacing list
+       /clearwords - clears all the words from the map 

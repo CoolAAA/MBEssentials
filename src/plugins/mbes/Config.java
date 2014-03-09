@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Config {
+	
 	 	private boolean enableMoneySystem;
 		private boolean enablePmSystem;
 	 	private boolean enableDebug;
@@ -19,8 +20,17 @@ public class Config {
 	 	private boolean enablePlaceLog;
 	 	private boolean enableBreakLog;
 	 	private boolean enableReportSystem;
+	 	private boolean enableChatCensor;
 	 	
-	 	public boolean isEnableReport() {
+	 	public boolean isEnableChatCensor() {
+			return enableChatCensor;
+		}
+
+		public void setEnableChatCensor(boolean enableChatCensor) {
+			this.enableChatCensor = enableChatCensor;
+		}
+
+		public boolean isEnableReport() {
 			return enableReportSystem;
 		}
 
@@ -35,7 +45,7 @@ public class Config {
 	 	 public Config() {
 	       this.setEnableMoneySystem(true);
 		   this.setEnablePmSystem(true);
-		   
+		   this.setEnableChatCensor(true);
 	       this.setEnableDebug(true);
 	       this.setEnablePlaceBlocker(false);
 	       this.setBlockedBlockIDs(new int[0]);
