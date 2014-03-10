@@ -1,11 +1,12 @@
 //Cmds Permissions
-mbes.cmds.kill - permission to use the /kill 
+mbes.cmds.kill - permission to use the /kill - to kill themselves
 mbes.cmds.tpto - permission to use /tpto 
 mbes.cmds.tphere - permission to use /tphere 
 mbes.cmds.coords - permission to use /coords 
 
 //Mod Permissions
 mbes.mod.mute - permission to use /mute
+mbes.mod.kill - permission to use /kill <person> - to kill someone else
 mbes.mod.unmute - permission to use /unmute
 mbes.mod.kickall - permission to use /kickall 
 mbes.mod.sudo - permission to use /sudo 

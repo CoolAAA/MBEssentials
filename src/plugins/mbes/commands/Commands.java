@@ -19,24 +19,37 @@ public class Commands implements CommandExecutor{
 		
 		if(command.equals("kill"))
 		{
-			if(!sender.hasPermission("mbes.cmds.kill"))
-				sender.sendMessage("You don't have permission to use the kill command!");
-			
-			else if(args.length == 0)
-				sender.sendMessage("Syntax: /kill <playerName>");
+			if(args.length == 0)
+			{
+				if(sender.hasPermission("mbes.cmds.kill") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.cmds.*"))
+				{
+					Player p = (Player)sender;
+					
+					p.teleport(p.getLocation().getWorld(),p.getLocation().getBlockX(),-5,p.getLocation().getBlockZ());
+				}
+				
+				else
+				{
+					sender.sendMessage("You don't have permission to use this command!");
+				}
+			}
 			
 			else
 			{
-				temp = s.getPlayer(args[0]);
-				if(temp ==  null)
-					sender.sendMessage("The player '" + args[0] + "' was not found!");
-				else
+				if(sender.hasPermission("mbes.cmds.kill") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 				{
-					temp.teleport(temp.getLocation().getBlockX(),-5, temp.getLocation().getBlockZ()); // teleports him under the world and dies instantly
-					sender.sendMessage("Player '" + temp.getDisplayName() + "' has been killed!");
-					temp = null;
+					Player temp = s.getPlayer(args[0]);
+					
+					if(temp == null)
+						sender.sendMessage("The player '" + args[0] + "' was not found!");
+					else
+					{
+						temp.teleport(temp.getLocation().getWorld(),temp.getLocation().getBlockX(),-5,temp.getLocation().getBlockZ());
+						sender.sendMessage("The player '" + temp.getDisplayName() + "' has been killed!");
+					}
 				}
 			}
+			
 		}
 	}
 	

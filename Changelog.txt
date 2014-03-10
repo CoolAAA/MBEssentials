@@ -91,3 +91,5 @@
 
 [AAAA] Added /addword <wordToReplace> <ReplaceWith> - replace a word with a sentence or word /delword <word> - delete a word from the replacing list
        /clearwords - clears all the words from the map 
+       
+[AAAA] Changed the permissions so now you can give players permissions like: "mbes.*" , "mbes.mod.*" , etc

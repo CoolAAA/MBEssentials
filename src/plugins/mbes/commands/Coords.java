@@ -15,7 +15,7 @@ public class Coords implements CommandExecutor {
 
 	@Override
 	public void execute( String command, CommandSender sender, String[] args, String label ) {
-		if ( !sender.hasPermission("mbes.cmds.coords") ) {
+		if ( !sender.hasPermission("mbes.cmds.coords") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.cmds.*")) {
 			sender.sendMessage("You do not have permission to use /" + label);
 			return;
 		}

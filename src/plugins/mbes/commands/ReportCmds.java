@@ -26,7 +26,7 @@ public class ReportCmds implements CommandExecutor{
 		{
 			if(sender instanceof Player)
 			{
-				if(sender.hasPermission("mbes.cmds.report"))
+				if(sender.hasPermission("mbes.cmds.report") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.cmds.*"))
 				{
 					if(args.length > 1)
 					{	
@@ -62,7 +62,7 @@ public class ReportCmds implements CommandExecutor{
 		
 		else if(command.equals("vwreport") && args.length == 0)
 		{
-			if(sender.hasPermission("mbes.mod.vwreports"))
+			if(sender.hasPermission("mbes.mod.vwreports") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				Report[] rps = report.getAll();
 				
@@ -85,7 +85,7 @@ public class ReportCmds implements CommandExecutor{
 		else if(command.equals("vwreport"))
 		{
 			
-			if(sender.hasPermission("mbes.mod.vwreport"))
+			if(sender.hasPermission("mbes.mod.vwreport") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				try{
 					int vnum = Integer.parseInt(args[0]);
@@ -110,7 +110,7 @@ public class ReportCmds implements CommandExecutor{
 		
 		else if(command.equals("delreport"))
 		{
-			if(sender.hasPermission("mbes.mod.delreport"))
+			if(sender.hasPermission("mbes.mod.delreport") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				if(args.length == 0)
 					sender.sendMessage("Syntax:/delreport <number>");

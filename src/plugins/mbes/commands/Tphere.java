@@ -30,7 +30,7 @@ public class Tphere implements CommandExecutor {
         
         		Player sendplayer = server.getPlayerExact(args[0]);
         
-        		if (sender.hasPermission("mbes.cmds.tphere")){
+        		if (sender.hasPermission("mbes.cmds.tphere") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.cmds.*")){
         	
         			if (sendplayer != null){
         				

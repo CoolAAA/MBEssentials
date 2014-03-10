@@ -24,7 +24,7 @@ public class MoneyCmds implements CommandExecutor{
 		
 		if(command.equals("pay"))
 		{
-			if(sender.hasPermission("mbes.money"))
+			if(sender.hasPermission("mbes.money") || sender.hasPermission("mbes.*"))
 			{
 				if(args.length < 2)
 					sender.sendMessage("Syntax:/pay <payTo> <amount>");
@@ -71,7 +71,7 @@ public class MoneyCmds implements CommandExecutor{
 		
 		else if(command.equals("balance"))
 		{
-			if(sender.hasPermission("mbes.money"))
+			if(sender.hasPermission("mbes.money") || sender.hasPermission("mbes.*"))
 			{
 				if(sender instanceof Player)
 				{
@@ -92,7 +92,7 @@ public class MoneyCmds implements CommandExecutor{
 		
 		else if(command.equals("addmoney"))
 		{
-			if(sender.hasPermission("mbes.mod.addmoney"))
+			if(sender.hasPermission("mbes.mod.addmoney") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				if(args.length < 2)
 					sender.sendMessage("Syntax:/addmoney <giveTo> <amount>");
@@ -121,7 +121,7 @@ public class MoneyCmds implements CommandExecutor{
 		}
 		else if(command.equals("rmvmoney"))
 		{
-			if(sender.hasPermission("mbes.mod.rmvmoney"))
+			if(sender.hasPermission("mbes.mod.rmvmoney") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				if(args.length < 2)
 					sender.sendMessage("Syntax:/rmvmoney <playerName> <amount>");
@@ -151,7 +151,7 @@ public class MoneyCmds implements CommandExecutor{
 		
 		else if(command.equals("resetmoney"))
 		{
-			if(sender.hasPermission("mbes.mod.resetmoney"))
+			if(sender.hasPermission("mbes.mod.resetmoney") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				if(args.length == 0)
 					sender.sendMessage("Syntax:/resetmoney <playerName>");

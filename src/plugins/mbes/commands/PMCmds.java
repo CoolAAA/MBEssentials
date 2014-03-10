@@ -20,7 +20,7 @@ public class PMCmds implements CommandExecutor{
 		
 		if(command.equals("pm"))
 		{
-			if(sender.hasPermission("mbes.pm"))
+			if(sender.hasPermission("mbes.pm") || sender.hasPermission("mbes.*"))
 			{
 				if(args.length >= 2)
 				{
@@ -69,7 +69,7 @@ public class PMCmds implements CommandExecutor{
 		
 		else if(command.equals("block"))
 		{
-			if(sender.hasPermission("mbes.pm"))
+			if(sender.hasPermission("mbes.pm") || sender.hasPermission("mbes.*"))
 			{
 				if(!(sender instanceof Player))
 					sender.sendMessage("This command can only be executed as a player!");
@@ -101,7 +101,7 @@ public class PMCmds implements CommandExecutor{
 		
 		else if(command.equals("unblock"))
 		{
-			if(sender.hasPermission("mbes.pm"))
+			if(sender.hasPermission("mbes.pm") || sender.hasPermission("mbes.*"))
 			{
 				if(!(sender instanceof Player))
 					sender.sendMessage("This command can only be executed as a player!");
@@ -138,7 +138,7 @@ public class PMCmds implements CommandExecutor{
 			
 			else
 			{
-				if(sender.hasPermission("mbes.pm"))
+				if(sender.hasPermission("mbes.pm") || sender.hasPermission("mbes.*"))
 				{
 					Player p = (Player)sender;
 					p.setMetaData("MBES:PMBLOCKALL",true);
@@ -156,7 +156,7 @@ public class PMCmds implements CommandExecutor{
 			
 			else
 			{
-				if(sender.hasPermission("mbes.pm"))
+				if(sender.hasPermission("mbes.pm") || sender.hasPermission("mbes.*"))
 				{
 					Player p = (Player)sender;
 					p.setMetaData("MBES:PMBLOCKALL",false);

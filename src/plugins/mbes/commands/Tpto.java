@@ -36,7 +36,7 @@ public class Tpto implements CommandExecutor {
         
         		Player sendplayer = server.getPlayerExact(args[0]);
         
-        		if (sender.hasPermission("mbes.cmds.tpto")){
+        		if (sender.hasPermission("mbes.cmds.tpto") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.cmds.*")){
         	
         			if (sendplayer != null){
         				

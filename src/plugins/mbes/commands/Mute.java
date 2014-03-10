@@ -19,7 +19,7 @@ public class Mute implements CommandExecutor{
 		
 		if(command.equals("mute"))
 		{
-			if(sender.hasPermission("mbes.mod.mute"))
+			if(sender.hasPermission("mbes.mod.mute") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				if(args.length == 0)
 					sender.sendMessage("Syntax:/mute <name>");
@@ -44,7 +44,7 @@ public class Mute implements CommandExecutor{
 		
 		else if(command.equals("unmute"))
 		{
-			if(sender.hasPermission("mbes.mod.unmute"))
+			if(sender.hasPermission("mbes.mod.unmute") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				if(args.length == 0)
 					sender.sendMessage("Syntax:/mute <name>");

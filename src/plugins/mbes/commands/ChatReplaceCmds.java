@@ -19,7 +19,7 @@ public class ChatReplaceCmds implements CommandExecutor{
 		
 		if(command.equals("addword"))
 		{
-			if(sender.hasPermission("mbes.mod.addword"))
+			if(sender.hasPermission("mbes.mod.addword") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				if(args.length > 1)
 				{
@@ -57,7 +57,7 @@ public class ChatReplaceCmds implements CommandExecutor{
 		
 		else if(command.equals("delword"))
 		{
-			if(sender.hasPermission("mbes.mod.delword"))
+			if(sender.hasPermission("mbes.mod.delword") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				if(args.length != 0)
 				{
@@ -76,7 +76,7 @@ public class ChatReplaceCmds implements CommandExecutor{
 		
 		else if(command.equals("clearwords"))
 		{
-			if(sender.hasPermission("mbes.mod.clearwords"))
+			if(sender.hasPermission("mbes.mod.clearwords") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				rp.getMap().clear();
 				sender.sendMessage("All of the words have been cleared!");

@@ -30,7 +30,7 @@ public class ModCmds implements CommandExecutor{
 		if(command.equals("kickall"))
 		{
 		
-			if(sender.hasPermission("mbes.mod.kickall"))
+			if(sender.hasPermission("mbes.mod.kickall") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				String reason;
 				if(args.length == 0)
@@ -56,7 +56,7 @@ public class ModCmds implements CommandExecutor{
 		
 		if(command.equals("sudo"))
 		{
-			if(sender.hasPermission("mbes.mod.sudo"))
+			if(sender.hasPermission("mbes.mod.sudo") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				if(args.length < 2)
 					sender.sendMessage("Syntax:/sudo <playerName> <command> [args]");
