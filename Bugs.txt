@@ -1,0 +1,3 @@
+// Put any known bugs here, so that they can be fixed.
+// This will be of most help when we stop development and do bugfixing in a week
+// Example: [ModCmds.java] x happens when x is executed
