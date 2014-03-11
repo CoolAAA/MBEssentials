@@ -1,7 +1,11 @@
 package plugins.mbes;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
@@ -16,6 +20,7 @@ import plugins.mbes.commands.ReportCmds;
 import plugins.mbes.commands.Tpto;
 import plugins.mbes.commands.Tphere;
 import plugins.mbes.commands.Coords;
+import plugins.mbes.commands.UpdateCmds;
 import plugins.mbes.handler.AccountMaker;
 import plugins.mbes.handler.ChatReplacerHandler;
 import plugins.mbes.handler.LogHandler;
@@ -24,11 +29,15 @@ import plugins.mbes.managers.ChatReplacer;
 import plugins.mbes.managers.LogManager;
 import plugins.mbes.managers.MoneyManager;
 import plugins.mbes.managers.ReportManager;
+import plugins.mbes.misc.Downloader;
 import plugins.mbes.misc.Logger;
 
 @Manifest(name="MBEssentials",authors = {"TheMushyPeas","AAAA","Abiram"},config = Config.class)
 
 public class MBEPlugin extends MBServerPlugin{
+	private final int version = 1;
+	private final String vUrl = "https://github.com/CoolAAA/MBEssentials/releases/download/v1.0a/version.txt";
+	private final String pUrl = "https://github.com/CoolAAA/MBEssentials/releases/download/v1.0a/MBEssentials.jar";
 	private LogManager logm;
 	private ChatReplacer chatrp;
 	private MoneyManager bank;
@@ -50,10 +59,32 @@ public class MBEPlugin extends MBServerPlugin{
 			if(!file.exists())
 				file.mkdir();
 		}
+		
+		
+		
 	}
 	
 	@Override
 	public void onEnable() {
+		
+		this.getLogger().info("Checking for an update to MBEssentials!");
+		
+		try { 
+			if(Downloader.checkUpdate(new String[] {vUrl,pUrl},new String[] {"plugins\\MBEssentials\\version.txt","plugins\\MBEssentials.jar"}, version));
+				this.getLogger().info("Successfully updated MBEssentials retart server to use newest version!");
+		} catch (IOException e1) {
+			try {
+				File lFile = new File("plugins\\MBEssentials\\Download-err-" + new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date()));
+				lFile.createNewFile();
+				PrintWriter err = new PrintWriter(lFile);
+				e1.printStackTrace(err);
+				this.getLogger().warning("Could not update MBEssentials error log created at:" + lFile.getPath());
+			} catch (FileNotFoundException e2) {
+				e2.printStackTrace();
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+		}
 		
 		this.getLogger().info("Thanks for using MBEssentials by AAAA, Abiram and TheMushypeas!");
 		this.getLogger().info("Please report any bugs and glitches to the forums!");
@@ -248,6 +279,14 @@ public class MBEPlugin extends MBServerPlugin{
 		 this.getPluginManager().registerEventHandler(new ChatReplacerHandler(chatrp));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: ChatReplacerHandler");
+		 
+		 this.getPluginManager().registerCommand("forceupdate", new UpdateCmds(pUrl, vUrl,this.getServer(), version));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered: /forceupdate");
+		 
+		 this.getPluginManager().registerCommand("checkupdate", new UpdateCmds(pUrl, vUrl,this.getServer(), version));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered: /checkupdateupdate");
 		 
 		this.getLogger().info("MBEssentials Startup Finished!");
 	}
