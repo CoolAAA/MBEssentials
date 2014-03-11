@@ -70,7 +70,7 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getLogger().info("Checking for an update to MBEssentials!");
 		
 		try { 
-			if(Downloader.checkUpdate(new String[] {vUrl,pUrl},new String[] {"plugins\\MBEssentials\\version.txt","plugins\\MBEssentials.jar"}, version));
+			if(Downloader.checkUpdate(new String[] {vUrl,pUrl},new String[] {"plugins\\MBEssentials\\version.txt","plugins\\MBEssentials.jar"}, version))
 				this.getLogger().info("Successfully updated MBEssentials retart server to use newest version!");
 		} catch (IOException e1) {
 			try {

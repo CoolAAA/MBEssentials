@@ -44,7 +44,6 @@ public class Downloader {
 			Scanner sc = new Scanner(vfile);
 			int num = sc.nextInt();
 			sc.close();
-			System.out.println(num + " " + version);
 			if(version != num)
 			{
 				return Downloader.checkUpdate(url,path, -1);
