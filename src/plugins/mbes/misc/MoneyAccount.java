@@ -5,9 +5,9 @@ import com.mbserver.api.game.Player;
 
 public class MoneyAccount {
 	
-	private int amount;
-	private String name;
-	private boolean inf; 
+	int amount;
+	String name;
+	boolean inf; 
 	
 	public Player getPlayer(Server s) {
 		return s.getPlayerExact(name);

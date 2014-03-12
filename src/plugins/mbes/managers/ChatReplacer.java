@@ -9,5 +9,15 @@ public class ChatReplacer {
 	public Map<String,String> getMap(){
 		return words;
 	}
+	 
+	/**
+	 * Add a word to replace in the global chat
+	 * 
+	 * @param rp - Word to replace
+	 * @param tr - Word/Words to replace with
+	 */
+	public void addWord(String rp,String tr){
+		words.put(rp,tr);
+	}
 	
 }

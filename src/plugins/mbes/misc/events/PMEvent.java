@@ -4,8 +4,8 @@ import com.mbserver.api.events.CancellableEvent;
 import com.mbserver.api.game.Player;
 
 public class PMEvent extends CancellableEvent{
-	private Player sender,reciever;
-	private String message;
+	Player sender,reciever;
+	String message;
 	
 	public PMEvent(Player from,Player to,String msg) {
 		sender = from;

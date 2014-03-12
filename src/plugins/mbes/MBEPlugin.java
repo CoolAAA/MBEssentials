@@ -6,10 +6,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
-
 import plugins.mbes.commands.ChatReplaceCmds;
 import plugins.mbes.commands.Commands;
 import plugins.mbes.commands.ModCmds;
@@ -323,6 +321,10 @@ public class MBEPlugin extends MBServerPlugin{
 	
 	public LogManager getLogManager(){
 		return logm;
+	}
+	
+	public ChatReplacer getChatReplacer(){
+		return chatrp;
 	}
 }
 

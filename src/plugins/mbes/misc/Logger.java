@@ -12,6 +12,12 @@ public class Logger {
 	private BufferedWriter out;
 	private int ID;
 	
+	
+	
+	/**
+	 * @param folder The folder in which the log will be stored
+	 *Example new Logger("logs\\MyLogFolder");
+	 */
 	public Logger(String folder) {
 		try {
 			out = new BufferedWriter(new FileWriter(folder + LogManager.getExactDate() + ".txt"));
@@ -20,18 +26,32 @@ public class Logger {
 		}
 	}
 	
+	/**
+	 * You should not use this method
+	 */
 	public BufferedWriter getWriter(){
 		return out;
 	}
 	
+	/**
+	 * You should not use this method
+	 * When you attach this logger to a LogManager it will set the ID
+	 */
 	public void setId(int id){
 		ID = id;
 	}
 	
+	
+	/**
+	 * @return The ID of the logger. Used when logging
+	 */
 	public int getId() {
 		return ID;
 	}
 	
+	/**
+	 * You should not use this method
+	 */
 	public void close() throws IOException{
 		out.close();
 	}
