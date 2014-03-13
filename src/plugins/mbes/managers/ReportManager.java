@@ -5,13 +5,11 @@ import plugins.mbes.misc.Report;
 
 public class ReportManager{
 	private ArrayList<Report>report = new ArrayList<Report>();
-	private  int id = 0;
 	
 	public void newReport(Report e){
-		e.setId(id);
+		e.setId(report.size());
 		
 		report.add(e);
-		id++;
 	}
 	
 	public Report getReport(Report e){

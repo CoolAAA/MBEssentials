@@ -93,3 +93,7 @@
        /clearwords - clears all the words from the map 
        
 [AAAA] Changed the permissions so now you can give players permissions like: "mbes.*" , "mbes.mod.*" , etc
+
+[AAAA] IF a money api function return an int it will return the static fields in MoneyManager or 0 if successful
+ 
+[AAAA] Fixed the bug with the report system
