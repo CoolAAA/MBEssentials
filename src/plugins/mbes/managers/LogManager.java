@@ -30,28 +30,43 @@ public class LogManager {
 	/**
 	 * Writes a string to a log
 	 * When you log something the log will make a new line 
-	 * the date is also logged when you log something
+	 * the date is also logged when you log something.
+	 * 
 	 * 
 	 * @param write - The string to write to the log
 	 * @param log - the logger to use
+	 * @param preDef - use the pre-defined format. Ex: [Date] blahblah blah
 	 * @return true if the logging was successful false if the logger was not found
 	 * @throws IOException - if a IO error occurs
+	 * 
+	 * <br>
+	 * <br>
+	 * If preDef is false then you will have to format everything including newlines
+	 * 
 	 */
-	public boolean writeLog(String write,Logger log) throws IOException{
+	public boolean writeLog(String write,Logger log,boolean preDef) throws IOException{
 		int ind = loggers.indexOf(log);
 		
 		if(ind == -1)
 			return false;
 		
-		Logger temp = loggers.get(ind);
 		
-		temp.getWriter().write(String.format("[%s] %s",LogManager.getDate(),write));
-		temp.getWriter().newLine();
-		temp.getWriter().flush();
+		Logger temp = loggers.get(ind);
+		if(preDef)
+		{
+			temp.getWriter().write(String.format("[%s] %s",LogManager.getDate(),write));
+			temp.getWriter().newLine();
+			temp.getWriter().flush();
+		}
+		
+		else
+		{
+			temp.getWriter().write(write);
+			temp.getWriter().flush();
+		}
 		
 		return true;
 	}
-	
 	
 	
 	/**
@@ -61,19 +76,32 @@ public class LogManager {
 	 * 
 	 * @param write - String to write
 	 * @param ID - the ID of the logger you can use Logger.getId() to get the loggers id.
+	 * @param preDef - use the pre-defined format. Ex: [Date] blahblah blah
 	 * @return true if the logging was successful false if a logger with that id was not found
 	 * @throws IOException  an IO error occurs
+	 * 
+	 * <br>
+	 * <br>
+	 * If preDef is false then you will have to format everything including newlines
 	 */
-	public boolean writeLog(String write,int ID) throws IOException{
+	public boolean writeLog(String write,int ID,boolean preDef) throws IOException{
 		
 		if(loggers.size() - 1 < ID)
 			return false;
 		
 		Logger temp = loggers.get(ID);
 		
-		temp.getWriter().write(String.format("[%s] %s",LogManager.getDate(),write));
-		temp.getWriter().newLine();
-		temp.getWriter().newLine();
+		if(preDef)
+		{
+			temp.getWriter().write(String.format("[%s] %s",LogManager.getDate(),write));
+			temp.getWriter().newLine();
+			temp.getWriter().flush();
+		}
+		
+		else
+		{
+			temp.getWriter().write(write);
+		}
 		return true;
 	}
 	

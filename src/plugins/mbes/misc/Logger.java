@@ -1,6 +1,7 @@
 package plugins.mbes.misc;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -16,12 +17,23 @@ public class Logger {
 	
 	/**
 	 * @param folder The folder in which the log will be stored
-	 *Example new Logger("logs\\MyLogFolder");
+	 *Example Logger lg = new Logger("logs\\MyLogFolder\\");
 	 */
 	public Logger(String folder) {
 		try {
 			out = new BufferedWriter(new FileWriter(folder + LogManager.getExactDate() + ".txt"));
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * @param file - The file you want to write to this file should not exist
+	 */
+	public Logger(File file){
+		try{
+			out = new BufferedWriter(new FileWriter(file));
+		}catch(IOException e){
 			e.printStackTrace();
 		}
 	}
