@@ -26,11 +26,10 @@ public class TestMain extends MBServerPlugin{
 		
 		//Attach logger to the logManager
 		log.attachLogger(myLog);
-		try {
 			
 			//write to the log
 			log.writeLog("Im logging this",myLog,false); //Its false so it can log it using the default formatting
-			// You can also do this log.writeLog("Im logging this",myLog.getId());
+			// You can also do this log.writeLog("Im logging this",myLog.getId(),false);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
