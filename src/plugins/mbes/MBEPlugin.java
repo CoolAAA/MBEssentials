@@ -34,6 +34,7 @@ import plugins.mbes.misc.Logger;
 
 public class MBEPlugin extends MBServerPlugin{
 	private final int version = 1;
+	public final static String MANIFEST_NAME = "MBEssentials";
 	private final String vUrl = "https://github.com/CoolAAA/MBEssentials/releases/download/v1.0a/version.txt";
 	private final String pUrl = "https://github.com/CoolAAA/MBEssentials/releases/download/v1.0a/MBEssentials.jar";
 	private LogManager logm;

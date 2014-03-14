@@ -1,6 +1,8 @@
 package plugins.mbes.commands;
 
+import plugins.mbes.misc.events.BlockedPmEvent;
 import plugins.mbes.misc.events.PMEvent;
+
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
 import com.mbserver.api.Server;
@@ -35,10 +37,16 @@ public class PMCmds implements CommandExecutor{
 					{
 						boolean blocked = send.getMetaData("MBES:PMBLOCK:" + sender.getName(),false);
 						
-						if(blocked || send.getMetaData("MBES:PMBLOCKALL",false))
+						if(blocked || send.getMetaData("MBES:PMBLOCKALL",false)){
 							sender.sendMessage("Player '" + send.getDisplayName() + "' has blocked you from sending them pm's!");
+							BlockedPmEvent pm = new BlockedPmEvent((Player)sender, send);
+							server.getPluginManager().triggerEvent(pm);
+							
+							if(!pm.isCancelled())
+								blocked = false;
+						}
 						
-						else
+						if(!blocked)
 						{
 							String msg = "";
 						

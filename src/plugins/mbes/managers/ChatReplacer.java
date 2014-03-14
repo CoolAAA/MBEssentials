@@ -20,4 +20,16 @@ public class ChatReplacer {
 		words.put(rp,tr);
 	}
 	
+	/**
+	 * Remove a word from the Chat word replacer
+	 * 
+	 * @param word - The word to remove from the wordReplacer
+	 * @return true if the word was removed False if the word was not found
+	 */
+	public boolean delWord(String word){
+		if(words.remove(word) == null)
+			return false;
+		return true;
+	}
+	
 }
