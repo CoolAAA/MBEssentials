@@ -6,6 +6,8 @@ mbes.cmds.coords - permission to use /coords
 
 //Mod Permissions
 mbes.mod.mute - permission to use /mute
+mbes.mod.unfreeze - permission to use /unfreeze
+mbes.mod.freeze - permission to use /freeze
 mbes.mod.kill - permission to use /kill <person> - to kill someone else
 mbes.mod.unmute - permission to use /unmute
 mbes.mod.kickall - permission to use /kickall 

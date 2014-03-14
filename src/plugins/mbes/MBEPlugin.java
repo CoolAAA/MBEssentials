@@ -6,10 +6,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
+
 import plugins.mbes.commands.ChatReplaceCmds;
 import plugins.mbes.commands.Commands;
+import plugins.mbes.commands.Freeze;
 import plugins.mbes.commands.ModCmds;
 import plugins.mbes.commands.MoneyCmds;
 import plugins.mbes.commands.Mute;
@@ -21,9 +24,11 @@ import plugins.mbes.commands.Coords;
 import plugins.mbes.commands.UpdateCmds;
 import plugins.mbes.handler.AccountMaker;
 import plugins.mbes.handler.ChatReplacerHandler;
+import plugins.mbes.handler.FreezeHandler;
 import plugins.mbes.handler.LogHandler;
 import plugins.mbes.handler.MuteHandler;
 import plugins.mbes.managers.ChatReplacer;
+import plugins.mbes.managers.FreezeManager;
 import plugins.mbes.managers.LogManager;
 import plugins.mbes.managers.MoneyManager;
 import plugins.mbes.managers.ReportManager;
@@ -34,6 +39,7 @@ import plugins.mbes.misc.Logger;
 
 public class MBEPlugin extends MBServerPlugin{
 	private final int version = 1;
+	private FreezeManager FreezeMan = new FreezeManager();
 	public final static String MANIFEST_NAME = "MBEssentials";
 	private final String vUrl = "https://github.com/CoolAAA/MBEssentials/releases/download/v1.0a/version.txt";
 	private final String pUrl = "https://github.com/CoolAAA/MBEssentials/releases/download/v1.0a/MBEssentials.jar";
@@ -285,7 +291,19 @@ public class MBEPlugin extends MBServerPlugin{
 		 
 		 this.getPluginManager().registerCommand("checkupdate", new UpdateCmds(pUrl, vUrl,this.getServer(), version));
 		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered: /checkupdateupdate");
+			 this.getLogger().info("Successfully registered: /checkupdate");
+		 
+		 this.getPluginManager().registerCommand("freeze",new String[] {"frz"},new Freeze(this.getServer(),FreezeMan));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered: /freeze");
+		 
+		 this.getPluginManager().registerCommand("unfreeze",new String[] {"unfrz"},new Freeze(this.getServer(),FreezeMan));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered: /unfreeze");
+		 
+		 this.getPluginManager().registerEventHandler(new FreezeHandler(FreezeMan));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered handler: FreezeHandler");
 		 
 		this.getLogger().info("MBEssentials Startup Finished!");
 	}

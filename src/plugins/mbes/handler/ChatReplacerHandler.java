@@ -23,7 +23,8 @@ public class ChatReplacerHandler implements Listener {
 			
 			for(int a = 0; a < words.getMap().size(); a++)
 			{
-				msg.replaceAll("(?iu)" + Rp[a],words.getMap().get(Rp[a]));
+				if(!event.getPlayer().hasPermission("mbes.words." + Rp[a]) || !event.getPlayer().hasPermission(("mbes.words." + Rp[a]).toLowerCase()))
+					msg.replaceAll("(?i)" + Rp[a],words.getMap().get(Rp[a]));
 			}
 			
 			event.setMessage(msg);
