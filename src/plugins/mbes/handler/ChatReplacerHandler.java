@@ -19,18 +19,11 @@ public class ChatReplacerHandler implements Listener {
 		if(!words.getMap().isEmpty())
 		{
 			String msg = event.getMessage();
-			String newW;
-			String[] parts = msg.split("\\s+");
-			msg = "";
-			for(String e : parts)
+			String[] Rp = words.getMap().keySet().toArray(new String[0]);
+			
+			for(int a = 0; a < words.getMap().size(); a++)
 			{
-				 newW = words.getMap().get(e);
-				 
-				 if(newW == null)
-					 msg = msg.concat(e + " ");
-				 
-				 else
-					 msg = msg.concat(newW + " ");
+				msg.replaceAll("(?iu)" + Rp[a],words.getMap().get(Rp[a]));
 			}
 			
 			event.setMessage(msg);
