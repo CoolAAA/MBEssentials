@@ -2,7 +2,7 @@
 #If there is a certain one that you want to do, put [name] on the front of it
 #Otherwise, just pick a random entry from the list, implement it, then delete the entry when you are don!
 
-[mushy] /freeze <playername> - stops the player from moving and breaking/placing. handy for if someone is griefing!
+[Mushy] /freeze <playername> - stops the player from moving and breaking/placing. handy for if someone is griefing!
 
 [AAAA][DONE] Money system using /balance and /pay <playername> maybe even an API that other plugins can use! :D
 
@@ -14,7 +14,7 @@
 
 [Everyone]*Config system - enable/disable Any feature of MBEssentials you want.
 
-[mushy] [wip] create a website for the plugin, along with all commands, permissions and description!
+[Mushy] [wip] create a website for the plugin, along with all commands, permissions and description!
 
 [Abiram] some kind of jail system @coords: -10000,120,-10000 , so nobody will have issues with this jailbuilding thing xD
 
@@ -27,7 +27,12 @@
  * Built in custom command support - AAAA you could just use the plugin you already made!
 
 [AAAA]Autoupdater - I will provide with D/L links as soon as possible, as the website is under contruction - 
-[Ikkerens] You could use github's release mechanism for this? https://github.com/CoolAAA/MBEssentials/releases
+
+[Mushy] Kit system - allows for the creation of kits, as well as the option to set a default kit that everyone will get when they first join.
+
+[Mushy] Nickname system - Allows you to set your nickname to anything (such as TheMushyPeas to DatCoolGuy) I will add a prefix to nicknames so that you know it is not the acutal person
+
+
 
 /tpa and /tpaccept (the Minecraft command)
 
