@@ -32,6 +32,7 @@
 
 [Mushy] Nickname system - Allows you to set your nickname to anything (such as TheMushyPeas to DatCoolGuy) I will add a prefix to nicknames so that you know it is not the acutal person
 
+[AAAA] Block kits so whenever you break a block that is a kit block it will drop the items that it was set to 
 /tpa and /tpaccept (the Minecraft command)
 
 Any other ideas? - mushy
