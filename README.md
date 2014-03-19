@@ -25,3 +25,5 @@ Legal
 Feel free to learn from and use the source, but please.could you credit us!
 
 Thankyou - The MbEssentials Team
+
+Also, thanks to Ikkerens for helping out with some of the code!
