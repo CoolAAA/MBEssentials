@@ -81,6 +81,33 @@ public class ChatReplaceCmds implements CommandExecutor{
 				rp.getMap().clear();
 				sender.sendMessage("All of the words have been cleared!");
 			}
+			
+			else
+				sender.sendMessage("You don't have permission to use this command!");
+		}
+		
+		else if(command.equals("listwords"))
+		{
+			if(sender.hasPermission("mbes.mod.listwords") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
+			{
+				if(rp.getMap().isEmpty()){
+					sender.sendMessage("There are no words!");
+					return;
+				}
+				
+				String[] keys = rp.getMap().keySet().toArray(new String[0]);
+				sender.sendMessage(" Word  Replacement");
+				sender.sendMessage("-------------------");
+				for(String e : keys)
+				{
+					sender.sendMessage(String.format("%s    %s", e , rp.getMap().get( e )));
+				}
+				sender.sendMessage("End of words");
+			}
+			else
+			{
+				sender.sendMessage("You don't have permission to use this command!");
+			}
 		}
 	}
 	

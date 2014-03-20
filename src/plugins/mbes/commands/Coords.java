@@ -31,11 +31,11 @@ public class Coords implements CommandExecutor {
 					sender.sendMessage("Could not find the player: " + args[0] + ".");
 					return;
 				}
-			else {
-				sender.sendMessage("Usage: /coords <playername>");
+			
+		}else {
+				sender.sendMessage("Usage: /coords <playerName>");
 				return;
 			}
-		}
 
 		Location location = target.getLocation();
 		sender.sendMessage(String.format("The coordinates of %s are X: %d, Y: %d, Z: %d in world %s."
@@ -45,6 +45,6 @@ public class Coords implements CommandExecutor {
 			location.getBlockZ(),
 			location.getWorld().getWorldName()
 			));
-	}
+		}
 	}
 }
