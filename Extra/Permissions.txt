@@ -19,6 +19,7 @@ mbes.mod.vwreport - permission to use /vwreport
 mbes.mod.delreport - permission to use /delreport
 mbes.mod.addword - permission to use /addword
 mbes.mod.delword - permission to use /clearwords
+mbes.mod.listwords - permission to use /listwords
 
 //Pm Permissions
 mbes.pm - permission to use /pm,/unblock,/block,/blockall,/unblockall
