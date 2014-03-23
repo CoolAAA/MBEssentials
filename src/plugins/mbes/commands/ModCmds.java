@@ -54,7 +54,7 @@ public class ModCmds implements CommandExecutor{
 				sender.sendMessage("You don't have permission to use this command!");
 		}
 		
-		if(command.equals("sudo"))
+		else if(command.equals("sudo"))
 		{
 			if(sender.hasPermission("mbes.mod.sudo") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
@@ -95,6 +95,27 @@ public class ModCmds implements CommandExecutor{
 					sender.sendMessage("The Player '" + args[0] + "' was not found!");
 			}
 			
+			else
+				sender.sendMessage("You don't have permission to use this command!");
+		}
+		
+		else if(command.equals("sayas"))
+		{
+			if(sender.hasPermission("mbes.mod.sayas") || sender.hasPermission("mbes.mod.*") || sender.hasPermission("mbes.*"))
+			{
+				if(args.length < 2)
+					sender.sendMessage("Usage: /sayas <player> <message>");
+				
+				else
+				{
+					Player target = s.getPlayer(args[0]);
+					
+					if(target == null)
+						sender.sendMessage("The player '" + args[0] + "' was not found!");
+					
+					
+				}
+			}
 			else
 				sender.sendMessage("You don't have permission to use this command!");
 		}
