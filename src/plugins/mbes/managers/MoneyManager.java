@@ -68,7 +68,7 @@ public class MoneyManager{
 	 * Remove money from player
 	 * @param account The players money account
 	 * @param amount amount to remove
-	 * @return
+	 * @return 0 if successful or the static fields in MoneyManager class
 	 */
 	public int removeMoney(MoneyAccount account,int amount){
 		int ind = bank.indexOf(account);

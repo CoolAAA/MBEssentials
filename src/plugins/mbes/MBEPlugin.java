@@ -34,6 +34,7 @@ import plugins.mbes.managers.MoneyManager;
 import plugins.mbes.managers.ReportManager;
 import plugins.mbes.misc.Downloader;
 import plugins.mbes.misc.Logger;
+import plugins.mbes.misc.WorldBackup;
 
 @Manifest(name="MBEssentials",authors = {"TheMushyPeas","AAAA","Abiram"},config = Config.class)
 
@@ -306,6 +307,16 @@ public class MBEPlugin extends MBServerPlugin{
 			 this.getLogger().info("Successfully registered handler: FreezeHandler");
 		 
 		this.getLogger().info("MBEssentials Startup Finished!");
+		
+		this.getLogger().info("Starting world backup");
+		
+		try {
+			WorldBackup.Backup(this.getServer());
+			this.getLogger().info("Finished backing up worlds!");
+		} catch (IOException e) {
+			this.getLogger().info("An error occured while trying to backup worlds!");
+			e.printStackTrace();
+		}
 	}
 	
 	@Override

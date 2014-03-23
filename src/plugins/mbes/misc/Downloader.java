@@ -7,13 +7,15 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Scanner;
 
+import com.mbserver.api.Server;
+
 
 public class Downloader {
 	
 	public static File downloadFile(String fileUrl,String path) throws IOException
 	{
-		URL url = new URL(fileUrl);
 		
+		URL url = new URL(fileUrl);
 		InputStream in = url.openStream();
 		FileOutputStream out = new FileOutputStream(new File(path));
 		
