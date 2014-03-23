@@ -44,8 +44,10 @@ public class Commands implements CommandExecutor{
 						sender.sendMessage("The player '" + args[0] + "' was not found!");
 					else
 					{
+						//needs alternative
 						temp.teleport(temp.getLocation().getWorld(),temp.getLocation().getBlockX(),-5,temp.getLocation().getBlockZ());
 						sender.sendMessage("The player '" + temp.getDisplayName() + "' has been killed!");
+						
 					}
 				}
 			}
