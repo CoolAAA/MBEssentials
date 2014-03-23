@@ -308,14 +308,19 @@ public class MBEPlugin extends MBServerPlugin{
 		 
 		this.getLogger().info("MBEssentials Startup Finished!");
 		
-		this.getLogger().info("Starting world backup");
+		if(config.isEnableWorldBackup()) {
+			this.getLogger().info("Starting world backup");
 		
-		try {
-			WorldBackup.Backup(this.getServer());
-			this.getLogger().info("Finished backing up worlds!");
-		} catch (IOException e) {
-			this.getLogger().info("An error occured while trying to backup worlds!");
-			e.printStackTrace();
+			try {
+				WorldBackup.Backup(this.getServer());
+				this.getLogger().info("Finished backing up worlds!");
+			} catch (IOException e) {
+				this.getLogger().info("An error occured while trying to backup worlds!");
+				e.printStackTrace();
+			}
+		}
+		else{
+			this.getLogger().info("World Backup is Disabled. It is highly recommended that you turn it on!");
 		}
 	}
 	
