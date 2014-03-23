@@ -15,6 +15,15 @@ public class Config {
 	 	private boolean enableBreakLog;
 	 	private boolean enableReportSystem;
 	 	private boolean enableChatCensor;
+	 	private boolean enableWorldBackup;
+	 	
+	 	public boolean isEnableWorldBackup() {
+			return enableWorldBackup;
+		}
+		
+		public void setEnableWorldBackup(boolean enableWorldBackup) {
+			this.enableWorldBackup = enableWorldBackup;
+		}
 	 	
 	 	public boolean isEnableChatCensor() {
 			return enableChatCensor;
@@ -53,6 +62,7 @@ public class Config {
 	       this.setEnablePlaceLog(false);
 	       this.setEnableBreakLog(false);
 	       this.setEnableReport(true);
+	       this.setEnableWorldBackup(true);
 	 	}
 	 	 
 	 	public void setEnablePlaceLog(boolean enablePlaceLog) {
