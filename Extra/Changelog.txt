@@ -70,9 +70,9 @@
 
 [AAAA] /kill now teleports the player under the world causing them to die instantly.
 
-[mushy] Now the PM system can be disabled
+[Mushy] Now the PM system can be disabled
 
-[mushy] Added block place/break logging support. Thanks to Abiram for providing the original source on the forums!
+[Mushy] Added block place/break logging support. Thanks to Abiram for providing the original source on the forums!
 
 [AAAA] Fixed some errors with github.
 
@@ -80,10 +80,10 @@
 
 [AAAA] Added /report <player> <name>,/vwreport - view all reports,/vwreport <num> - view a specific report,/delreport <num> - delete a report
 
-[mushy] Added /coords <player>. This will return the coordinated of the specified player (Doh!) This is useful if server owners want players to find each other,
+[Mushy] Added /coords <player>. This will return the coordinated of the specified player (Doh!) This is useful if server owners want players to find each other,
         but want to make it harder than just teleporting. Then a bit of "old school" navigation is requried! :)
        
-[mushy] Added some extra debug info on server shutdown
+[Mushy] Added some extra debug info on server shutdown
 
 [AAAA] Added the config file reader so you can disable/enable any feature you want.
 
@@ -97,3 +97,5 @@
 [AAAA] IF a money api function return an int it will return the static fields in MoneyManager or 0 if successful
  
 [AAAA] Fixed the bug with the report system
+
+[Mushy] World backup is now customisable
