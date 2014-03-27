@@ -1,12 +1,14 @@
 package plugins.mbes.commands;
 
+import plugins.mbes.misc.Keys;
+
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
 import com.mbserver.api.Server;
+import com.mbserver.api.game.Material;
 import com.mbserver.api.game.Player;
 
 public class Commands implements CommandExecutor{
-	private Player temp;
 	private Server s;
 	
 	public Commands(Server s) {
@@ -24,8 +26,11 @@ public class Commands implements CommandExecutor{
 				if(sender.hasPermission("mbes.cmds.kill") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.cmds.*"))
 				{
 					Player p = (Player)sender;
+					p.getLocation().getWorld().setBlockWithoutUpdate(p.getLocation(),Material.BEDROCK);
+					p.getLocation().getWorld().setBlockWithoutUpdate(p.getLocation().getBlockX(),p.getLocation().getBlockY() + 1,p.getLocation().getBlockZ(),Material.BEDROCK);
 					
-					p.teleport(p.getLocation().getWorld(),p.getLocation().getBlockX(),-5,p.getLocation().getBlockZ());
+					p.setMetaData(Keys.kill_key,true);
+					p.setMetaData(Keys.kill_location_key,p.getLocation());
 				}
 				
 				else

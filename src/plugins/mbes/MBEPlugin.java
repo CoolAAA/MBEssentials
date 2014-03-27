@@ -27,6 +27,7 @@ import plugins.mbes.commands.WebsiteCmds;
 import plugins.mbes.handler.AccountMaker;
 import plugins.mbes.handler.ChatReplacerHandler;
 import plugins.mbes.handler.FreezeHandler;
+import plugins.mbes.handler.KillHandler;
 import plugins.mbes.handler.LogHandler;
 import plugins.mbes.handler.MuteHandler;
 import plugins.mbes.managers.ChatReplacer;
@@ -295,27 +296,31 @@ public class MBEPlugin extends MBServerPlugin{
 		 
 		 this.getPluginManager().registerCommand("forceupdate", new UpdateCmds(pUrl, vUrl,this.getServer(), version));
 		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered: /forceupdate");
+			 this.getLogger().info("Successfully registered command: /forceupdate");
 		 
 		 this.getPluginManager().registerCommand("checkupdate", new UpdateCmds(pUrl, vUrl,this.getServer(), version));
 		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered: /checkupdate");
+			 this.getLogger().info("Successfully registered command: /checkupdate");
 		 
 		 this.getPluginManager().registerCommand("freeze",new String[] {"frz"},new Freeze(this.getServer(),FreezeMan));
 		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered: /freeze");
+			 this.getLogger().info("Successfully registered command: /freeze");
 		 
 		 this.getPluginManager().registerCommand("unfreeze",new String[] {"unfrz"},new Freeze(this.getServer(),FreezeMan));
 		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered: /unfreeze");
+			 this.getLogger().info("Successfully registered command: /unfreeze");
 		 
 		 this.getPluginManager().registerCommand("website",new String[] {"web","mbe"},new WebsiteCmds());
 		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered: /unfreeze");
+			 this.getLogger().info("Successfully registered command: /unfreeze");
 		 
 		 this.getPluginManager().registerEventHandler(new FreezeHandler(FreezeMan));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: FreezeHandler");
+		 
+		 this.getPluginManager().registerEventHandler(new KillHandler());
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered handler: KillHandler");
 		 
 		this.getLogger().info("MBEssentials Startup Finished!");
 		
