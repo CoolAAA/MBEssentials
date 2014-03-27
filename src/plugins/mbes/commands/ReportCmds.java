@@ -120,8 +120,10 @@ public class ReportCmds implements CommandExecutor{
 					try{
 						int vnum = Integer.parseInt(args[0]);
 						
-						if(report.delReport(new Report(vnum)))
+						if(report.delReport(new Report(vnum))){
 							sender.sendMessage("The report was deleted!");
+							report.update();
+						}
 						else
 							sender.sendMessage("The report '" + vnum + "' was not found!");
 					}catch(NumberFormatException e){

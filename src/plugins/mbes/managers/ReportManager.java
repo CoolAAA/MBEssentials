@@ -28,6 +28,13 @@ public class ReportManager{
 	public Report[] getAll(){
 		if(report.isEmpty())
 			return null;
-		return (Report[])report.toArray();
+		return report.toArray(new Report[0]);
+	}
+	
+	public void update(){
+		for(int a = 0;a < report.size();a++)
+		{
+			report.get(a).setId(a);
+		}
 	}
 }
