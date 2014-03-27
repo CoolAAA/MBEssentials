@@ -74,11 +74,11 @@ public class ModCmds implements CommandExecutor{
 							arg[t] = args[t + 2]; 
 							t++;
 						}
-						CmdSender Cmds = new CmdSender((CommandSender)temp);
-						s.executeCommand(Cmds,args[1],arg);
+						CmdSender sudo = new CmdSender(temp);
+						sudo.executeCommand(args[1], arg);
 						sender.sendMessage("Returned:");
 						
-						for(String e : Cmds.getMsg())
+						for(String e : sudo.getMessage())
 						{
 							sender.sendMessage(e);
 						}
@@ -86,9 +86,12 @@ public class ModCmds implements CommandExecutor{
 					
 					else
 					{
-						CmdSender Cmds = new CmdSender((CommandSender)temp);
-						s.executeCommand(Cmds,args[1]);
-						sender.sendMessage("Returned:\n" + Cmds.getMsg());
+						CmdSender sudo = new CmdSender(temp);
+						sudo.executeCommand(args[1],new String[] {args[2]});
+						for(String e : sudo.getMessage())
+						{
+							sender.sendMessage(e);
+						}
 					}
 				}
 				else

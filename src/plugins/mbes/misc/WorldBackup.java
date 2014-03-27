@@ -17,7 +17,6 @@ public class WorldBackup {
 		
 		File worlds = new File("worlds");
 		String date = new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date());
-		final String line = System.getProperty("file.separator");
 		
 		for(File e: worlds.listFiles())
 		{
@@ -32,17 +31,17 @@ public class WorldBackup {
 					break;
 				
 				
-				new File(String.format("world-backups%s%s%s%s%sregions",line,e.getName(),line,date,line)).mkdirs();
-				WorldBackup.copyFile(f,new File(String.format("/home/adrian/Desktop/MB_Server/world-backups/%s/%s/info.world",e.getName(),date)));
+				new File(String.format("world-backups/%s/%s/regions",e.getName(),date)).mkdirs();
+				WorldBackup.copyFile(f,new File(String.format("world-backups/%s/%s/info.world",e.getName(),date)));
 				
 				
 				
-				for(File region : new File(String.format("worlds%s%s%sregions",line,e.getName(),line)).listFiles())
+				for(File region : new File(String.format("worlds/%s/regions",e.getName())).listFiles())
 				{
 					if(!region.getName().endsWith(".region"))
 						continue;
 					
-					WorldBackup.copyFile(region,new File(String.format("world-backups%s%s%s%s%sregions%s%s",line,e.getName(),line,date,line,region.getName(),line)));
+					WorldBackup.copyFile(region,new File(String.format("world-backups/%s/%s/regions/%s",e.getName(),date,region.getName())));
 					
 				}
 				
@@ -61,7 +60,6 @@ public class WorldBackup {
 		
 		in = new FileInputStream(src).getChannel();
 		out = new FileOutputStream(dest).getChannel();
-		
 		
 		out.transferFrom(in,0,in.size());
 		

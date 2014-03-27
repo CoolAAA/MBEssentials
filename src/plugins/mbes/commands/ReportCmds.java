@@ -42,7 +42,7 @@ public class ReportCmds implements CommandExecutor{
 							}
 							
 							report.newReport(new Report((Player)sender,rp,reason));
-							
+							sender.sendMessage("Your report has been sent to be reviewed by the moderators!");
 						}
 						
 						else
