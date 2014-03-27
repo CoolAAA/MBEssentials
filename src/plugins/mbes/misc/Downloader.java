@@ -28,7 +28,7 @@ public class Downloader {
 		
 		out = new FileOutputStream(ofile).getChannel();
 		out.transferFrom(in,0,Long.MAX_VALUE);
-		return new File(path);
+		return ofile;
 	}
 	
 	public static boolean checkUpdate(String url[],String path[],final int version) throws IOException

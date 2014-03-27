@@ -35,5 +35,7 @@
 [AAAA] Block kits so whenever you break a block that is a kit block it will drop the items that it was set to 
 /tpa and /tpaccept (the Minecraft command)
 
+[AAAA] Fixed the folder bug and added a /website command that will open the MBE website in the browser
+
 Any other ideas? - mushy
 

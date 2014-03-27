@@ -13,8 +13,11 @@ import com.mbserver.api.Server;
 public class WorldBackup {
 
 	public static void Backup(Server s) throws IOException{
+		
+		
 		File worlds = new File("worlds");
 		String date = new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date());
+		final String line = System.getProperty("file.separator");
 		
 		for(File e: worlds.listFiles())
 		{
@@ -28,16 +31,18 @@ public class WorldBackup {
 				if(!f.getName().equals("info.world"))
 					break;
 				
-				WorldBackup.copyFile(f,new File(String.format("world-backups\\%s\\%s\\info.world",e.getName(),date)));
 				
-				new File(String.format("world-backups\\%s\\%s\\regions",e.getName(),date)).mkdirs();
+				new File(String.format("world-backups%s%s%s%s%sregions",line,e.getName(),line,date,line)).mkdirs();
+				WorldBackup.copyFile(f,new File(String.format("/home/adrian/Desktop/MB_Server/world-backups/%s/%s/info.world",e.getName(),date)));
 				
-				for(File region : new File(String.format("worlds\\%s\\regions",e.getName())).listFiles())
+				
+				
+				for(File region : new File(String.format("worlds%s%s%sregions",line,e.getName(),line)).listFiles())
 				{
 					if(!region.getName().endsWith(".region"))
 						continue;
 					
-					WorldBackup.copyFile(region,new File(String.format("world-backups\\%s\\%s\\regions\\%s",e.getName(),date,region.getName())));
+					WorldBackup.copyFile(region,new File(String.format("world-backups%s%s%s%s%sregions%s%s",line,e.getName(),line,date,line,region.getName(),line)));
 					
 				}
 				

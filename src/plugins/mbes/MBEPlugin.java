@@ -23,6 +23,7 @@ import plugins.mbes.commands.Tpto;
 import plugins.mbes.commands.Tphere;
 import plugins.mbes.commands.Coords;
 import plugins.mbes.commands.UpdateCmds;
+import plugins.mbes.commands.WebsiteCmds;
 import plugins.mbes.handler.AccountMaker;
 import plugins.mbes.handler.ChatReplacerHandler;
 import plugins.mbes.handler.FreezeHandler;
@@ -42,6 +43,7 @@ import plugins.mbes.misc.WorldBackup;
 public class MBEPlugin extends MBServerPlugin{
 	private final int version = 1;
 	private FreezeManager FreezeMan = new FreezeManager();
+	private String line = System.getProperty("file.separator");
 	public final static String MANIFEST_NAME = "MBEssentials";
 	private final String vUrl = "https://github.com/CoolAAA/MBEssentials/releases/download/v1.0a/version.txt";
 	private final String pUrl = "https://github.com/CoolAAA/MBEssentials/releases/download/v1.0a/MBEssentials.jar";
@@ -54,8 +56,11 @@ public class MBEPlugin extends MBServerPlugin{
 	
 	@Override
 	public void onLoad() {
-		String[] fileNames = {"plugin//MBEssentials","logs//MBE_Logs","logs//MBE_Logs//Command_Logs","logs//MBE_Logs//Death_Logs"
-				,"logs//MBE_Logs//PvP_Logs","logs//MBE_Logs//Place_Logs","logs//MBE_Logs//Break_Logs"};
+		
+		line = System.getProperty("file.separator");
+		this.getLogger().info(line);
+		String[] fileNames = {"plugins"+ line +"MBEssentials","logs"+ line +"MBE_Logs","logs"+ line +"MBE_Logs"+ line +"Command_Logs","logs"+ line +"MBE_Logs"+ line +"Death_Logs"
+				,"logs"+ line +"MBE_Logs"+ line +"PvP_Logs","logs"+ line +"MBE_Logs"+ line +"Place_Logs","logs"+ line +"MBE_Logs"+ line +"Break_Logs"};
 		
 		File file;
 		
@@ -76,11 +81,13 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getLogger().info("Checking for an update to MBEssentials!");
 		
 		try { 
-			if(Downloader.checkUpdate(new String[] {vUrl,pUrl},new String[] {"plugins\\MBEssentials\\version.txt","plugins\\MBEssentials.jar"}, version))
+			if(Downloader.checkUpdate(new String[] {vUrl,pUrl},new String[] {"plugins"+ line +"MBEssentials"+ line +"version.txt","plugins"+ line +"MBEssentials.jar"}, version))
 				this.getLogger().info("Successfully updated MBEssentials retart server to use newest version!");
+			else
+				this.getLogger().info("You are running the latest version of MBEssentials!");
 		} catch (IOException e1) {
 			try {
-				File lFile = new File("plugins\\MBEssentials\\Download-err-" + new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date()));
+				File lFile = new File("plugins"+ line +"MBEssentials"+ line +"Download-err-" + new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date()));
 				lFile.createNewFile();
 				PrintWriter err = new PrintWriter(lFile);
 				e1.printStackTrace(err);
@@ -201,31 +208,31 @@ public class MBEPlugin extends MBServerPlugin{
 			 
 			 if(config.isEnableBreakLog())
 			 {
-				 breakLog = new Logger("logs//MBE_Logs//Break_Logs//");
+				 breakLog = new Logger("logs"+ line +"MBE_Logs"+ line +"Break_Logs"+ line +"");
 				 logm.attachLogger(breakLog);
 			 }
 			 
 			 if(config.isEnableCommandLog())
 			 {
-				 cmdLog = new Logger("logs//MBE_Logs//Command_Logs//");
+				 cmdLog = new Logger("logs"+ line +"MBE_Logs"+ line +"Command_Logs"+ line +"");
 				 logm.attachLogger(cmdLog);
 			 }
 			 
 			 if(config.isEnableDeathLog())
 			 {
-				 deathLog = new Logger("logs//MBE_Logs//Death_Logs//");
+				 deathLog = new Logger("logs"+ line +"MBE_Logs"+ line +"Death_Logs"+ line +"");
 				 logm.attachLogger(deathLog);
 			 }
 			 
 			 if(config.isEnablePlaceLog())
 			 {
-				 placeLog = new Logger("logs//MBE_Logs//Place_Logs//");
+				 placeLog = new Logger("logs"+ line +"MBE_Logs"+ line +"Place_Logs"+ line +"");
 				 logm.attachLogger(placeLog);
 			 }
 			 
 			 if(config.isEnablePvPLog())
 			 {
-				 PvPLog = new Logger("logs//MBE_Logs//PvP_Logs//");
+				 PvPLog = new Logger("logs"+ line +"MBE_Logs"+ line +"PvP_Logs"+ line +"");
 				 logm.attachLogger(PvPLog);
 			 }
 			 
@@ -299,6 +306,10 @@ public class MBEPlugin extends MBServerPlugin{
 			 this.getLogger().info("Successfully registered: /freeze");
 		 
 		 this.getPluginManager().registerCommand("unfreeze",new String[] {"unfrz"},new Freeze(this.getServer(),FreezeMan));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered: /unfreeze");
+		 
+		 this.getPluginManager().registerCommand("website",new String[] {"web","mbe"},new WebsiteCmds());
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered: /unfreeze");
 		 
