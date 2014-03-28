@@ -80,7 +80,7 @@ public class MBEPlugin extends MBServerPlugin{
 		
 		try { 
 			if(Downloader.checkUpdate(new String[] {vUrl,pUrl},new String[] {"plugins/MBEssentials/version.txt","plugins/MBEssentials.jar"}, version))
-				this.getLogger().info("Successfully updated MBEssentials retart server to use newest version!");
+				this.getLogger().info("Successfully updated MBEssentials restart server to use newest version!");
 			else
 				this.getLogger().info("You are running the latest version of MBEssentials!");
 		} catch (IOException e1) {
@@ -361,6 +361,7 @@ public class MBEPlugin extends MBServerPlugin{
 			this.getLogger().info("Successfully saved config and bank!");
 			
 		this.getLogger().info("Have a nice day - from the MBEssentials Team!");
+		this.getLogger().info("Remeber to visit our forum to leave some feedback!");
 	}
 	
 	public MoneyManager getMoneyManager(){
