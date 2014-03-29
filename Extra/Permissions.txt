@@ -3,6 +3,7 @@ mbes.cmds.kill - permission to use the /kill - to kill themselves
 mbes.cmds.tpto - permission to use /tpto 
 mbes.cmds.tphere - permission to use /tphere 
 mbes.cmds.coords - permission to use /coords 
+No permission needed - /website
 
 //Mod Permissions
 mbes.mod.mute - permission to use /mute
