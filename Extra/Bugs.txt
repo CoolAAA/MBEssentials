@@ -14,3 +14,5 @@ I did a big bug testing session: Here are my results:
 *The block and unblock commands dont seem to work
 
 I have NOT investigated further into these bugs, it was just what I saw. Otherwise, the plugin works perfect!
+
+EDIT: The logging system doesnt work 100% of the time as well. Not sure if others have experienced this!
