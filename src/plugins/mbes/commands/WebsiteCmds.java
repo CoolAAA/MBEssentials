@@ -15,7 +15,7 @@ public class WebsiteCmds implements CommandExecutor{
 
 	public WebsiteCmds() {
 		try {
-			website = new URI("http://mbessentials.bl.ee/"); // When the website is done put the url here
+			website = new URI("http://mbessentials.bl.ee/"); 
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
