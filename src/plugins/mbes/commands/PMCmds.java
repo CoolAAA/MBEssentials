@@ -119,7 +119,7 @@ public class PMCmds implements CommandExecutor{
 				{
 					send.removeMetaData(Keys.pm_blocked_key + e.getDisplayName());
 				}
-				
+				send.removeMetaData(Keys.pm_blockall_key);
 				sender.sendMessage("Every player online has been unblocked!");
 				return;
 			}
@@ -149,7 +149,6 @@ public class PMCmds implements CommandExecutor{
 					
 					
 					Player send = (Player)sender;
-					send.removeMetaData(Keys.pm_blockall_key);
 					send.removeMetaData(Keys.pm_blocked_key + target.getDisplayName());
 					sender.sendMessage("The player '" + target.getDisplayName() + "' has been unblocked");
 				}
