@@ -7,31 +7,19 @@ public class Config {
 		private boolean enablePmSystem;
 	 	private boolean enableDebug;
 	 	private boolean enablePlaceBlocker;
+	 	private boolean enableItemBlocker;
 	 	private boolean enableLogs;
 	 	private boolean enableDeathLog;
 	 	private boolean enablePvPLog;
 	 	private boolean enableKillLog;
 	 	private boolean enablePlaceLog;
 	 	private boolean enableBreakLog;
+	 	private boolean enableCommandLog;
 	 	private boolean enableReportSystem;
-	 	private boolean enableChatCensor;
-	 	private boolean enableWorldBackup;
-	 	
-	 	public boolean isEnableWorldBackup() {
-			return enableWorldBackup;
-		}
-		
-		public void setEnableWorldBackup(boolean enableWorldBackup) {
-			this.enableWorldBackup = enableWorldBackup;
-		}
-	 	
-	 	public boolean isEnableChatCensor() {
-			return enableChatCensor;
-		}
-
-		public void setEnableChatCensor(boolean enableChatCensor) {
-			this.enableChatCensor = enableChatCensor;
-		}
+	 	private boolean enableWorldBackupStart;
+	 	private boolean enableWorldBackupSave;
+		private int[] blockedBlockIDs;
+	    private int[] blockedToolIDs;
 
 		public boolean isEnableReport() {
 			return enableReportSystem;
@@ -40,19 +28,15 @@ public class Config {
 		public void setEnableReport(boolean enableReport) {
 			this.enableReportSystem = enableReport;
 		}
-		private boolean enableCommandLog;
-		private int[] blockedBlockIDs;
-	    	private boolean enableToolBlocker;
-	    	private int[] blockedToolIDs;
+		
 
 	 	 public Config() {
 	       this.setEnableMoneySystem(true);
 		   this.setEnablePmSystem(true);
-		   this.setEnableChatCensor(true);
 	       this.setEnableDebug(true);
 	       this.setEnablePlaceBlocker(false);
 	       this.setBlockedBlockIDs(new int[0]);
-	       this.setEnableToolBlocker(false);
+	       this.setEnableItemBlocker(false);
 	       this.setBlockedToolIDs(new int [0]);
 	       this.setEnableLogs(true);
 	       this.setEnableDeathLog(true);
@@ -62,10 +46,36 @@ public class Config {
 	       this.setEnablePlaceLog(false);
 	       this.setEnableBreakLog(false);
 	       this.setEnableReport(true);
-	       this.setEnableWorldBackup(true);
+	       this.setEnableWorldBackupSave(true);
+	       this.setEnableWorldBackupStart(true);
+	       this.setEnableItemBlocker(true);
 	 	}
 	 	 
-	 	public void setEnablePlaceLog(boolean enablePlaceLog) {
+	 	public boolean isEnableItemBlocker() {
+			return enableItemBlocker;
+		}
+
+		public void setEnableItemBlocker(boolean enableItemBlocker) {
+			this.enableItemBlocker = enableItemBlocker;
+		}
+
+		public boolean isEnableWorldBackupStart() {
+			return enableWorldBackupStart;
+		}
+
+		public void setEnableWorldBackupStart(boolean enableWorldBackupStart) {
+			this.enableWorldBackupStart = enableWorldBackupStart;
+		}
+
+		public boolean isEnableWorldBackupSave() {
+			return enableWorldBackupSave;
+		}
+
+		public void setEnableWorldBackupSave(boolean enableWorldBackupSave) {
+			this.enableWorldBackupSave = enableWorldBackupSave;
+		}
+
+		public void setEnablePlaceLog(boolean enablePlaceLog) {
 			this.enablePlaceLog = enablePlaceLog;
 		}
 		public boolean isEnableDebug() {
@@ -104,14 +114,6 @@ public class Config {
 
 		public void setBlockedBlockIDs(int[] blockedBlockIDs) {
 			this.blockedBlockIDs = blockedBlockIDs;
-		}
-
-		public boolean isEnableToolBlocker() {
-			return enableToolBlocker;
-		}
-
-		public void setEnableToolBlocker(boolean enableToolBlocker) {
-			this.enableToolBlocker = enableToolBlocker;
 		}
 
 		public int[] getBlockedToolIDs() {

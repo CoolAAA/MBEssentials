@@ -36,7 +36,7 @@ public class LogHandler implements Listener{
 			String log = "Player '" + e.getPlayer().getDisplayName() + "' Died At X:"  + loc.getBlockX()
 					+ " Y:" + loc.getBlockY() + " Z:" + loc.getBlockZ() + " World:" + loc.getWorld().getWorldName();
 			try {
-				logger.writeLog(log,ID[0],false);
+				logger.writeLog(log,ID[0],true);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -52,7 +52,7 @@ public class LogHandler implements Listener{
 			String log = "Player '" + e.getAttacker().getDisplayName() + "' Attacked Player '" +  e.getVictim().getDisplayName() + "X:"  + loc.getBlockX()
 					+ " Y:" + loc.getBlockY() + " Z:" + loc.getBlockZ() + " World:" + loc.getWorld().getWorldName();
 			try {
-				logger.writeLog(log,ID[1],false);
+				logger.writeLog(log,ID[1],true);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -71,7 +71,7 @@ public class LogHandler implements Listener{
 			String log = "Player '" + name + "' Command:" + e.getCommand() + " Args:" + args;
 
 			try {
-				logger.writeLog(log,ID[2],false);
+				logger.writeLog(log,ID[2],true);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -88,7 +88,7 @@ public class LogHandler implements Listener{
         		String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
 			String log = name + " placed a block of " + event1.getMaterial().getName();
 			try {
-				logger.writeLog(log,ID[3],false);
+				logger.writeLog(log,ID[3],true);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -96,7 +96,7 @@ public class LogHandler implements Listener{
 				String message = event1.getBlock().getBlockData().toString();
 				String log2 = time + " " + name + " placed a sign saying: " + message;
 				try {
-					logger.writeLog(log2,ID[4],false);
+					logger.writeLog(log2,ID[4],true);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -112,7 +112,7 @@ public class LogHandler implements Listener{
 			String log = time + " " + name + " broke a block of " + event2.getMaterial().getName();
 
 			try {
-				logger.writeLog(log,ID[5],false);
+				logger.writeLog(log,ID[5],true);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}

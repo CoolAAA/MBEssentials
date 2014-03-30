@@ -30,6 +30,7 @@ import plugins.mbes.handler.FreezeHandler;
 import plugins.mbes.handler.KillHandler;
 import plugins.mbes.handler.LogHandler;
 import plugins.mbes.handler.MuteHandler;
+import plugins.mbes.handler.WorldBackupHandler;
 import plugins.mbes.managers.ChatReplacer;
 import plugins.mbes.managers.FreezeManager;
 import plugins.mbes.managers.LogManager;
@@ -319,9 +320,16 @@ public class MBEPlugin extends MBServerPlugin{
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: KillHandler");
 		 
+		 if(config.isEnableWorldBackupSave())
+		 {
+		 	this.getPluginManager().registerEventHandler(new WorldBackupHandler());
+		 	if(config.isEnableDebug())
+		 		this.getLogger().info("Successfully registered handler: WorldBackupSave");
+		 }
+		 
 		this.getLogger().info("MBEssentials Startup Finished!");
 		
-		if(config.isEnableWorldBackup()) {
+		if(config.isEnableWorldBackupStart()) {
 			this.getLogger().info("Starting world backup");
 		
 			try {

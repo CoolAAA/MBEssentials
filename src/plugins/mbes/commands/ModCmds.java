@@ -87,7 +87,7 @@ public class ModCmds implements CommandExecutor{
 					else
 					{
 						CmdSender sudo = new CmdSender(temp);
-						sudo.executeCommand(args[1],new String[] {args[2]});
+						sudo.executeCommand(args[1],new String[] {""});
 						for(String e : sudo.getMessage())
 						{
 							sender.sendMessage(e);

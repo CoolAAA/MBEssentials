@@ -21,7 +21,6 @@ public class AccountMaker implements Listener{
 	@EventHandler
 	public void onLogin(PlayerLoginEvent e){
 		boolean made = bank.addAccount(new MoneyAccount(e.getPlayer()));
-		
 		if(config.isEnableDebug())
 		{
 			if(made)
