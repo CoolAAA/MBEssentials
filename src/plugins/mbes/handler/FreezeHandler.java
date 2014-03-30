@@ -9,10 +9,11 @@ import com.mbserver.api.events.PlayerItemPickupEvent;
 import com.mbserver.api.events.PlayerMoveEvent;
 import com.mbserver.api.events.PlayerPvpEvent;
 import com.mbserver.api.events.BlockInteractEvent;
+import com.mbserver.api.events.PlayerTeleportEvent;
 
 public class FreezeHandler implements Listener{
 	
-	FreezeManager man;
+	private FreezeManager man;
 	
 	public FreezeHandler(FreezeManager e) {
 		man = e;
@@ -20,9 +21,8 @@ public class FreezeHandler implements Listener{
 	
 	@EventHandler
 	public void onMove(PlayerMoveEvent e){
-		if(man.isFrozen())
-			if(man.isFrozen(e.getPlayer().getLoginName()))
-				e.setCancelled(true);
+		if(e instanceof PlayerTeleportEvent)
+			return;
 	}
 	
 	@EventHandler

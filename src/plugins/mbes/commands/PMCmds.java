@@ -1,8 +1,7 @@
 package plugins.mbes.commands;
 
-import plugins.mbes.misc.events.BlockedPmEvent;
+import plugins.mbes.misc.Keys;
 import plugins.mbes.misc.events.PMEvent;
-
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
 import com.mbserver.api.Server;
@@ -15,7 +14,7 @@ public class PMCmds implements CommandExecutor{
 	public PMCmds(Server server) {
 		this.server = server;
 	}
-	
+
 	@Override
 	public void execute(String command, CommandSender sender, String[] args,
 			String label) {
@@ -24,157 +23,173 @@ public class PMCmds implements CommandExecutor{
 		{
 			if(sender.hasPermission("mbes.pm") || sender.hasPermission("mbes.*"))
 			{
-				if(args.length >= 2)
+				if(args.length > 1)
 				{
-					Player send;
-					
-					send = server.getPlayer(args[0]);
-					
-					if(send == null)
-						sender.sendMessage("Player '" + args[0] + "' was not found!");
-					
-					else
-					{
-						boolean blocked = send.getMetaData("MBES:PMBLOCK:" + sender.getName(),false);
-						
-						if(blocked || send.getMetaData("MBES:PMBLOCKALL",false)){
-							sender.sendMessage("Player '" + send.getDisplayName() + "' has blocked you from sending them pm's!");
-							BlockedPmEvent pm = new BlockedPmEvent((Player)sender, send);
-							server.getPluginManager().triggerEvent(pm);
-							
-							if(!pm.isCancelled())
-								blocked = false;
-						}
-						
-						if(!blocked)
-						{
-							String msg = "";
-						
-							for(int a = 1; a < args.length;a++)
-							{
-								msg = msg + args[a];
-								msg = msg + " ";
-							}
-							PMEvent event;
-							if(sender instanceof Player)
-								event = new PMEvent((Player)sender,send, msg);
-							else
-								event = new PMEvent(null,send,msg);
-							server.getPluginManager().triggerEvent(event);
-							if(!event.isCancelled())
-								send.sendMessage("From '" + sender.getName() + "': " + msg);
-						}
-					}
-				}
 				
+					Player target = server.getPlayer(args[0]);
+					
+					if(target == null)
+					{
+						sender.sendMessage("The player '" + args[0] + "' was not found!");
+						return;
+					}
+					
+					if(target.getMetaData(Keys.pm_blocked_key + sender.getName(),false) &&
+							sender instanceof Player)
+					{
+						sender.sendMessage("The player '" + target.getDisplayName() + "' has blocked you " +
+								"from sending them pm's");
+						return;
+					}
+					
+					String msg = "";
+					
+					for(int a = 1; a < args.length; a++)
+					{
+						msg = args[a] + " ";
+					}
+					
+					PMEvent pm = new PMEvent(sender,target, msg);
+					pm.setCancelled(false);
+					server.getPluginManager().triggerEvent(pm);
+					
+					if(pm.isCancelled())
+						return;
+					
+					target.sendMessage(String.format("Pm from '%s': %s",sender.getName(),msg));
+					sender.sendMessage("Your pm has been sent to '" + target.getDisplayName() + "'");
+				}
 				else
-					sender.sendMessage("Syntax:/pm <sentTo> <message>");
+					sender.sendMessage("Usage: /pm <sendTo> <message>");
 			}
-			
 			else
-				sender.sendMessage("You don't have permission to pm");
+				denied(sender);
+				
 		}
 		
 		else if(command.equals("block"))
 		{
-			if(sender.hasPermission("mbes.pm") || sender.hasPermission("mbes.*"))
-			{
-				if(!(sender instanceof Player))
-					sender.sendMessage("This command can only be executed as a player!");
-			
-				else if(args.length != 0)
-				{
-					Player player = server.getPlayer(args[0]),p = (Player)sender;
-				
-					if(player == null)
-						sender.sendMessage("The player '" + args[0] + "' was not found!");
-				
-					else
-					{
-						if(p.getMetaData("MBES:PMBLOCK:" + player.getDisplayName(),false))
-							sender.sendMessage("You have already blocked '" + player.getDisplayName() + "'!");
-					
-						else
-							p.setMetaData("MBES:PMBLOCK:" + player.getDisplayName(),true);
-					}
-				}
-				
-				else
-					sender.sendMessage("Syntax:/unblock <name>");
-			}
-			
-			else
-				sender.sendMessage("You don't have permission to use this command!");
-		}
-		
-		else if(command.equals("unblock"))
-		{
-			if(sender.hasPermission("mbes.pm") || sender.hasPermission("mbes.*"))
-			{
-				if(!(sender instanceof Player))
-					sender.sendMessage("This command can only be executed as a player!");
-			
-				else if(args.length != 0)
-				{
-					Player player = server.getPlayer(args[0]),p = (Player)sender;
-				
-					if(player == null)
-						sender.sendMessage("The player '" + args[0] + "' was not found!");
-				
-					else
-					{
-						if(!p.getMetaData("MBES:PMBLOCK:" + player.getDisplayName(),false))
-							sender.sendMessage("The player '" + player.getDisplayName() + "' is not blocked!");
-					
-						else
-							p.setMetaData("MBES:PMBLOCK:" + player.getDisplayName(),false);
-					}
-				}
-				
-				else
-					sender.sendMessage("Syntax:/unblock <name>");
-			}
-			
-			else
-				sender.sendMessage("You don't have permission to use this command!");
-		}
-		
-		else if(command.equals("blockall"))
-		{
 			if(!(sender instanceof Player))
-				sender.sendMessage("This command can only be executed as a player!");
-			
-			else
 			{
-				if(sender.hasPermission("mbes.pm") || sender.hasPermission("mbes.*"))
+				sender.sendMessage("This command can only be exectuted as a player");
+				return;
+			}
+			
+			if(sender.hasPermission("mbes.pm") || sender.hasPermission("mbes.*"))
+			{
+				if(args.length > 0)
 				{
-					Player p = (Player)sender;
-					p.setMetaData("MBES:PMBLOCKALL",true);
-					sender.sendMessage("You have blocked everyone from sending you pm's");
+					Player target = server.getPlayer(args[0]);
+					
+					if(target == null)
+					{
+						sender.sendMessage("The player '" + args[0] + "' was not found!");
+						return;
+					}
+					
+					String data = Keys.pm_blocked_key + target.getDisplayName();
+					
+					Player send = (Player)sender;
+					
+					send.setMetaData(data,true);
+					
 				}
 				else
-					sender.sendMessage("You don't have permission to use this command!");
+				{
+					sender.sendMessage("Usage: /block <player>");
+				}
 			}
+			else
+				denied(sender);
 		}
 		
 		else if(command.equals("unblockall"))
 		{
 			if(!(sender instanceof Player))
-				sender.sendMessage("This command can only be executed as a player!");
-			
-			else
 			{
-				if(sender.hasPermission("mbes.pm") || sender.hasPermission("mbes.*"))
+				sender.sendMessage("This command can only be exectuted as a player");
+				return;
+			}
+			
+			if(sender.hasPermission("mbes.pm") || sender.hasPermission("mbes.*"))
+			{
+				Player send = (Player)sender;
+				
+				for(Player e : server.getPlayers())
 				{
-					Player p = (Player)sender;
-					p.setMetaData("MBES:PMBLOCKALL",false);
-					sender.sendMessage("You have unblocked everyone from sending you pm's");
+					send.removeMetaData(Keys.pm_blocked_key + e.getDisplayName());
+				}
+				
+				sender.sendMessage("Every player online has been unblocked!");
+				return;
+			}
+			else
+				denied(sender);
+		}
+		
+		else if(command.equals("unblock"))
+		{
+			if(!(sender instanceof Player))
+			{
+				sender.sendMessage("This command can only be exectuted as a player");
+				return;
+			}
+			
+			if(sender.hasPermission("mbes.pm") || sender.hasPermission("mbes.*"))
+			{
+				if(args.length > 0)
+				{
+					Player target = server.getPlayer(args[0]);
+					
+					if(target == null)
+					{
+						sender.sendMessage("The player '" + args[0] + "' was not found!");
+						return;
+					}
+					
+					
+					Player send = (Player)sender;
+					send.removeMetaData(Keys.pm_blockall_key);
+					send.removeMetaData(Keys.pm_blocked_key + target.getDisplayName());
+					sender.sendMessage("The player '" + target.getDisplayName() + "' has been unblocked");
 				}
 				else
-					sender.sendMessage("You don't have permission to use this command!");
+				{
+					sender.sendMessage("Usage: /unblock <player>");
+				}
 			}
+			else
+				denied(sender);
+		}
+		
+		else if(command.equals("blockall"))
+		{
+			if(!(sender instanceof Player))
+			{
+				sender.sendMessage("This command can only be exectuted as a player");
+				return;
+			}
+			
+			if(sender.hasPermission("mbes.pm") || sender.hasPermission("mbes.*"))
+			{
+				Player send = (Player)sender;
+				
+				for(Player e : server.getPlayers())
+				{
+					send.setMetaData(Keys.pm_blocked_key + e.getDisplayName(),true);
+					send.sendMessage(e.getDisplayName() + " has been blocked from sending you PM's");
+				}
+				
+				send.setMetaData(Keys.pm_blockall_key,true);
+			}
+			else
+				denied(sender);
 		}
 		
 	}
-
+	
+	private void denied(CommandSender s){
+		s.sendMessage("You don't have permission to use this command!");
+	}
+	
 }

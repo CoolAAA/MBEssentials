@@ -6,11 +6,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
-import com.mbserver.api.Permissible;
-
 import plugins.mbes.commands.ChatReplaceCmds;
 import plugins.mbes.commands.Commands;
 import plugins.mbes.commands.Freeze;
@@ -30,6 +27,7 @@ import plugins.mbes.handler.FreezeHandler;
 import plugins.mbes.handler.KillHandler;
 import plugins.mbes.handler.LogHandler;
 import plugins.mbes.handler.MuteHandler;
+import plugins.mbes.handler.PMBlockHandler;
 import plugins.mbes.handler.WorldBackupHandler;
 import plugins.mbes.managers.ChatReplacer;
 import plugins.mbes.managers.FreezeManager;
@@ -318,6 +316,10 @@ public class MBEPlugin extends MBServerPlugin{
 		 this.getPluginManager().registerEventHandler(new KillHandler());
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: KillHandler");
+		 
+		 this.getPluginManager().registerEventHandler(new PMBlockHandler());
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered handler: PMBlockHandler");
 		 
 		 if(config.isEnableWorldBackupSave())
 		 {
