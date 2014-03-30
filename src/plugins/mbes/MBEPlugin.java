@@ -77,20 +77,20 @@ public class MBEPlugin extends MBServerPlugin{
 	@Override
 	public void onEnable() {
 		
-		this.getLogger().info("Checking for an update to MBEssentials!");
+		this.getLogger().info("Checking for an update to MBEssentials...");
 		
 		try { 
 			if(Downloader.checkUpdate(new String[] {vUrl,pUrl},new String[] {"plugins/MBEssentials/version.txt","plugins/MBEssentials.jar"}, version))
-				this.getLogger().info("Successfully updated MBEssentials retart server to use newest version!");
+				this.getLogger().info("Successfully updated MBEssentials to the latest version. Restart your server for these changes to make effect");
 			else
-				this.getLogger().info("You are running the latest version of MBEssentials!");
+				this.getLogger().info("You are already running the latest version of MBEssentials!");
 		} catch (IOException e1) {
 			try {
 				File lFile = new File("plugins/MBEssentials/Download-err-" + new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date()));
 				lFile.createNewFile();
 				PrintWriter err = new PrintWriter(lFile);
 				e1.printStackTrace(err);
-				this.getLogger().warning("Could not update MBEssentials error log created at:" + lFile.getPath());
+				this.getLogger().warning("Could not update MBEssentials. An error log was created at:" + lFile.getPath());
 			} catch (FileNotFoundException e2) {
 				e2.printStackTrace();
 			} catch (IOException e2) {
@@ -98,9 +98,9 @@ public class MBEPlugin extends MBServerPlugin{
 			}
 		}
 		
-		this.getLogger().info("Thanks for using MBEssentials by AAAA, Abiram and TheMushypeas!");
+		this.getLogger().info("Thanks for using MBEssentials by AAAA, Abiram and TheMushyPeas!");
 		this.getLogger().info("Please report any bugs and glitches to the forums!");
-		
+		this.getLogger().info("Don't forget to check out our website as well for lots of help and instructions: mbessentials.bl.ee");
 		config = this.getConfig();
 		
 		chatrp = this.getServer().getConfigurationManager().load(this,ChatReplacer.class);
@@ -122,8 +122,7 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getPluginManager().registerCommand("sayas",new ModCmds(this.getServer()));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered command: /sayas");
-		 		//send a message using a different playername (who is online)
-		
+			 
 		this.getPluginManager().registerCommand("tpto",new Tpto(this.getServer()));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered command: /tpto");
@@ -369,6 +368,7 @@ public class MBEPlugin extends MBServerPlugin{
 			this.getLogger().info("Successfully saved config and bank!");
 			
 		this.getLogger().info("Have a nice day - from the MBEssentials Team!");
+		this.getLogger().info("Your feedback is welcome - post it on our forums!");
 	}
 	
 	public MoneyManager getMoneyManager(){

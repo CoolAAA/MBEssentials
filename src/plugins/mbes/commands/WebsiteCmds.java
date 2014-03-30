@@ -15,7 +15,7 @@ public class WebsiteCmds implements CommandExecutor{
 
 	public WebsiteCmds() {
 		try {
-			website = new URI("http://space-walrus.com"); // When the website is done put the url here
+			website = new URI("http://mbessentials.bl.ee/"); 
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
@@ -31,7 +31,7 @@ public class WebsiteCmds implements CommandExecutor{
 		
 		else
 		{
-			
+			sender.sendMessage("Opening the MbEssentials Website...");
 			if(Desktop.isDesktopSupported())
 			{
 				try {
