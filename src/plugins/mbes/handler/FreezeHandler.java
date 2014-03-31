@@ -23,6 +23,9 @@ public class FreezeHandler implements Listener{
 	public void onMove(PlayerMoveEvent e){
 		if(e instanceof PlayerTeleportEvent)
 			return;
+		if(man.isFrozen())
+ -			if(man.isFrozen(e.getPlayer().getLoginName()))
+ -				e.setCancelled(true);
 	}
 	
 	@EventHandler
