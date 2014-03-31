@@ -1,5 +1,9 @@
 package plugins.mbes.commands;
 
+import java.util.HashMap;
+
+import plugins.mbes.misc.Keys;
+
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
 import com.mbserver.api.Server;
@@ -8,9 +12,10 @@ import com.mbserver.api.game.Player;
 public class Mute implements CommandExecutor{
 
 	private Server server;
-	
-	public Mute(Server server) {
+	private HashMap<String,Object>data;
+	public Mute(Server server,HashMap<String,Object> map) {
 		this.server = server;
+		data = map;
 	}
 	
 	@Override
@@ -32,7 +37,7 @@ public class Mute implements CommandExecutor{
 				
 					else
 					{
-						p.setMetaData("MBES:MUTEALL",true);
+						data.put(p.getLoginName() + Keys.mute_key,true);
 						sender.sendMessage("The player '" + p.getDisplayName()+ "' was muted!");
 					}
 				}
@@ -57,7 +62,7 @@ public class Mute implements CommandExecutor{
 				
 					else
 					{
-						p.setMetaData("MBES:MUTEALL",false);
+						data.remove(p.getLoginName() + Keys.mute_key);
 						sender.sendMessage("The player '" + p.getDisplayName()+ "' was unmuted!");
 					}
 				}

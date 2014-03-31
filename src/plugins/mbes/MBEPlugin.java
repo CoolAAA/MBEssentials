@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
 import plugins.mbes.commands.ChatReplaceCmds;
@@ -41,6 +43,7 @@ import plugins.mbes.misc.WorldBackup;
 @Manifest(name="MBEssentials",authors = {"TheMushyPeas","AAAA","Abiram"},config = Config.class)
 
 public class MBEPlugin extends MBServerPlugin{
+	private HashMap<String,Object>data;
 	private final int version = 1;
 	private FreezeManager FreezeMan = new FreezeManager();
 	public final static String MANIFEST_NAME = "MBEssentials";
@@ -55,7 +58,7 @@ public class MBEPlugin extends MBServerPlugin{
 	
 	@Override
 	public void onLoad() {
-		
+		data = new HashMap<String,Object>();
 		String[] fileNames = {"plugins/MBEssentials","logs/MBE_Logs","logs/MBE_Logs/Command_Logs","logs/MBE_Logs/Death_Logs"
 				,"logs/MBE_Logs/PvP_Logs","logs/MBE_Logs/Place_Logs","logs/MBE_Logs/Break_Logs"};
 		
@@ -158,11 +161,11 @@ public class MBEPlugin extends MBServerPlugin{
 		
 		}
 		
-		this.getPluginManager().registerCommand("mute",new Mute(this.getServer()));
+		this.getPluginManager().registerCommand("mute",new Mute(this.getServer(),data));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered command: /mute");
 		
-		this.getPluginManager().registerEventHandler(new MuteHandler());
+		this.getPluginManager().registerEventHandler(new MuteHandler(data));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered event handler: MuteHandler");
 		
