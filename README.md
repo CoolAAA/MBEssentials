@@ -13,7 +13,7 @@ We have not yet released any compiled *.jars, but we will do in the future!
 Issues
 ======
 
-If you have any problems, post it in our forums located [http://mbessentials.bl.ee/forum/ Here]
+If you have any problems, post it in our forums located here -> http://mbessentials.bl.ee/forum/
 
 Legal
 =====
