@@ -48,7 +48,9 @@ public class MBEPlugin extends MBServerPlugin{
 	private FreezeManager FreezeMan = new FreezeManager();
 	public final static String MANIFEST_NAME = "MBEssentials";
 	private final String vUrl = "https://github.com/CoolAAA/MBEssentials/releases/download/v1.0a/version.txt";
+	// When the website is finished, the version link will be: http://mbessentials.bl.ee/update/version.txt
 	private final String pUrl = "https://github.com/CoolAAA/MBEssentials/releases/download/v1.0a/MBEssentials.jar";
+	// When the website is finished, the plugin link will be: http://mbessentials.bl.ee/update/upload/MbEssentials.txt
 	private LogManager logm;
 	private ChatReplacer chatrp;
 	private MoneyManager bank;
