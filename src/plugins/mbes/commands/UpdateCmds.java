@@ -60,7 +60,7 @@ public class UpdateCmds implements CommandExecutor{
 				Thread th = new Thread(){
 					public void run() {
 						try {
-							Downloader.checkUpdate(new String[] {vUrl,url},new String[] {"plugins\\MBEssentials\\version.txt","plugins\\MBEssentials.jar"}, version);
+							Downloader.checkUpdate(url,vUrl,"plugins/MbEssentials.jar","plugins/MbEssentials/version.txt",version);
 						} catch (IOException e1) {
 							try {
 								File lFile = new File("plugins\\MBEssentials\\Download-err-" + new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date()));

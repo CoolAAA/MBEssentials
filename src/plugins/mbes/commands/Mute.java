@@ -13,6 +13,7 @@ public class Mute implements CommandExecutor{
 
 	private Server server;
 	private HashMap<String,Object>data;
+	
 	public Mute(Server server,HashMap<String,Object> map) {
 		this.server = server;
 		data = map;
@@ -51,8 +52,8 @@ public class Mute implements CommandExecutor{
 		{
 			if(sender.hasPermission("mbes.mod.unmute") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
-				if(args.length == 0)
-					sender.sendMessage("Syntax:/mute <name>");
+				if(args.length <= 0)
+					sender.sendMessage("Syntax:/unmute <name>");
 				else
 				{
 					Player p = server.getPlayer(args[0]);
@@ -63,7 +64,7 @@ public class Mute implements CommandExecutor{
 					else
 					{
 						data.remove(p.getLoginName() + Keys.mute_key);
-						sender.sendMessage("The player '" + p.getDisplayName()+ "' was unmuted!");
+						sender.sendMessage("The player '" + p.getDisplayName()+ "' has been unmuted!");
 					}
 				}
 			}

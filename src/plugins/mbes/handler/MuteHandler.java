@@ -10,7 +10,7 @@ import com.mbserver.api.events.PlayerChatEvent;
 
 public class MuteHandler implements Listener{
 	
-	HashMap<String,Object>data;
+	private HashMap<String,Object>data;
 	
 	public MuteHandler(HashMap<String,Object> map) {
 		data = map;

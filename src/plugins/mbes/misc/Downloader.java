@@ -1,11 +1,8 @@
 package plugins.mbes.misc;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
@@ -31,27 +28,30 @@ public class Downloader {
 		return ofile;
 	}
 	
-	public static boolean checkUpdate(String url[],String path[],final int version) throws IOException
+	public static boolean checkUpdate(final String pluginUrl,final String versionUrl
+			,final String pPath,final String vPath,final float version) throws IOException
 	{
-		if(version == -1)
+		
+		File vFile = Downloader.downloadFile(versionUrl,vPath);
+		float vnum = 0;
+		Scanner scan = new Scanner(vFile);
+		
+		try{
+			 vnum = scan.nextFloat();
+		}catch(Exception e){
+			e.printStackTrace();
+			scan.close();
+			return false;
+		}
+		
+		if(version < vnum)
 		{
-			Downloader.downloadFile(url[1], path[1]);
+			Downloader.downloadFile(pluginUrl,pPath);
 			return true;
 		}
 		
-		else
-		{
-			File vfile = Downloader.downloadFile(url[0], path[0]);
-			Scanner sc = new Scanner(vfile);
-			int num = sc.nextInt();
-			sc.close();
-			if(version != num)
-			{
-				return Downloader.checkUpdate(url,path, -1);
-			}
-			
-				return false;
-		}
+		scan.close();
+		return false;
 	}
 
 }

@@ -40,17 +40,20 @@ import plugins.mbes.misc.Downloader;
 import plugins.mbes.misc.Logger;
 import plugins.mbes.misc.WorldBackup;
 
-@Manifest(name="MBEssentials",authors = {"TheMushyPeas","AAAA","Abiram"},config = Config.class)
+@Manifest(name="MbEssentials",authors = {"TheMushyPeas","AAAA","Abiram"},config = Config.class)
 
 public class MBEPlugin extends MBServerPlugin{
 	private HashMap<String,Object>data;
 	private final int version = 1;
 	private FreezeManager FreezeMan = new FreezeManager();
 	public final static String MANIFEST_NAME = "MBEssentials";
+	
 	private final String vUrl = "https://github.com/CoolAAA/MBEssentials/releases/download/v1.0a/version.txt";
 	// When the website is finished, the version link will be: http://mbessentials.bl.ee/update/version.txt
 	private final String pUrl = "https://github.com/CoolAAA/MBEssentials/releases/download/v1.0a/MBEssentials.jar";
 	// When the website is finished, the plugin link will be: http://mbessentials.bl.ee/update/upload/MbEssentials.txt
+	
+	private final String[] paths = {"plugins/MbEssentials.jar","plugins/MbEssentials/version.dat"};
 	private LogManager logm;
 	private ChatReplacer chatrp;
 	private MoneyManager bank;
@@ -79,21 +82,21 @@ public class MBEPlugin extends MBServerPlugin{
 	
 	@Override
 	public void onEnable() {
-		
-		this.getLogger().info("Checking for an update to MBEssentials...");
+		this.getLogger().info("You are currently running MbEssentials version: " + version);
+		this.getLogger().info("Checking for an update to MbEssentials...");
 		
 		try { 
-			if(Downloader.checkUpdate(new String[] {vUrl,pUrl},new String[] {"plugins/MBEssentials/version.txt","plugins/MBEssentials.jar"}, version))
-				this.getLogger().info("Successfully updated MBEssentials to the latest version. Restart your server for these changes to make effect");
+			if(Downloader.checkUpdate(pUrl, vUrl, paths[0],paths[1],version))
+				this.getLogger().info("Successfully updated MbEssentials to the latest version. Restart your server for these changes to make effect");
 			else
-				this.getLogger().info("You are already running the latest version of MBEssentials!");
+				this.getLogger().info("You are already running the latest version of MbEssentials!");
 		} catch (IOException e1) {
 			try {
-				File lFile = new File("plugins/MBEssentials/Download-err-" + new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date()));
+				File lFile = new File("plugins/MbEssentials/Download-err-" + new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date()));
 				lFile.createNewFile();
 				PrintWriter err = new PrintWriter(lFile);
 				e1.printStackTrace(err);
-				this.getLogger().warning("Could not update MBEssentials. An error log was created at:" + lFile.getPath());
+				this.getLogger().warning("Could not update MbEssentials. An error log was created at:" + lFile.getPath());
 			} catch (FileNotFoundException e2) {
 				e2.printStackTrace();
 			} catch (IOException e2) {
@@ -371,8 +374,9 @@ public class MBEPlugin extends MBServerPlugin{
 					this.getServer().getConfigurationManager().save(this,bank);
 				
 				this.getServer().getConfigurationManager().save(this,chatrp);
-				
+				this.getServer().getConfigurationManager().save(this,report);
 			this.getLogger().info("Successfully saved config and bank!");
+			this.getLogger().info("Successfully saved report manager!");
 			
 		this.getLogger().info("Have a nice day - from the MBEssentials Team!");
 		this.getLogger().info("Your feedback is welcome - post it on our forums!");

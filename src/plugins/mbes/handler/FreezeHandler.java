@@ -24,8 +24,8 @@ public class FreezeHandler implements Listener{
 		if(e instanceof PlayerTeleportEvent)
 			return;
 		if(man.isFrozen())
- -			if(man.isFrozen(e.getPlayer().getLoginName()))
- -				e.setCancelled(true);
+			if(man.isFrozen(e.getPlayer().getLoginName()))
+				e.setCancelled(true);
 	}
 	
 	@EventHandler
