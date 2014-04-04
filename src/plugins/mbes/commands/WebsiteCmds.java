@@ -42,7 +42,7 @@ public class WebsiteCmds implements CommandExecutor{
 			}
 			
 			else
-				sender.sendMessage("Could not open browser!");
+				sender.sendMessage("Could not open browser! This may be because your desktop is not supported!");
 			
 		}
 		
