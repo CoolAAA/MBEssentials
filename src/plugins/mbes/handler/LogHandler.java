@@ -68,10 +68,11 @@ public class LogHandler implements Listener{
 			String args = "";
 			for(String a : e.getArguments())
 				args = args + a + " ";
-			String log = "Player '" + name + "' Command:" + e.getCommand() + " Args:" + args;
-
+			String log = name + " issued the command: '"  + e.getCommand() + "  With Arguments: " + args;
+			String logspace = ""
 			try {
 				logger.writeLog(log,ID[2],true);
+				logger.writeLog(logspace,ID[2],true);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}

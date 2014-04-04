@@ -22,11 +22,11 @@ public class WordReplacerExample extends MBServerPlugin{
 		//Add the word to the chat replacer 
 		chat.addWord("MB", "Minebuilder");
 		
-		//If someone in the chat says MB it will change it to Minebuilder.
+		//If someone in the chat says "MB" it will change it to Minebuilder.
 		
 		chat.delWord("MB");
 		
-		//Now if someone says MB it will not change it into minebuilder.
+		//Now if someone says "MB" it will not change it into minebuilder.
 	}
 
 }

@@ -56,6 +56,8 @@ public class UpdateCmds implements CommandExecutor{
 		{
 			if(sender.hasPermission("mbes.cmds.update") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.cmds.*"))
 			{
+				
+				sender.sendMessage("You have started an MbEssentials update check!")
 				s.getLogger().info("Checking for an update to MBEssentials!");
 				
 				Thread th = new Thread(){
@@ -68,7 +70,7 @@ public class UpdateCmds implements CommandExecutor{
 								lFile.createNewFile();
 								PrintWriter err = new PrintWriter(lFile);
 								e1.printStackTrace(err);
-								s.getLogger().warning("Could not update MBEssentials error log created at:" + lFile.getPath());
+								s.getLogger().warning("Could not update MBEssentials. An error log was created at:" + lFile.getPath());
 							} catch (FileNotFoundException e2) {
 								e2.printStackTrace();
 							} catch (IOException e2) {

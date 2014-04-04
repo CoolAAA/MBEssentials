@@ -1,41 +1,60 @@
-#Here you can jot down any ideas that come to your head
-#If there is a certain one that you want to do, put [name] on the front of it
-#Otherwise, just pick a random entry from the list, implement it, then delete the entry when you are don!
+-------------------------------
+-MBESSENTIALS-PLANNED FEATURES-
+-------------------------------
 
-[Mushy] /freeze <playername> - stops the player from moving and breaking/placing. handy for if someone is griefing!
+* BEFORE THE FEATURE MEANS IT HAS NOT BEEN "CLAIMED" YET
 
-[AAAA][DONE] Money system using /balance and /pay <playername> maybe even an API that other plugins can use! :D
-
-[AAAA][DONE] Api for the money system
-
-*Antigrief - disable blocks and tools. ( abes could do that)
-
-[AAAA]*Advancsd logging features - log Deaths, pvp, commands etc to individual .Txt files in the Mbessentials folder
-
-[Everyone]*Config system - enable/disable Any feature of MBEssentials you want.
-
-[Mushy] [wip] create a website for the plugin, along with all commands, permissions and description!
-
-[Abiram] some kind of jail system @coords: -10000,120,-10000 , so nobody will have issues with this jailbuilding thing xD
-
-[AAAA] When you report players (using /report) it is logged in a .txt file in the MBessentials directory, so server owners can
-  find it easily!
-
-[AAAA] More api stuff - not quite sure what, but it will make our plugin more popular if we have a bigger api! I am currently
-  trying to understand how it works, so I will start contributing as soon as possible!
-  
- * Built in custom command support - AAAA you could just use the plugin you already made!
-
-[AAAA]Autoupdater - I will provide with D/L links as soon as possible, as the website is under contruction - 
-
-[Mushy] Kit system - allows for the creation of kits, as well as the option to set a default kit that everyone will get when they first join.
+-- Not Yet Started --
 
 [Mushy] Nickname system - Allows you to set your nickname to anything (such as TheMushyPeas to DatCoolGuy) I will add a prefix to nicknames so that you know it is not the acutal person
-
+[AAAA] When you report players (using /report) it is logged in a .txt file in the MBessentials directory, so server owners can
+  find it easily!
+[AAAA] More api stuff - not quite sure what, but it will make our plugin more popular if we have a bigger api! I am currently
+  trying to understand how it works, so I will start contributing as soon as possible!  
+[Abiram] some kind of jail system @coords: -10000,120,-10000 , so nobody will have issues with this jailbuilding thing xD
 [AAAA] Block kits so whenever you break a block that is a kit block it will drop the items that it was set to 
-/tpa and /tpaccept (the Minecraft command)
+* /tpa and /tpaccept (the Minecraft command)
+----------------------
 
-[AAAA] Fixed the folder bug and added a /website command that will open the MBE website in the browser
+-- Work in Progress --
 
-Any other ideas? - mushy
+[AAAA][WIP]Autoupdater - I will provide with D/L links as soon as possible, as the website is under contruction - 
+[Mushy][WIP] create a website for the plugin, along with all commands, permissions and description!
+[Everyone][WIP]Config system - just fill in config details as you go along!
+[Mushy][WIP] Kit system - allows for the creation of kits, as well as the option to set a default kit that everyone will get when they first join.
+
+-----------------------
+
+-- Finished --
+
+[AAAA][DONE] /freeze <playername> - stops the player from moving and breaking/placing. handy for if someone is griefing!
+[AAAA][DONE] Money system using /balance and /pay <playername> maybe even an API that other plugins can use! :D
+[AAAA][DONE] Api for the money system
+[Abiram][DONE]Antigrief - disable blocks and tools. ( abes could do that)
+[AAAA][DONE]Advanced logging features - log Deaths, pvp, commands etc to individual .Txt files in the Mbessentials folder
+[AAAA][DONE] Fixed the folder bug and added a /website command that will open the MBE website in the browser
+
+-----------------------
+
+FEEL FREE TO PUT ANY IDEAS DOWN HERE!
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -99,8 +99,10 @@ public class MBEPlugin extends MBServerPlugin{
 				this.getLogger().warning("Could not update MbEssentials. An error log was created at:" + lFile.getPath());
 			} catch (FileNotFoundException e2) {
 				e2.printStackTrace();
+				this.getLogger().warning("Please report this error to the MbEssentials forums, and we will try and help you!");
 			} catch (IOException e2) {
 				e2.printStackTrace();
+				this.getLogger().warning("Please report this error to the MbEssentials forums, and we will try and help you!");
 			}
 		}
 		
@@ -366,6 +368,7 @@ public class MBEPlugin extends MBServerPlugin{
 						logm.closeAll();
 					} catch (IOException e) {
 						e.printStackTrace();
+						this.getLogger().warning("Please report this error to the MbEssentials forums, and we will try and help you!");
 					}
 		
 				this.getLogger().info("Successfully closed logger");
