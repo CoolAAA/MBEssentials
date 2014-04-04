@@ -44,7 +44,7 @@ import plugins.mbes.misc.WorldBackup;
 
 public class MBEPlugin extends MBServerPlugin{
 	private HashMap<String,Object>data;
-	private final int version = 1;
+	private final float version = 1;
 	private FreezeManager FreezeMan = new FreezeManager();
 	public final static String MANIFEST_NAME = "MBEssentials";
 	

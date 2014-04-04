@@ -17,8 +17,9 @@ public class UpdateCmds implements CommandExecutor{
 	
 	private String url,vUrl;
 	private Server s;
-	private int version;
-	public UpdateCmds(String url,String vUrl,Server server,int version) {
+	private float version;
+	
+	public UpdateCmds(String url,String vUrl,Server server,float version) {
 		this.url = url;
 		this.s = server;
 		this.vUrl = vUrl;
