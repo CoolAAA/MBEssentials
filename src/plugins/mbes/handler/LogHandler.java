@@ -69,7 +69,7 @@ public class LogHandler implements Listener{
 			for(String a : e.getArguments())
 				args = args + a + " ";
 			String log = name + " issued the command: '"  + e.getCommand() + "  With Arguments: " + args;
-			String logspace = ""
+			String logspace = "";
 			try {
 				logger.writeLog(log,ID[2],true);
 				logger.writeLog(logspace,ID[2],true);

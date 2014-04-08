@@ -103,3 +103,5 @@
 [Mushy] Nearly finished the website - just the landing site and the wiki to finish!
 
 [Mushy] Small, various changes
+
+[AAAA] added /fullnames alias: /fn /names - Shows the all players display name and login name.

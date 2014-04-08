@@ -2,8 +2,8 @@ package plugins.mbes;
 
 
 public class Config {
-	
-	 	private boolean enableMoneySystem;
+		private boolean firstUse;
+		private boolean enableMoneySystem;
 		private boolean enablePmSystem;
 	 	private boolean enableDebug;
 	 	private boolean enablePlaceBlocker;
@@ -20,16 +20,7 @@ public class Config {
 	 	private boolean enableWorldBackupSave;
 		private int[] blockedBlockIDs;
 	    private int[] blockedToolIDs;
-
-		public boolean isEnableReport() {
-			return enableReportSystem;
-		}
-
-		public void setEnableReport(boolean enableReport) {
-			this.enableReportSystem = enableReport;
-		}
-		
-
+	    
 	 	 public Config() {
 	       this.setEnableMoneySystem(true);
 		   this.setEnablePmSystem(true);
@@ -49,7 +40,24 @@ public class Config {
 	       this.setEnableWorldBackupSave(true);
 	       this.setEnableWorldBackupStart(true);
 	       this.setEnableItemBlocker(true);
+	       this.setFirstUse(true);
 	 	}
+	    public boolean isFirstUse() {
+			return firstUse;
+		}
+
+		public void setFirstUse(boolean firstUse) {
+			this.firstUse = firstUse;
+		}
+		public boolean isEnableReport() {
+			return enableReportSystem;
+		}
+
+		public void setEnableReport(boolean enableReport) {
+			this.enableReportSystem = enableReport;
+		}
+		
+
 	 	 
 	 	public boolean isEnableItemBlocker() {
 			return enableItemBlocker;

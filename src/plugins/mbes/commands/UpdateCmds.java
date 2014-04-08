@@ -57,7 +57,7 @@ public class UpdateCmds implements CommandExecutor{
 			if(sender.hasPermission("mbes.cmds.update") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.cmds.*"))
 			{
 				
-				sender.sendMessage("You have started an MbEssentials update check!")
+				sender.sendMessage("You have started an MbEssentials update check!");
 				s.getLogger().info("Checking for an update to MBEssentials!");
 				
 				Thread th = new Thread(){

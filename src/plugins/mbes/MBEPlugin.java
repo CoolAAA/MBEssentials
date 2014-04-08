@@ -16,6 +16,7 @@ import plugins.mbes.commands.Freeze;
 import plugins.mbes.commands.ModCmds;
 import plugins.mbes.commands.MoneyCmds;
 import plugins.mbes.commands.Mute;
+import plugins.mbes.commands.NameDB;
 import plugins.mbes.commands.PMCmds;
 import plugins.mbes.commands.ReportCmds;
 import plugins.mbes.commands.Tpto;
@@ -29,12 +30,14 @@ import plugins.mbes.handler.FreezeHandler;
 import plugins.mbes.handler.KillHandler;
 import plugins.mbes.handler.LogHandler;
 import plugins.mbes.handler.MuteHandler;
+import plugins.mbes.handler.NameHandler;
 import plugins.mbes.handler.PMBlockHandler;
 import plugins.mbes.handler.WorldBackupHandler;
 import plugins.mbes.managers.ChatReplacer;
 import plugins.mbes.managers.FreezeManager;
 import plugins.mbes.managers.LogManager;
 import plugins.mbes.managers.MoneyManager;
+import plugins.mbes.managers.NameDataBase;
 import plugins.mbes.managers.ReportManager;
 import plugins.mbes.misc.Downloader;
 import plugins.mbes.misc.Logger;
@@ -44,8 +47,9 @@ import plugins.mbes.misc.WorldBackup;
 
 public class MBEPlugin extends MBServerPlugin{
 	private HashMap<String,Object>data;
+	private NameDataBase playerNameDB;
 	private final float version = 1;
-	private FreezeManager FreezeMan = new FreezeManager();
+	private FreezeManager FreezeMan;
 	public final static String MANIFEST_NAME = "MBEssentials";
 	
 	private final String vUrl = "https://github.com/CoolAAA/MBEssentials/releases/download/v1.0a/version.txt";
@@ -57,13 +61,20 @@ public class MBEPlugin extends MBServerPlugin{
 	private LogManager logm;
 	private ChatReplacer chatrp;
 	private MoneyManager bank;
-	private Config config = new Config();
-	private ReportManager report = new ReportManager();
+	private Config config;
+	private ReportManager report;
 	private Logger breakLog,placeLog,deathLog,PvPLog,cmdLog;
+	
+	public MBEPlugin() {
+		playerNameDB = new NameDataBase();
+		FreezeMan = new FreezeManager();
+		data = new HashMap<String,Object>();
+		config = new Config();
+		report = new ReportManager();
+	}
 	
 	@Override
 	public void onLoad() {
-		data = new HashMap<String,Object>();
 		String[] fileNames = {"plugins/MBEssentials","logs/MBE_Logs","logs/MBE_Logs/Command_Logs","logs/MBE_Logs/Death_Logs"
 				,"logs/MBE_Logs/PvP_Logs","logs/MBE_Logs/Place_Logs","logs/MBE_Logs/Break_Logs"};
 		
@@ -110,7 +121,7 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getLogger().info("Please report any bugs and glitches to the forums!");
 		this.getLogger().info("Don't forget to check out our website as well for lots of help and instructions: mbessentials.bl.ee");
 		config = this.getConfig();
-		
+		this.saveConfig();
 		chatrp = this.getServer().getConfigurationManager().load(this,ChatReplacer.class);
 		if(chatrp == null)
 			chatrp = new ChatReplacer();
@@ -331,6 +342,8 @@ public class MBEPlugin extends MBServerPlugin{
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: PMBlockHandler");
 		 
+		 this.getPluginManager().registerEventHandler(new NameHandler(playerNameDB));
+		 this.getPluginManager().registerCommand("fullnames", new String[] {"fullnames","fn","names"},new NameDB(playerNameDB));
 		 if(config.isEnableWorldBackupSave())
 		 {
 		 	this.getPluginManager().registerEventHandler(new WorldBackupHandler());

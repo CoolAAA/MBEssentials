@@ -21,6 +21,7 @@ mbes.mod.delreport - permission to use /delreport
 mbes.mod.addword - permission to use /addword
 mbes.mod.delword - permission to use /clearwords
 mbes.mod.listwords - permission to use /listwords
+mbes.mod.fullnames - permission to use /fullnames
 
 //Pm Permissions
 mbes.pm - permission to use /pm,/unblock,/block,/blockall,/unblockall

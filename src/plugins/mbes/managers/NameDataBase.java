@@ -22,7 +22,7 @@ public class NameDataBase {
 		String[] values = new String[data.size()];
 		int count = 0;
 		String[] keys = data.keySet().toArray(new String[0]);
-		for(;count < data.size();count++)
+		for(;count < keys.length;count++)
 		{
 			String val = data.get(keys[count]);
 			values[count] = String.format(NameDataBase.FORMAT,keys[count],val);
@@ -40,11 +40,13 @@ public class NameDataBase {
 			if(e.startsWith(pre))
 				keycount++;
 		}
+		if(keycount == 0)
+			return null;
 		
 		String[] values = new String[keycount];
 		
 		int count = 0;
-		for(;count < data.size();count++)
+		for(;count < keys.length;count++)
 		{
 			if(keys[count].startsWith(pre))
 			{
