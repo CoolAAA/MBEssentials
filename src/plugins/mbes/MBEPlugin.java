@@ -50,11 +50,11 @@ public class MBEPlugin extends MBServerPlugin{
 	private NameDataBase playerNameDB;
 	private final float version = 1;
 	private FreezeManager FreezeMan;
-	public final static String MANIFEST_NAME = "MBEssentials";
+	public final static String MANIFEST_NAME = "MbEssentials";
 	
 	private final String vUrl = "http://mbessentials.bl.ee/update/version.txt";
 	// When the website is finished, the version link will be: http://mbessentials.bl.ee/update/version.txt
-	private final String pUrl = "http://mbessentials.bl.ee/update/upload/MbEssentials.jar";
+	private final String pUrl = "http://mbessentials.bl.ee/update/MbEssentials.jar";
 	// When the website is finished, the plugin link will be: http://mbessentials.bl.ee/update/upload/MbEssentials.txt
 	
 	private final String[] paths = {"plugins/MbEssentials.jar","plugins/MbEssentials/version.dat"};
@@ -75,7 +75,7 @@ public class MBEPlugin extends MBServerPlugin{
 	
 	@Override
 	public void onLoad() {
-		String[] fileNames = {"plugins/MBEssentials","logs/MBE_Logs","logs/MBE_Logs/Command_Logs","logs/MBE_Logs/Death_Logs"
+		String[] fileNames = {"plugins/MbEssentials","logs/MBE_Logs","logs/MBE_Logs/Command_Logs","logs/MBE_Logs/Death_Logs"
 				,"logs/MBE_Logs/PvP_Logs","logs/MBE_Logs/Place_Logs","logs/MBE_Logs/Break_Logs"};
 		
 		File file;
