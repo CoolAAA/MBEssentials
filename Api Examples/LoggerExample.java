@@ -8,14 +8,14 @@ import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
 
 
-@Manifest(name = "Test",dependencies = "MBEssentials")
+@Manifest(name = "Test",dependencies = "MbEssentials")
 public class TestMain extends MBServerPlugin{
 	
 	@Override
 	public void onEnable() {
 		
 		//Get the MBEssentials plugin reference. Remeber to cast to it to MBEPlugin!
-		MBEPlugin Mbes = (MBEPlugin) this.getPluginManager().getPlugin("MBEssentials");
+		MBEPlugin Mbes = (MBEPlugin) this.getPluginManager().getPlugin("MbEssentials");
 		
 		//Get the LogManager from the plugin
 		LogManager log = Mbes.getLogManager();
