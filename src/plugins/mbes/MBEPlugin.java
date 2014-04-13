@@ -346,7 +346,8 @@ public class MBEPlugin extends MBServerPlugin{
 		 this.getPluginManager().registerCommand("fullnames", new String[] {"fullnames","fn","names"},new NameDB(playerNameDB));
 		 if(config.isEnableWorldBackupSave())
 		 {
-		 	this.getPluginManager().registerEventHandler(new WorldBackupHandler());
+		 	this.getPluginManager().registerEventHandler(new WorldBackupHandler(config));
+		 	
 		 	if(config.isEnableDebug())
 		 		this.getLogger().info("Successfully registered handler: WorldBackupSave");
 		 }
