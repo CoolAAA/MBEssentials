@@ -20,6 +20,7 @@ public class Config {
 	 	private boolean enableWorldBackupSave;
 		private int[] blockedBlockIDs;
 	    private int[] blockedToolIDs;
+	    private int amountOfBackupsPerDay;
 	    
 	 	 public Config() {
 	       this.setEnableMoneySystem(true);
@@ -41,6 +42,7 @@ public class Config {
 	       this.setEnableWorldBackupStart(true);
 	       this.setEnableItemBlocker(true);
 	       this.setFirstUse(true);
+	       this.setAmountOfBackupsPerDay(3);
 	 	}
 	    public boolean isFirstUse() {
 			return firstUse;
@@ -177,7 +179,12 @@ public class Config {
 			this.enableBreakLog = enableBreakLog;
 		}
 		//end log disabler/enabler
-		
+		public int getAmountOfBackupsPerDay() {
+			return amountOfBackupsPerDay;
+		}
+		public void setAmountOfBackupsPerDay(int amountOfBackupsPerDay) {
+			this.amountOfBackupsPerDay = amountOfBackupsPerDay;
+		}
 		
 
 }
