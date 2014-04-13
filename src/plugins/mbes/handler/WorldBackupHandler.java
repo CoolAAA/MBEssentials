@@ -1,7 +1,11 @@
 package plugins.mbes.handler;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import plugins.mbes.Config;
 import plugins.mbes.misc.WorldBackup;
 
 import com.mbserver.api.events.EventHandler;
@@ -10,19 +14,41 @@ import com.mbserver.api.events.RunMode;
 import com.mbserver.api.events.WorldSaveEvent;
 
 public class WorldBackupHandler implements Listener{
+	private Config config;
+	public WorldBackupHandler(Config config){
+		this.config=config;
+		
+	}
+	
 	
 	@EventHandler(concurrency = RunMode.THREADED)
 	public void onWorldSave(WorldSaveEvent e){
+			int freq = config.getAmountOfBackupsPerDay();
+			if (freq<1){freq=1;} //set minimum
+			int interval = 86200 / freq; //will round off
+			int aInterval=interval;
+			Date time1= new Date();
+			Date currentTime= new Date();
+			Date currentTimePlusFiveMins= new Date();
+			currentTimePlusFiveMins.setTime((currentTime.getTime()+5000));
+			
+		for(int x=1;x<(freq+1);x++){
+			
+			int h=(aInterval-(aInterval%3600))/3600;
+			int m=((aInterval-(h*3600))-((aInterval-(h*3600))%60))/60;
+			int s=aInterval-(h*2400)-(m*60);
+			String timestring = String.format("%02d:%02d:%02d", h,m,s);
+			
+			try {
+			time1 = new SimpleDateFormat("HH:mm:ss").parse(timestring);	
+			} catch (ParseException e2) {	
+			e2.printStackTrace();
+			}
+			aInterval=aInterval+interval;	
+			if(time1.after(currentTime)&&time1.before(currentTimePlusFiveMins)){
+		////	
 		try {
 			
-			//So every 5 minutes (=WorldSaveEvent) there will be a backup of the World...
-			//I do not think this is a very good idea
-			//1. This will create noticable lagg.
-			//2a. World folders are actually not so small, so it will very quickly fill de HDD/SSD.
-			//2b. AeroShark's worldfolder = 500MB (imagine that being copied every 5 minutes o.O)
-			//2c. 500MB*12*24= 144000MB per day = more or less 144,0 GB a day for AeroShark!!!
-			//2d. And to be honest... AeroShark can only hold 100GB xD (That's why I backup it once a day (with a script)
-			//3. I have no idea how long copying would take... but I guess it will hake long.
 			Thread.sleep(20000);
 		} catch (InterruptedException e1) {
 			// XXX Auto-generated catch block
@@ -34,5 +60,11 @@ public class WorldBackupHandler implements Listener{
 			// XXX Auto-generated catch block
 			e1.printStackTrace();
 		}
+		////
+		}
+		}
+		
+		
+		
 	}
 }
