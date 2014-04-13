@@ -58,8 +58,10 @@ public class ModCmds implements CommandExecutor{
 		{
 			if(sender.hasPermission("mbes.mod.sudo") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
-				if(args.length < 2)
+				if(args.length < 2) {
 					sender.sendMessage("Syntax:/sudo <playerName> <command> [args]");
+					return;
+				}
 				
 				Player temp = s.getPlayer(args[0]);
 				
