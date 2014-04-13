@@ -29,8 +29,7 @@ public class WorldBackupHandler implements Listener{
 			int aInterval=interval;
 			Date time1= new Date();
 			Date currentTime= new Date();
-			Date currentTimePlusFiveMins= new Date();
-			currentTimePlusFiveMins.setTime((currentTime.getTime()+5000));
+			Date time1PlusFiveMins= new Date();
 			
 		for(int x=1;x<(freq+1);x++){
 			
@@ -44,8 +43,9 @@ public class WorldBackupHandler implements Listener{
 			} catch (ParseException e2) {	
 			e2.printStackTrace();
 			}
+			time1PlusFiveMins.setTime((time1.getTime()+5000));
 			aInterval=aInterval+interval;	
-			if(time1.after(currentTime)&&time1.before(currentTimePlusFiveMins)){
+			if(currentTime.after(time1)&&currentTime.before(time1PlusFiveMins)){
 		////	
 		try {
 			
@@ -68,3 +68,4 @@ public class WorldBackupHandler implements Listener{
 		
 	}
 }
+
