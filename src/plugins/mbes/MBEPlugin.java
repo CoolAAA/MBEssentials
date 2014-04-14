@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
+
 import plugins.mbes.commands.ChatReplaceCmds;
 import plugins.mbes.commands.Commands;
 import plugins.mbes.commands.Freeze;
@@ -97,10 +98,14 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getLogger().info("Checking for an update to MbEssentials...");
 		
 		try { 
-			if(Downloader.checkUpdate(pUrl, vUrl, paths[0],paths[1],version))
-				this.getLogger().info("Successfully updated MbEssentials to the latest version. Restart your server for these changes to make effect");
-			else
+			if(Downloader.checkUpdate(pUrl, vUrl, paths[0],paths[1],version)){
+				this.getLogger().info("Successfully updated MbEssentials to the latest version.");
+				this.getLogger().warning("Your server will now shut down. When you start it again, the update will be applied");
+				Thread.sleep(12000);
+				System.exit(0);
+			}else{
 				this.getLogger().info("You are already running the latest version of MbEssentials!");
+			}
 		} catch (IOException e1) {
 			try {
 				File lFile = new File("plugins/MbEssentials/Download-err-" + new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date()));
@@ -115,6 +120,9 @@ public class MBEPlugin extends MBServerPlugin{
 				e2.printStackTrace();
 				this.getLogger().warning("Please report this error to the MbEssentials forums, and we will try and help you!");
 			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		this.getLogger().info("Thanks for using MBEssentials by AAAA, Abiram and TheMushyPeas!");
