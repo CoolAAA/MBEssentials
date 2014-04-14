@@ -8,7 +8,8 @@ Also, thanks to Ikkerens for helping out with some of the code!
 Downloads
 =========
 
-We have not yet released any compiled *.jars, but we will do in the future!
+The download link for the most recent version of the plugin is here -> http://mbessentials.bl.ee/update/MbEssentials.jar
+
 
 Issues
 ======
