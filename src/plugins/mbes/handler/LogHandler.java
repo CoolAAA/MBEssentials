@@ -118,9 +118,9 @@ public class LogHandler implements Listener{
         		String name = event2.getPlayer().getDisplayName();
         		String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
 			String log;
-        		try{log = name + " placed a block of " + event1.getMaterial().getName();}
+        		try{log = name + " placed a block of " + event2.getMaterial().getName();}
     			catch(InvocationTargetException e){
-			log = name + " placed a block of (ID) " +event1.getBlock().getBlockID();
+			log = name + " placed a block of (ID) " +event2.getBlock().getBlockID();
     			}
 			try {
 				logger.writeLog(log,ID[4],true);
