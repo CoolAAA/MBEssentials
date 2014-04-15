@@ -13,15 +13,15 @@ public class PMBlockHandler implements Listener{
 	
 	@EventHandler(concurrency = RunMode.THREADED)
 	public void onLogin(PostPlayerLoginEvent e){
-		//Server s = e.getServer();
+		Server s = e.getServer();
 		
-		//for(Player player : s.getPlayers())
-		//{
-			//if(player.getMetaData(Keys.pm_blockall_key,true))
-			//{
-				//player.setMetaData(Keys.pm_blocked_key + e.getPlayer().getDisplayName(),true);
-				//player.sendMessage(e.getPlayer().getDisplayName() + " has been blocked from sending you PM's");
-			//}
-		//}
+		for(Player player : s.getPlayers())
+		{
+			if(player.getMetaData(Keys.pm_blockall_key,false))
+			{
+				player.setMetaData(Keys.pm_blocked_key + e.getPlayer().getDisplayName(),true);
+				player.sendMessage(e.getPlayer().getDisplayName() + " has been blocked from sending you PM's");
+			}
+		}
 	}
 }
