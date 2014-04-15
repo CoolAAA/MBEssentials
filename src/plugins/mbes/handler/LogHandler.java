@@ -12,6 +12,7 @@ import com.mbserver.api.events.PlayerPvpEvent;
 import com.mbserver.api.events.PreCommandEvent;
 import com.mbserver.api.game.Location;
 import com.mbserver.api.game.Material;
+import com.mbserver.api.game.Sign;
 
 import plugins.mbes.Config;
 import plugins.mbes.managers.LogManager;
@@ -94,7 +95,8 @@ public class LogHandler implements Listener{
 				e1.printStackTrace();
 			}
 			if(event1.getMaterial() == Material.SIGN){
-				String message = event1.getBlock().getBlockData().toString();
+				Sign lol = (Sign) event1.getBlock().getBlockData();
+				String message = lol.getText();
 				String log2 = time + " " + name + " placed a sign saying: " + message;
 				try {
 					logger.writeLog(log2,ID[4],true);
