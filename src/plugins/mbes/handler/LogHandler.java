@@ -99,7 +99,7 @@ public class LogHandler implements Listener{
 				String message = lol.getText();
 				String log2 = time + " " + name + " placed a sign saying: " + message;
 				try {
-					logger.writeLog(log2,ID[4],true);
+					logger.writeLog(log2,ID[3],true);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -115,7 +115,7 @@ public class LogHandler implements Listener{
 			String log = time + " " + name + " broke a block of " + event2.getMaterial().getName();
 
 			try {
-				logger.writeLog(log,ID[5],true);
+				logger.writeLog(log,ID[4],true);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
