@@ -13,6 +13,7 @@ import com.mbserver.api.events.PreCommandEvent;
 import com.mbserver.api.game.Location;
 import com.mbserver.api.game.Material;
 import com.mbserver.api.game.Sign;
+import java.lang.reflect.InvocationTargetException;
 
 import plugins.mbes.Config;
 import plugins.mbes.managers.LogManager;
@@ -88,7 +89,11 @@ public class LogHandler implements Listener{
         	{
         		String name = event1.getPlayer().getDisplayName();
         		String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
-			String log = name + " placed a block of " + event1.getMaterial().getName();
+        		String log;
+        		try{log = name + " placed a block of " + event1.getMaterial().getName();}
+    			catch(InvocationTargetException e){
+			log = name + " placed a block of (ID) " +event1.getBlock().getBlockID();
+    			}
 			try {
 				logger.writeLog(log,ID[3],true);
 			} catch (IOException e1) {
@@ -112,8 +117,11 @@ public class LogHandler implements Listener{
         	{
         		String name = event2.getPlayer().getDisplayName();
         		String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
-			String log = time + " " + name + " broke a block of " + event2.getMaterial().getName();
-
+			String log;
+        		try{log = name + " placed a block of " + event1.getMaterial().getName();}
+    			catch(InvocationTargetException e){
+			log = name + " placed a block of (ID) " +event1.getBlock().getBlockID();
+    			}
 			try {
 				logger.writeLog(log,ID[4],true);
 			} catch (IOException e1) {
