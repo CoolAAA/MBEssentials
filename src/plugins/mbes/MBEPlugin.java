@@ -14,6 +14,7 @@ import com.mbserver.api.Server;
 
 import plugins.mbes.commands.ChatReplaceCmds;
 import plugins.mbes.commands.Commands;
+import plugins.mbes.commands.DelNickname;
 import plugins.mbes.commands.Freeze;
 import plugins.mbes.commands.ModCmds;
 import plugins.mbes.commands.MoneyCmds;
@@ -26,6 +27,7 @@ import plugins.mbes.commands.Tphere;
 import plugins.mbes.commands.Coords;
 import plugins.mbes.commands.UpdateCmds;
 import plugins.mbes.commands.WebsiteCmds;
+import plugins.mbes.commands.Nickname;
 import plugins.mbes.handler.AccountMaker;
 import plugins.mbes.handler.ChatReplacerHandler;
 import plugins.mbes.handler.FreezeHandler;
@@ -35,6 +37,7 @@ import plugins.mbes.handler.MuteHandler;
 import plugins.mbes.handler.NameHandler;
 import plugins.mbes.handler.PMBlockHandler;
 import plugins.mbes.handler.WorldBackupHandler;
+import plugins.mbes.handler.NicknameHandler;
 import plugins.mbes.managers.ChatReplacer;
 import plugins.mbes.managers.FreezeManager;
 import plugins.mbes.managers.LogManager;
@@ -50,7 +53,7 @@ import plugins.mbes.misc.WorldBackup;
 public class MBEPlugin extends MBServerPlugin{
 	private HashMap<String,Object>data;
 	private NameDataBase playerNameDB;
-	private final float version = (float) 1.1;
+	private final float version = (float) 1.11;
 	private FreezeManager FreezeMan;
 	public final static String MANIFEST_NAME = "MbEssentials";
 	
@@ -109,7 +112,7 @@ public class MBEPlugin extends MBServerPlugin{
 				this.getLogger().info("Successfully updated MbEssentials to the latest version.");
 				this.getLogger().warning("Your server will now shut down. When you start it again, the update will be applied");
 				Thread.sleep(12000);
-				server.shutdown();
+				System.exit(0);
 			}else{
 				this.getLogger().info("You are already running the latest version of MbEssentials!");
 			}
@@ -168,6 +171,14 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getPluginManager().registerCommand("coords",new Coords(this.getServer()));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered command: /Coords");
+		 
+		 this.getPluginManager().registerCommand("nick",new Nickname(config));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered command: /nick");
+		 
+		 this.getPluginManager().registerCommand("delnick",new DelNickname(config));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered command: /delnick");
 		
 		if(config.isEnablePmSystem())
 		{
@@ -352,6 +363,10 @@ public class MBEPlugin extends MBServerPlugin{
 		 this.getPluginManager().registerEventHandler(new KillHandler());
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: KillHandler");
+		 
+		 this.getPluginManager().registerEventHandler(new NicknameHandler(config));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered handler: NicknameHandler");
 		 
 		 this.getPluginManager().registerEventHandler(new PMBlockHandler());
 		 if(config.isEnableDebug())
