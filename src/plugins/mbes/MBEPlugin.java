@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
+import com.mbserver.api.Server;
 
 import plugins.mbes.commands.ChatReplaceCmds;
 import plugins.mbes.commands.Commands;
@@ -66,6 +67,12 @@ public class MBEPlugin extends MBServerPlugin{
 	private ReportManager report;
 	private Logger breakLog,placeLog,deathLog,PvPLog,cmdLog;
 	
+	private Server server;
+
+	public MBEPlugin( Server server ) {
+		this.server = server;
+	}
+	
 	public MBEPlugin() {
 		playerNameDB = new NameDataBase();
 		FreezeMan = new FreezeManager();
@@ -102,7 +109,7 @@ public class MBEPlugin extends MBServerPlugin{
 				this.getLogger().info("Successfully updated MbEssentials to the latest version.");
 				this.getLogger().warning("Your server will now shut down. When you start it again, the update will be applied");
 				Thread.sleep(12000);
-				System.exit(0);
+				server.shutdown();
 			}else{
 				this.getLogger().info("You are already running the latest version of MbEssentials!");
 			}
