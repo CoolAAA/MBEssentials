@@ -1,7 +1,15 @@
 package plugins.mbes;
 
+import java.util.HashMap;
+
+import com.mbserver.api.game.Player;
+
 
 public class Config {
+	
+	   	public static Object configObj;
+		private HashMap<String, String> nickname;
+		
 		private boolean firstUse;
 		private boolean enableMoneySystem;
 		private boolean enablePmSystem;
@@ -21,8 +29,10 @@ public class Config {
 		private int[] blockedBlockIDs;
 	    private int[] blockedToolIDs;
 	    private int amountOfBackupsPerDay;
+	    private String nicknamePrefix;
 	    
 	 	 public Config() {
+	 	   this.nickname = new HashMap<String, String>();
 	       this.setEnableMoneySystem(true);
 		   this.setEnablePmSystem(true);
 	       this.setEnableDebug(true);
@@ -43,6 +53,7 @@ public class Config {
 	       this.setEnableItemBlocker(true);
 	       this.setFirstUse(true);
 	       this.setAmountOfBackupsPerDay(3);
+	       this.setNicknamePrefix("@");
 	 	}
 	    public boolean isFirstUse() {
 			return firstUse;
@@ -184,6 +195,20 @@ public class Config {
 		}
 		public void setAmountOfBackupsPerDay(int amountOfBackupsPerDay) {
 			this.amountOfBackupsPerDay = amountOfBackupsPerDay;
+		}
+		
+		public void setPlayerNickname(Player player, String nickname) {
+		      this.nickname.put(player.getLoginName(), nickname);
+		}
+
+		public String getPlayerNickname(Player player) {
+		      return this.nickname.get(player.getLoginName());
+		}
+		public void setNicknamePrefix(String nickprefix) {
+			this.nicknamePrefix = nickprefix;
+		}
+		public String getNicknamePrefix() {
+			return nicknamePrefix;
 		}
 		
 
