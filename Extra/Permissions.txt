@@ -32,4 +32,7 @@ mbes.money - permission to use /balance,/pay
 //Report Permissions
 mbes.cmds.report - permission to use /report
 
+/Nickname Permissions
+mbes.nickname - permission to use /nick
+
 
