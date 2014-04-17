@@ -43,11 +43,8 @@ public class PMCmds implements CommandExecutor{
 					}
 					
 					String msg = "";
-					
-					for(int a = 1; a < args.length; a++)
-					{
-						msg = args[a] + " ";
-					}
+					for (String arg : Arrays.copyOfRange(args, 1, args.length))
+					msg += " " + arg;
 					
 					PMEvent pm = new PMEvent(sender,target, msg);
 					pm.setCancelled(false);
