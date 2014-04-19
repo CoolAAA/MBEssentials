@@ -53,7 +53,7 @@ import plugins.mbes.misc.WorldBackup;
 public class MBEPlugin extends MBServerPlugin{
 	private HashMap<String,Object>data;
 	private NameDataBase playerNameDB;
-	private final float version = (float) 1.11;
+	private final float version = (float) 1.13;
 	private FreezeManager FreezeMan;
 	public final static String MANIFEST_NAME = "MbEssentials";
 	
