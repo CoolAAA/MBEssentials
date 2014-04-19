@@ -95,7 +95,7 @@ public class LogHandler implements Listener{
 			
         		try{
         			log = time + " " +name + " placed a block of " + event1.getMaterial().getName();
-        		}catch(PluginException err1){
+        		}catch(NullPointerException err1){
 				log = time + " " + name + " placed a block (ID) of " + event1.getBlock().getBlockID();
         		}
 			
@@ -125,7 +125,7 @@ public class LogHandler implements Listener{
     			
         		try{
         			log = time + " " +name + " broke a block of " + event2.getMaterial().getName();
-        		}catch(PluginException err1){
+        		}catch(NullPointerException err1){
 				log = time + " " + name + " broke a block (ID) of " + event2.getBlock().getBlockID();
         		}
         		
