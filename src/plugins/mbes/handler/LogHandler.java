@@ -11,7 +11,6 @@ import com.mbserver.api.events.Listener;
 import com.mbserver.api.events.PlayerDeathEvent;
 import com.mbserver.api.events.PlayerPvpEvent;
 import com.mbserver.api.events.PreCommandEvent;
-import com.mbserver.api.exceptions.PluginException;
 import com.mbserver.api.game.Location;
 import com.mbserver.api.game.Material;
 
