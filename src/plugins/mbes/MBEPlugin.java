@@ -11,6 +11,9 @@ import java.util.HashMap;
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
 import com.mbserver.api.Server;
+import com.mbserver.api.events.EventHandler;
+import com.mbserver.api.events.Listener;
+import com.mbserver.api.events.ServerStartedEvent;
 
 import plugins.mbes.commands.ChatReplaceCmds;
 import plugins.mbes.commands.Commands;
@@ -110,8 +113,12 @@ public class MBEPlugin extends MBServerPlugin{
 			if(Downloader.checkUpdate(pUrl, vUrl, paths[0],paths[1],version)){
 				this.getLogger().info("Successfully updated MbEssentials to the latest version.");
 				this.getLogger().warning("Your server will now shut down. When you start it again, the update will be applied");
-				Thread.sleep(12000);
-				System.exit(0);
+				this.getPluginManager().registerEventHandler(new Listener() {
+					@EventHandler
+					public void onStart(ServerStartedEvent e){
+						e.getServer().shutdown();
+					}
+				});
 			}else{
 				this.getLogger().info("You are already running the latest version of MbEssentials!");
 			}
@@ -129,9 +136,6 @@ public class MBEPlugin extends MBServerPlugin{
 				e2.printStackTrace();
 				this.getLogger().warning("Please report this error to the MbEssentials forums, and we will try and help you!");
 			}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 		this.getLogger().info("Thanks for using MBEssentials by AAAA, Abiram and TheMushyPeas!");
