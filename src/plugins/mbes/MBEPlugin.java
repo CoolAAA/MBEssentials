@@ -53,14 +53,13 @@ import plugins.mbes.misc.WorldBackup;
 public class MBEPlugin extends MBServerPlugin{
 	private HashMap<String,Object>data;
 	private NameDataBase playerNameDB;
-	private final float version = (float) 1.13;
+	private final float version = (float) 1.14;
 	private FreezeManager FreezeMan;
 	public final static String MANIFEST_NAME = "MbEssentials";
 	
 	private final String vUrl = "http://mbessentials.bl.ee/update/version.txt";
-	// When the website is finished, the version link will be: http://mbessentials.bl.ee/update/version.txt
 	private final String pUrl = "http://mbessentials.bl.ee/update/MbEssentials.jar";
-	// When the website is finished, the plugin link will be: http://mbessentials.bl.ee/update/upload/MbEssentials.txt
+	
 	
 	private final String[] paths = {"plugins/MbEssentials.jar","plugins/MbEssentials/version.dat"};
 	private LogManager logm;
