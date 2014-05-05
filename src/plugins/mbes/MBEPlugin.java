@@ -147,9 +147,9 @@ public class MBEPlugin extends MBServerPlugin{
 		if(chatrp == null)
 			chatrp = new ChatReplacer();
 		
-        	this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
-         	 if(config.isEnableDebug())
-        		 this.getLogger().info("Successfully registered command: /kill");
+        	//this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
+         	// if(config.isEnableDebug())
+        		// this.getLogger().info("Successfully registered command: /kill");
 		
 		this.getPluginManager().registerCommand("sudo",new ModCmds(this.getServer()));
 		 if(config.isEnableDebug())
