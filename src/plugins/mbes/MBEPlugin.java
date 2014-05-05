@@ -329,11 +329,11 @@ public class MBEPlugin extends MBServerPlugin{
 		 
 		 this.getPluginManager().registerCommand("delword",new ChatReplaceCmds(chatrp));
 		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registerd command: /delword");
+			 this.getLogger().info("Successfully registered command: /delword");
 		 
 		 this.getPluginManager().registerCommand("clearwords",new ChatReplaceCmds(chatrp));
 		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registerd command: /clearwords");
+			 this.getLogger().info("Successfully registered command: /clearwords");
 		 
 		 this.getPluginManager().registerEventHandler(new ChatReplacerHandler(chatrp));
 		 if(config.isEnableDebug())
