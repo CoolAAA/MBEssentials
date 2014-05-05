@@ -13,6 +13,7 @@ import com.mbserver.api.events.PlayerPvpEvent;
 import com.mbserver.api.events.PreCommandEvent;
 import com.mbserver.api.game.Location;
 import com.mbserver.api.game.Material;
+import com.mbserver.api.game.Sign;
 
 import plugins.mbes.Config;
 import plugins.mbes.managers.LogManager;
@@ -89,13 +90,13 @@ public class LogHandler implements Listener{
         	if(config.isEnablePlaceLog())
         	{
         		String name = event1.getPlayer().getDisplayName();
-        		String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
+        		//String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
         		String log = "ERROR!";
 			
         		try{
-        			log = time + " " +name + " placed a block of " + event1.getMaterial().getName();
+        			log = " " +name + " placed a block of " + event1.getMaterial().getName();
         		}catch(NullPointerException err1){
-				log = time + " " + name + " placed a block (ID) of " + event1.getBlock().getBlockID();
+				log = " " + name + " placed a block (ID) of " + event1.getBlock().getBlockID();
         		}
 			
 			try {
@@ -104,8 +105,10 @@ public class LogHandler implements Listener{
 				e1.printStackTrace();
 			}
 			if(event1.getBlock().getBlockID() == 63){ //63=Sign
-				String message = event1.getBlock().getBlockData().toString();
-				String log2 = time + " " + name + " placed a sign saying: " + message;
+				Sign sign1 = (Sign) event1.getBlock().getBlockData();
+				String message = sign1.getText();
+				//String message = event1.getBlock().getBlockData().toString();
+				String log2 = " " + name + " placed a sign saying: " + message;
 				try {
 					logger.writeLog(log2,ID[3],true);
 				} catch (IOException e1) {
@@ -119,13 +122,13 @@ public class LogHandler implements Listener{
         	if(config.isEnableBreakLog())
         	{
         		String name = event2.getPlayer().getDisplayName();
-        		String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
+        		//String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
         		String log = "ERROR!";
     			
         		try{
-        			log = time + " " +name + " broke a block of " + event2.getMaterial().getName();
+        			log = " " +name + " broke a block of " + event2.getMaterial().getName();
         		}catch(NullPointerException err1){
-				log = time + " " + name + " broke a block (ID) of " + event2.getBlock().getBlockID();
+				log = " " + name + " broke a block (ID) of " + event2.getBlock().getBlockID();
         		}
         		
 			try {
