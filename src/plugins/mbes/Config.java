@@ -48,12 +48,12 @@ public class Config {
 	       this.setEnablePlaceLog(false);
 	       this.setEnableBreakLog(false);
 	       this.setEnableReport(true);
-	       this.setEnableWorldBackupSave(true);
+	       this.setEnableWorldBackupSave(false);
 	       this.setEnableWorldBackupStart(true);
 	       this.setEnableItemBlocker(true);
 	       this.setFirstUse(true);
-	       this.setAmountOfBackupsPerDay(3);
-	       this.setNicknamePrefix("@");
+	       this.setAmountOfBackupsPerDay(2);
+	       this.setNicknamePrefix("~");
 	 	}
 	    public boolean isFirstUse() {
 			return firstUse;
