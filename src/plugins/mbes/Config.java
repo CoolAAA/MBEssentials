@@ -9,7 +9,6 @@ public class Config {
 	
 	   	public static Object configObj;
 		private HashMap<String, String> nickname;
-		
 		private boolean firstUse;
 		private boolean enableMoneySystem;
 		private boolean enablePmSystem;
@@ -27,35 +26,38 @@ public class Config {
 	 	private boolean enableWorldBackupStart;
 	 	private boolean enableWorldBackupSave;
 		private int[] blockedBlockIDs;
-	    private int[] blockedToolIDs;
-	    private int amountOfBackupsPerDay;
-	    private String nicknamePrefix;
+	    	private int[] blockedToolIDs;
+	    	private int amountOfBackupsPerDay;
+	    	private String nicknamePrefix;
 	    
-	 	 public Config() {
+	 	public Config() {
+	 		
 	 	   this.nickname = new HashMap<String, String>();
-	       this.setEnableMoneySystem(true);
+	       	   this.setEnableMoneySystem(true);
 		   this.setEnablePmSystem(true);
-	       this.setEnableDebug(true);
-	       this.setEnablePlaceBlocker(false);
-	       this.setBlockedBlockIDs(new int[0]);
-	       this.setEnableItemBlocker(false);
-	       this.setBlockedToolIDs(new int [0]);
-	       this.setEnableLogs(true);
-	       this.setEnableDeathLog(true);
-	       this.setEnableCommandLog(true);
-	       this.setEnableKillLog(false);
-	       this.setEnablePvPLog(true);
-	       this.setEnablePlaceLog(false);
-	       this.setEnableBreakLog(false);
-	       this.setEnableReport(true);
-	       this.setEnableWorldBackupSave(false);
-	       this.setEnableWorldBackupStart(true);
-	       this.setEnableItemBlocker(true);
-	       this.setFirstUse(true);
-	       this.setAmountOfBackupsPerDay(2);
-	       this.setNicknamePrefix("~");
+	 	   this.setEnableDebug(true);
+	       	   this.setEnablePlaceBlocker(false);
+	           this.setBlockedBlockIDs(new int[0]);
+	           this.setEnableItemBlocker(false);
+	       	   this.setBlockedToolIDs(new int [0]);
+	           this.setEnableLogs(true);
+	           this.setEnableDeathLog(true);
+	           this.setEnableCommandLog(true);
+	           this.setEnableKillLog(false);
+	           this.setEnablePvPLog(true);
+	           this.setEnablePlaceLog(false);
+	           this.setEnableBreakLog(false);
+	           this.setEnableReport(true);
+	           this.setEnableWorldBackupSave(false);
+	           this.setEnableWorldBackupStart(true);
+	           this.setEnableItemBlocker(true);
+	           this.setFirstUse(true);
+	           this.setAmountOfBackupsPerDay(2);
+	           this.setNicknamePrefix("~");
+	           
 	 	}
-	    public boolean isFirstUse() {
+	 	
+	    	public boolean isFirstUse() {
 			return firstUse;
 		}
 
@@ -71,7 +73,6 @@ public class Config {
 		}
 		
 
-	 	 
 	 	public boolean isEnableItemBlocker() {
 			return enableItemBlocker;
 		}
@@ -118,9 +119,6 @@ public class Config {
 			this.enablePmSystem=in2;
 		}
 
-		//Start placeblock + usetool disabler config stuff here
-		//Should I use in-game adding/deleting blocks or tools ID's too? (by command)
-		//I should switch to ArrayList in that case...
 		public boolean isEnablePlaceBlocker() {
 			return enablePlaceBlocker;
 		}
@@ -144,10 +142,6 @@ public class Config {
 		public void setBlockedToolIDs(int[] blockedToolIDs) {
 			this.blockedToolIDs = blockedToolIDs;
 		}
-		//End placeblock + usetool disabler here
-
-
-		//Begin log disbaler/enabler
 
 		public boolean isEnableLogs() {
 			return enableLogs;
@@ -189,7 +183,7 @@ public class Config {
 		public void setEnableBreakLog(boolean enableBreakLog) {
 			this.enableBreakLog = enableBreakLog;
 		}
-		//end log disabler/enabler
+
 		public int getAmountOfBackupsPerDay() {
 			return amountOfBackupsPerDay;
 		}
