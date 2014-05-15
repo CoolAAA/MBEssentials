@@ -147,6 +147,7 @@ public class MBEPlugin extends MBServerPlugin{
 		if(chatrp == null)
 			chatrp = new ChatReplacer();
 		
+<<<<<<< HEAD
 		playerNameDB = this.getServer().getConfigurationManager().load(this,NameDataBase.class);
 		
 		if(playerNameDB == null)
@@ -155,6 +156,11 @@ public class MBEPlugin extends MBServerPlugin{
         	this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
          	 if(config.isEnableDebug())
         		 this.getLogger().info("Successfully registered command: /kill");
+=======
+        	//this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
+         	// if(config.isEnableDebug())
+        		// this.getLogger().info("Successfully registered command: /kill");
+>>>>>>> 2f68be34a14e6e1382bc5eb4df4999b52edb347b
 		
 		this.getPluginManager().registerCommand("sudo",new ModCmds(this.getServer()));
 		 if(config.isEnableDebug())
@@ -334,11 +340,11 @@ public class MBEPlugin extends MBServerPlugin{
 		 
 		 this.getPluginManager().registerCommand("delword",new ChatReplaceCmds(chatrp));
 		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registerd command: /delword");
+			 this.getLogger().info("Successfully registered command: /delword");
 		 
 		 this.getPluginManager().registerCommand("clearwords",new ChatReplaceCmds(chatrp));
 		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registerd command: /clearwords");
+			 this.getLogger().info("Successfully registered command: /clearwords");
 		 
 		 this.getPluginManager().registerEventHandler(new ChatReplacerHandler(chatrp));
 		 if(config.isEnableDebug())
