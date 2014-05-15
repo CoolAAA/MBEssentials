@@ -56,7 +56,7 @@ import plugins.mbes.misc.WorldBackup;
 public class MBEPlugin extends MBServerPlugin{
 	private HashMap<String,Object>data;
 	private NameDataBase playerNameDB;
-	private final float version = (float) 1.14;
+	private final float version = (float) 1.15;
 	private FreezeManager FreezeMan;
 	public final static String MANIFEST_NAME = "MbEssentials";
 	
@@ -146,6 +146,11 @@ public class MBEPlugin extends MBServerPlugin{
 		chatrp = this.getServer().getConfigurationManager().load(this,ChatReplacer.class);
 		if(chatrp == null)
 			chatrp = new ChatReplacer();
+		
+		playerNameDB = this.getServer().getConfigurationManager().load(this,NameDataBase.class);
+		
+		if(playerNameDB == null)
+			playerNameDB = new NameDataBase();
 		
         	this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
          	 if(config.isEnableDebug())
@@ -425,8 +430,9 @@ public class MBEPlugin extends MBServerPlugin{
 				
 				this.getServer().getConfigurationManager().save(this,chatrp);
 				this.getServer().getConfigurationManager().save(this,report);
+				this.getServer().getConfigurationManager().save(this,playerNameDB);
 			this.getLogger().info("Successfully saved config and bank!");
-			this.getLogger().info("Successfully saved report manager!");
+			this.getLogger().info("Successfully saved report manager and NameDataBase!");
 			
 		this.getLogger().info("Have a nice day - from the MBEssentials Team!");
 		this.getLogger().info("Your feedback is welcome - post it on our forums!");

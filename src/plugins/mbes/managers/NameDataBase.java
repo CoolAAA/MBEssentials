@@ -37,7 +37,7 @@ public class NameDataBase {
 		
 		for(String e : keys)
 		{
-			if(e.startsWith(pre))
+			if(e.toLowerCase().startsWith(pre.toLowerCase()))
 				keycount++;
 		}
 		if(keycount == 0)
@@ -48,7 +48,7 @@ public class NameDataBase {
 		int count = 0;
 		for(;count < keys.length;count++)
 		{
-			if(keys[count].startsWith(pre))
+			if(keys[count].toLowerCase().startsWith(pre.toLowerCase()))
 			{
 				String val = data.get(keys[count]);
 				values[count] = String.format(NameDataBase.FORMAT,keys[count],val);
