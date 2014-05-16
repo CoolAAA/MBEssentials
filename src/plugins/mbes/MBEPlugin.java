@@ -112,11 +112,17 @@ public class MBEPlugin extends MBServerPlugin{
 		try { 
 			if(Downloader.checkUpdate(pUrl, vUrl, paths[0],paths[1],version)){
 				this.getLogger().info("MbEssentials was successfully updated  to the latest version!");
-				this.getLogger().warning("Your server will complete startup as normal. It will then shut down again, in order to apply the update. When you start it again, the update will be applied");
+				Thread.sleep(4000);
+				
 				this.getPluginManager().registerEventHandler(new Listener() {
 					@EventHandler
 					public void onStart(ServerStartedEvent e){
-						this.getLogger().warning("Your server will now shut down to apply the update...");
+						this.getLogger().warning("In order to apply the new MbEssentials update, the server must restart.")
+						Thread.sleep(4000);
+						this.getLogger().warning("Your server will now shut down in order to apply the update.");
+						Thread.sleep(4000);
+						this.getLogger().warning("When you start it up again, the latest version of MbEssentials will be installed!");
+						Thread.sleep(4000);
 						e.getServer().shutdown();
 					}
 				});
