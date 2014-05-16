@@ -6,7 +6,6 @@
 
 -- Not Yet Started --
 
-[Mushy] Nickname system - Allows you to set your nickname to anything (such as TheMushyPeas to DatCoolGuy) I will add a prefix to nicknames so that you know it is not the acutal person
 [AAAA] When you report players (using /report) it is logged in a .txt file in the MBessentials directory, so server owners can
   find it easily!
 [AAAA] More api stuff - not quite sure what, but it will make our plugin more popular if we have a bigger api! I am currently
@@ -14,12 +13,12 @@
 [Abiram] some kind of jail system @coords: -10000,120,-10000 , so nobody will have issues with this jailbuilding thing xD
 [AAAA] Block kits so whenever you break a block that is a kit block it will drop the items that it was set to 
 * /tpa and /tpaccept (the Minecraft command)
+
 ----------------------
 
 -- Work in Progress --
 
-[AAAA][WIP]Autoupdater - I will provide with D/L links as soon as possible, as the website is under contruction - 
-[Mushy][WIP] create a website for the plugin, along with all commands, permissions and description!
+[Mushy] The plugin checks for an update to it every 30mins, and prints a message to the console to warn the owner that there is an update (Configurable)
 [Everyone][WIP]Config system - just fill in config details as you go along!
 [Mushy][WIP] Kit system - allows for the creation of kits, as well as the option to set a default kit that everyone will get when they first join.
 
@@ -27,6 +26,9 @@
 
 -- Finished --
 
+[Mushy] create a website for the plugin, along with all commands, permissions and description
+[AAAA]Autoupdater - I will provide with D/L links as soon as possible, as the website is under contruction - 
+[Mushy] Nickname system - Allows you to set your nickname to anything (such as TheMushyPeas to DatCoolGuy) I will add a prefix to nicknames so that you know it is not the acutal person
 [AAAA][DONE] /freeze <playername> - stops the player from moving and breaking/placing. handy for if someone is griefing!
 [AAAA][DONE] Money system using /balance and /pay <playername> maybe even an API that other plugins can use! :D
 [AAAA][DONE] Api for the money system
