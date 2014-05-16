@@ -8,11 +8,9 @@
 I did a big bug testing session: Here are my results:
 
 */unmute doesnt work
-*If a muted player disconnects, they are unmuted when they relog
 *The freeze commands dont work
 *The word replacer doesnt seem to work
 *The block and unblock commands dont seem to work
 
 I have NOT investigated further into these bugs, it was just what I saw. Otherwise, the plugin works perfect!
 
-EDIT: The logging system doesnt work 100% of the time as well. Not sure if others have experienced this!
