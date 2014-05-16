@@ -111,11 +111,12 @@ public class MBEPlugin extends MBServerPlugin{
 		
 		try { 
 			if(Downloader.checkUpdate(pUrl, vUrl, paths[0],paths[1],version)){
-				this.getLogger().info("Successfully updated MbEssentials to the latest version.");
-				this.getLogger().warning("Your server will now shut down. When you start it again, the update will be applied");
+				this.getLogger().info("MbEssentials was successfully updated  to the latest version!");
+				this.getLogger().warning("Your server will complete startup as normal. It will then shut down again, in order to apply the update. When you start it again, the update will be applied");
 				this.getPluginManager().registerEventHandler(new Listener() {
 					@EventHandler
 					public void onStart(ServerStartedEvent e){
+						this.getLogger().warning("Your server will now shut down to apply the update...");
 						e.getServer().shutdown();
 					}
 				});
@@ -153,10 +154,6 @@ public class MBEPlugin extends MBServerPlugin{
 		if(playerNameDB == null)
 			playerNameDB = new NameDataBase();
 		
-        	this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
-         	 if(config.isEnableDebug())
-        		 this.getLogger().info("Successfully registered command: /kill");
-
         	//this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
          	// if(config.isEnableDebug())
         		// this.getLogger().info("Successfully registered command: /kill");
