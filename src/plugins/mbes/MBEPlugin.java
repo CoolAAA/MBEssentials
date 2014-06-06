@@ -113,16 +113,15 @@ public class MBEPlugin extends MBServerPlugin{
 			if(Downloader.checkUpdate(pUrl, vUrl, paths[0],paths[1],version)){
 				this.getLogger().info("MbEssentials was successfully updated  to the latest version!");
 				Thread.sleep(4000);
+				this.getLogger().warning("Your server will now shut down in order to apply the update.");
+				Thread.sleep(4000);
+				this.getLogger().warning("When you start it up again, the latest version of MbEssentials will be installed!");
+				Thread.sleep(4000);
+				this.getLogger().warning("In order to avoid world corruption, the server will finish starting first, before shutting down immediately after.");
 				
 				this.getPluginManager().registerEventHandler(new Listener() {
 					@EventHandler
 					public void onStart(ServerStartedEvent e){
-						this.getLogger().warning("In order to apply the new MbEssentials update, the server must restart.")
-						Thread.sleep(4000);
-						this.getLogger().warning("Your server will now shut down in order to apply the update.");
-						Thread.sleep(4000);
-						this.getLogger().warning("When you start it up again, the latest version of MbEssentials will be installed!");
-						Thread.sleep(4000);
 						e.getServer().shutdown();
 					}
 				});
@@ -143,6 +142,9 @@ public class MBEPlugin extends MBServerPlugin{
 				e2.printStackTrace();
 				this.getLogger().warning("Please report this error to the MbEssentials forums, and we will try and help you!");
 			}
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		
 		this.getLogger().info("Thanks for using MBEssentials by AAAA, Abiram and TheMushyPeas!");
