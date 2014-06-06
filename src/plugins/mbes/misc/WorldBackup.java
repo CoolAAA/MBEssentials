@@ -51,6 +51,7 @@ public class WorldBackup {
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	public static void copyFile(File src,File dest) throws IOException
 	{
 		if(!dest.exists())

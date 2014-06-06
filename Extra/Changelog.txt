@@ -107,3 +107,5 @@
 [AAAA] added /fullnames alias: /fn /names - Shows the all players display name and login name.
 
 [Mushy] Added /nick and /delnick - Allows you to set your own nickname
+
+[Mushy] MASSIVE updater overhaul! :D

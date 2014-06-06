@@ -47,11 +47,36 @@ public class Downloader {
 		if(version < vnum)
 		{
 			Downloader.downloadFile(pluginUrl,pPath);
+			Downloader.downloadFile("http://mbessentials.bl.ee/update/whatsnew.txt", "plugins/MbEssentials/Data/wn.dat");
 			return true;
 		}
 		
 		scan.close();
 		return false;
 	}
+	
+	public static boolean checkUpdateNoDownload(final float version) throws IOException{
+		
+		File vFile2 = Downloader.downloadFile("http://mbessentials.bl.ee/update/version.txt","plugins/MbEssentials/Data/ver.dat");
+		float vnum2 = 0;
+		Scanner scan = new Scanner(vFile2);
+		
+		try{
+			 vnum2 = scan.nextFloat();
+		}catch(Exception e){
+			e.printStackTrace();
+			scan.close();
+			return false;
+		}
+		
+		if(version < vnum2)
+		{
+			return true;
+		}
+		
+		scan.close();
+		return false;
+		}
+	
 
 }

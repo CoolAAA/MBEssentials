@@ -18,7 +18,7 @@
 
 -- Work in Progress --
 
-[Mushy] The plugin checks for an update to it every 30mins, and prints a message to the console to warn the owner that there is an update (Configurable)
+
 [Everyone][WIP]Config system - just fill in config details as you go along!
 [Mushy][WIP] Kit system - allows for the creation of kits, as well as the option to set a default kit that everyone will get when they first join.
 
@@ -26,6 +26,7 @@
 
 -- Finished --
 
+[Mushy] The plugin checks for an update to it every 30mins, and prints a message to the console to warn the owner that there is an update (Configurable)
 [Mushy] create a website for the plugin, along with all commands, permissions and description
 [AAAA]Autoupdater - I will provide with D/L links as soon as possible, as the website is under contruction - 
 [Mushy] Nickname system - Allows you to set your nickname to anything (such as TheMushyPeas to DatCoolGuy) I will add a prefix to nicknames so that you know it is not the acutal person

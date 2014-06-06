@@ -1,8 +1,12 @@
 package plugins.mbes;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,6 +45,7 @@ import plugins.mbes.handler.NameHandler;
 import plugins.mbes.handler.PMBlockHandler;
 import plugins.mbes.handler.WorldBackupHandler;
 import plugins.mbes.handler.NicknameHandler;
+import plugins.mbes.handler.UpdateNotifyHandler;
 import plugins.mbes.managers.ChatReplacer;
 import plugins.mbes.managers.FreezeManager;
 import plugins.mbes.managers.LogManager;
@@ -59,12 +64,11 @@ public class MBEPlugin extends MBServerPlugin{
 	private final float version = (float) 1.15;
 	private FreezeManager FreezeMan;
 	public final static String MANIFEST_NAME = "MbEssentials";
-	
 	private final String vUrl = "http://mbessentials.bl.ee/update/version.txt";
 	private final String pUrl = "http://mbessentials.bl.ee/update/MbEssentials.jar";
 	
 	
-	private final String[] paths = {"plugins/MbEssentials.jar","plugins/MbEssentials/version.dat"};
+	private final String[] paths = {"plugins/MbEssentials.jar","plugins/MbEssentials/Data/ver.dat","plugins/MbEssentials/Data/wn.dat"};
 	private LogManager logm;
 	private ChatReplacer chatrp;
 	private MoneyManager bank;
@@ -74,7 +78,7 @@ public class MBEPlugin extends MBServerPlugin{
 	
 	private Server server;
 
-	public MBEPlugin( Server server ) {
+	public MBEPlugin( Server server) {
 		this.server = server;
 	}
 	
@@ -100,28 +104,67 @@ public class MBEPlugin extends MBServerPlugin{
 			if(!file.exists())
 				file.mkdir();
 		}
-		
-		
+		if(!new File("plugins/MbEssentials/Data").isDirectory()){
+		new File("plugins/MbEssentials/Data").mkdirs();
+		}
 	}
 	
 	@Override
 	public void onEnable() {
+		
 		this.getLogger().info("You are currently running MbEssentials version: " + version);
+		
+		File f = new File("plugins/MbEssentials/Data/wn.dat");
+		if(f.exists()) {
+		this.getLogger().info("What's new in this version:");
+		try{
+			  //Reading the what's new file.
+			  FileInputStream fstream = new FileInputStream("plugins/MbEssentials/Data/wn.dat");
+			  DataInputStream in = new DataInputStream(fstream);
+			  BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			  String strLine;
+			  while ((strLine = br.readLine()) != null)   {
+				  this.getLogger().info(strLine);
+				  Thread.sleep(5000);
+			  }
+			  in.close();
+		}
+		catch (Exception e){
+			  e.printStackTrace();
+		}
+	    
+	    boolean success = f.delete();
+	    
+	    if (!success) {
+	    	this.getLogger().info("Changelog File Deletion Failed! You must manually remove it yourself, by deleting this file:");
+	    	this.getLogger().info("plugins/MbEssentials/Data/wn.dat");
+	    	try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+	    	
+	    }
+	    	
+		}
+		
 		this.getLogger().info("Checking for an update to MbEssentials...");
 		
 		try { 
 			if(Downloader.checkUpdate(pUrl, vUrl, paths[0],paths[1],version)){
 				this.getLogger().info("MbEssentials was successfully updated  to the latest version!");
 				Thread.sleep(4000);
+				this.getLogger().warning("In order to apply the new MbEssentials update, the server must restart.");
+				Thread.sleep(4000);
 				this.getLogger().warning("Your server will now shut down in order to apply the update.");
 				Thread.sleep(4000);
 				this.getLogger().warning("When you start it up again, the latest version of MbEssentials will be installed!");
 				Thread.sleep(4000);
-				this.getLogger().warning("In order to avoid world corruption, the server will finish starting first, before shutting down immediately after.");
 				
 				this.getPluginManager().registerEventHandler(new Listener() {
 					@EventHandler
 					public void onStart(ServerStartedEvent e){
+						
 						e.getServer().shutdown();
 					}
 				});
@@ -143,7 +186,7 @@ public class MBEPlugin extends MBServerPlugin{
 				this.getLogger().warning("Please report this error to the MbEssentials forums, and we will try and help you!");
 			}
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
+
 			e1.printStackTrace();
 		}
 		
@@ -390,6 +433,11 @@ public class MBEPlugin extends MBServerPlugin{
 		 this.getPluginManager().registerEventHandler(new PMBlockHandler());
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: PMBlockHandler");
+		 
+		 this.getPluginManager().registerEventHandler(new UpdateNotifyHandler(version));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered handler: UpdateNotifyHandler");
+		 
 		 
 		 this.getPluginManager().registerEventHandler(new NameHandler(playerNameDB));
 		 this.getPluginManager().registerCommand("fullnames", new String[] {"fullnames","fn","names"},new NameDB(playerNameDB));
