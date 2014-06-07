@@ -14,13 +14,11 @@ import java.util.HashMap;
 
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
-import com.mbserver.api.Server;
 import com.mbserver.api.events.EventHandler;
 import com.mbserver.api.events.Listener;
 import com.mbserver.api.events.ServerStartedEvent;
 
 import plugins.mbes.commands.ChatReplaceCmds;
-import plugins.mbes.commands.Commands;
 import plugins.mbes.commands.DelNickname;
 import plugins.mbes.commands.Freeze;
 import plugins.mbes.commands.ModCmds;
@@ -75,12 +73,6 @@ public class MBEPlugin extends MBServerPlugin{
 	private Config config;
 	private ReportManager report;
 	private Logger breakLog,placeLog,deathLog,PvPLog,cmdLog;
-	
-	private Server server;
-
-	public MBEPlugin( Server server) {
-		this.server = server;
-	}
 	
 	public MBEPlugin() {
 		playerNameDB = new NameDataBase();
@@ -205,6 +197,11 @@ public class MBEPlugin extends MBServerPlugin{
 		if(playerNameDB == null)
 			playerNameDB = new NameDataBase();
 		
+		//Cleanup from old versions of Mbes.
+		File cln = new File("plugins/MbEssentials/version.dat");
+		if(cln.exists()) {
+			cln.delete();
+		}
         	//this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
          	// if(config.isEnableDebug())
         		// this.getLogger().info("Successfully registered command: /kill");

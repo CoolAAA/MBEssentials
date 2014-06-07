@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class Downloader {
 	
+	@SuppressWarnings("resource")
 	public static File downloadFile(String fileUrl,String path) throws IOException
 	{
 		
@@ -28,6 +29,7 @@ public class Downloader {
 		return ofile;
 	}
 	
+	@SuppressWarnings("resource")
 	public static boolean checkUpdate(final String pluginUrl,final String versionUrl
 			,final String pPath,final String vPath,final float version) throws IOException
 	{
@@ -55,6 +57,7 @@ public class Downloader {
 		return false;
 	}
 	
+	@SuppressWarnings("resource")
 	public static boolean checkUpdateNoDownload(final float version) throws IOException{
 		
 		File vFile2 = Downloader.downloadFile("http://mbessentials.bl.ee/update/version.txt","plugins/MbEssentials/Data/ver.dat");
