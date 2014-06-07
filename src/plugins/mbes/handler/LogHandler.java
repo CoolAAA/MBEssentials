@@ -70,16 +70,26 @@ public class LogHandler implements Listener{
 		{
 			String name = e.getSender().getName();
 			String args = "";
-			for(String a : e.getArguments())
+			for(String a : e.getArguments()){
 				args = args + a + " ";
-			String log = name + " issued the command: '"  + e.getCommand() + "  with arguments: " + args + "\n ";
-			//String logspace = "";
-			try {
-				logger.writeLog(log,ID[2],true);
-				//logger.writeLog(logspace,ID[2],true);
-			} catch (IOException e1) {
-				e1.printStackTrace();
 			}
+			if(args == ""){
+				String log = "'" + name + "'" + " issued the command: '"  + e.getCommand() + "'  with no arguments";
+				try {
+					logger.writeLog(log,ID[2],true);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			else{
+				String log = "'" + name + "'" + " issued the command: '"  + e.getCommand() + "'  with arguments: '" + args + "\n'";
+				try {
+					logger.writeLog(log,ID[2],true);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
 		}
 
 	}
