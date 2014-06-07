@@ -15,15 +15,18 @@ import com.mbserver.api.Server;
 
 public class UpdateCmds implements CommandExecutor{
 	
-	private String url,vUrl;
+	private String pUrl,vUrl,wnUrl;
+	private String paths[];
 	private Server s;
 	private float version;
 	
-	public UpdateCmds(String url,String vUrl,Server server,float version) {
-		this.url = url;
+	public UpdateCmds(String pUrl,String vUrl,Server server,float version, String paths[], String wnUrl) {
+		this.pUrl = pUrl;
 		this.s = server;
 		this.vUrl = vUrl;
 		this.version = version;
+		this.paths = paths;
+		this.wnUrl = wnUrl;
 	}
 
 	@Override
@@ -38,7 +41,7 @@ public class UpdateCmds implements CommandExecutor{
 				Thread th = new Thread(){
 					public void run() {
 						try {
-							Downloader.downloadFile(url,"plugins\\MBEssentials.jar");
+							Downloader.downloadFile(pUrl,paths[0]);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
@@ -63,7 +66,7 @@ public class UpdateCmds implements CommandExecutor{
 				Thread th = new Thread(){
 					public void run() {
 						try {
-							Downloader.checkUpdate(url,vUrl,"plugins/MbEssentials.jar","plugins/MbEssentials/Data/ver.dat",version);
+							Downloader.checkUpdate(pUrl,vUrl,wnUrl,paths[0],paths[1],paths[2],version);
 						} catch (IOException e1) {
 							try {
 								File lFile = new File("plugins\\MBEssentials\\Download-err-" + new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date()));

@@ -64,6 +64,7 @@ public class MBEPlugin extends MBServerPlugin{
 	public final static String MANIFEST_NAME = "MbEssentials";
 	private final String vUrl = "http://mbessentials.bl.ee/update/version.txt";
 	private final String pUrl = "http://mbessentials.bl.ee/update/MbEssentials.jar";
+	private final String wnUrl = "http://mbessentials.bl.ee/update/whatsnew.txt";
 	
 	
 	private final String[] paths = {"plugins/MbEssentials.jar","plugins/MbEssentials/Data/ver.dat","plugins/MbEssentials/Data/wn.dat"};
@@ -129,7 +130,7 @@ public class MBEPlugin extends MBServerPlugin{
 	    
 	    if (!success) {
 	    	this.getLogger().info("Changelog File Deletion Failed! You must manually remove it yourself, by deleting this file:");
-	    	this.getLogger().info("plugins/MbEssentials/Data/wn.dat");
+	    	this.getLogger().info(paths[2]);
 	    	try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -143,7 +144,7 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getLogger().info("Checking for an update to MbEssentials...");
 		
 		try { 
-			if(Downloader.checkUpdate(pUrl, vUrl, paths[0],paths[1],version)){
+			if(Downloader.checkUpdate(pUrl, vUrl, wnUrl, paths[0],paths[1],paths[2],version)){
 				this.getLogger().info("MbEssentials was successfully updated  to the latest version!");
 				Thread.sleep(4000);
 				this.getLogger().warning("In order to apply the new MbEssentials update, the server must restart.");
@@ -165,7 +166,7 @@ public class MBEPlugin extends MBServerPlugin{
 			}
 		} catch (IOException e1) {
 			try {
-				File lFile = new File("plugins/MbEssentials/Download-err-" + new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date()));
+				File lFile = new File("plugins/MbEssentials/Download-Error-" + new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date()));
 				lFile.createNewFile();
 				PrintWriter err = new PrintWriter(lFile);
 				e1.printStackTrace(err);
@@ -395,11 +396,11 @@ public class MBEPlugin extends MBServerPlugin{
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: ChatReplacerHandler");
 		 
-		 this.getPluginManager().registerCommand("forceupdate", new UpdateCmds(pUrl, vUrl,this.getServer(), version));
+		 this.getPluginManager().registerCommand("forceupdate", new UpdateCmds(pUrl, vUrl,this.getServer(), version, paths, pUrl));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered command: /forceupdate");
 		 
-		 this.getPluginManager().registerCommand("checkupdate", new UpdateCmds(pUrl, vUrl,this.getServer(), version));
+		 this.getPluginManager().registerCommand("checkupdate", new UpdateCmds(pUrl, vUrl,this.getServer(), version, paths, pUrl));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered command: /checkupdate");
 		 
@@ -431,7 +432,7 @@ public class MBEPlugin extends MBServerPlugin{
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: PMBlockHandler");
 		 
-		 this.getPluginManager().registerEventHandler(new UpdateNotifyHandler(version));
+		 this.getPluginManager().registerEventHandler(new UpdateNotifyHandler(version, paths, pUrl));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: UpdateNotifyHandler");
 		 

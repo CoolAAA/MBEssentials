@@ -31,7 +31,7 @@ public class Downloader {
 	
 	@SuppressWarnings("resource")
 	public static boolean checkUpdate(final String pluginUrl,final String versionUrl
-			,final String pPath,final String vPath,final float version) throws IOException
+			,final String wnUrl, final String pPath,final String vPath, final String wnPath, final float version) throws IOException
 	{
 		
 		File vFile = Downloader.downloadFile(versionUrl,vPath);
@@ -49,7 +49,7 @@ public class Downloader {
 		if(version < vnum)
 		{
 			Downloader.downloadFile(pluginUrl,pPath);
-			Downloader.downloadFile("http://mbessentials.bl.ee/update/whatsnew.txt", "plugins/MbEssentials/Data/wn.dat");
+			Downloader.downloadFile(wnUrl, wnPath);
 			return true;
 		}
 		
@@ -58,9 +58,9 @@ public class Downloader {
 	}
 	
 	@SuppressWarnings("resource")
-	public static boolean checkUpdateNoDownload(final float version) throws IOException{
+	public static boolean checkUpdateNoDownload(final String verUrl, final String verPath, final float version) throws IOException{
 		
-		File vFile2 = Downloader.downloadFile("http://mbessentials.bl.ee/update/version.txt","plugins/MbEssentials/Data/ver.dat");
+		File vFile2 = Downloader.downloadFile(verUrl,verPath);
 		float vnum2 = 0;
 		Scanner scan = new Scanner(vFile2);
 		

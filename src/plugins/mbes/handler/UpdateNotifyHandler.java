@@ -14,9 +14,13 @@ public class UpdateNotifyHandler implements Listener{
 	
 	
 	private float version;
+	private String vUrl;
+	private String paths[];
 	
-	public UpdateNotifyHandler(float version) {
+	public UpdateNotifyHandler(float version, String paths[], String vUrl) {
 		this.version = version;
+		this.paths = paths;
+		this.vUrl = vUrl;
 	}
 	
 	@EventHandler(concurrency = RunMode.THREADED)
@@ -29,7 +33,7 @@ public class UpdateNotifyHandler implements Listener{
 				e2.printStackTrace();
 			}
 			try {
-				if(Downloader.checkUpdateNoDownload(version)){
+				if(Downloader.checkUpdateNoDownload(vUrl, paths[1], version)){
 					s.getLogger().warning("There is an update avialable for MbEssentials!");
 					s.getLogger().warning("It is highly recommended that you restart you server to get the update!");
 					s.getLogger().warning("Updating takes less than a minute, and is very easy!");
