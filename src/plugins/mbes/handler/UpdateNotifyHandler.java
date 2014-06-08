@@ -24,7 +24,7 @@ public class UpdateNotifyHandler implements Listener{
 	}
 	
 	@EventHandler(concurrency = RunMode.THREADED)
-	public void onPonyDomination(ServerStartedEvent e){
+	public void onPonyWorldDomination(ServerStartedEvent e){
 		Server s = e.getServer();
 		while (true) {
 			try {
