@@ -490,9 +490,34 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getLogger().info("Your feedback is welcome - post it on our forums!");
 		
 		if(new File("plugins/MbEssentials/Data/MbEssentials.jar").isFile()){
-			File mbes = new File("plugins/MbEssentials.jar");
-			new File("plugins/MbEssentials/Data/MbEssentials.jar").renameTo(mbes);
-			new File("plugins/MbEssentials/Data/MbEssentials.jar").delete();
+			
+			    FileChannel sourceChannel = null;
+			    FileChannel destChannel = null;
+			    File source = new File("plugins/MbEssentials/Data/MbEssentials.jar");
+			    File dest = new File("plugins/MbEssentials.jar");
+			    dest.delete();
+			    try {
+			    	
+			        sourceChannel = new FileInputStream(source).getChannel();
+			        destChannel = new FileOutputStream(dest).getChannel();
+			        destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
+			       } catch (IOException e) {
+					e.printStackTrace();
+				}finally{
+			           try {
+						sourceChannel.close();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+			           try {
+						destChannel.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+			       }
+			
+	
+			source.delete();
 			this.getLogger().warning("All MbEssentials Update Files Were Downloaded And Installed Successfully");
 		}
 		
