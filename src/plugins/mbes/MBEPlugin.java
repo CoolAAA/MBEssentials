@@ -264,6 +264,10 @@ public class MBEPlugin extends MBServerPlugin{
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered command: /mute");
 		
+		this.getPluginManager().registerCommand("unmute",new Mute(this.getServer(),data));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered command: /unmute");
+		
 		this.getPluginManager().registerEventHandler(new MuteHandler(data));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered event handler: MuteHandler");
