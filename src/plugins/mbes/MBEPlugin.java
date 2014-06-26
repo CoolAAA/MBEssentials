@@ -102,6 +102,13 @@ public class MBEPlugin extends MBServerPlugin{
 	@Override
 	public void onEnable() {
 		
+		//Cleanup from old versions of Mbes. If version file exists, download the whats new file, to "trick" the plugin into thinking it was there all along.
+		File cln = new File("plugins/MbEssentials/version.dat");
+		if(cln.exists()) {
+				Downloader.downloadFile("http://mbessentials.bl.ee/update/whatsnew.txt", "plugins/MbEssentials/Data/wn.dat");
+				cln.delete();
+		}
+		
 		this.getLogger().info("You are currently running MbEssentials version: " + version);
 		
 		File f = new File("plugins/MbEssentials/Data/wn.dat");
@@ -193,11 +200,6 @@ public class MBEPlugin extends MBServerPlugin{
 		if(playerNameDB == null)
 			playerNameDB = new NameDataBase();
 		
-		//Cleanup from old versions of Mbes.
-		File cln = new File("plugins/MbEssentials/version.dat");
-		if(cln.exists()) {
-			cln.delete();
-		}
         	//this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
          	// if(config.isEnableDebug())
         		// this.getLogger().info("Successfully registered command: /kill");
