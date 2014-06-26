@@ -102,12 +102,16 @@ public class MBEPlugin extends MBServerPlugin{
 	@Override
 	public void onEnable() {
 		
-		//Cleanup from old versions of Mbes. If version file exists, download the whats new file, to "trick" the plugin into thinking it was there all along.
-		File cln = new File("plugins/MbEssentials/version.dat");
+	File cln = new File("plugins/MbEssentials/version.dat");
 		if(cln.exists()) {
-				Downloader.downloadFile("http://mbessentials.bl.ee/update/whatsnew.txt", "plugins/MbEssentials/Data/wn.dat");
+				try {
+					Downloader.downloadFile("http://mbessentials.bl.ee/update/whatsnew.txt", "plugins/MbEssentials/Data/wn.dat");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				cln.delete();
 		}
+		
 		
 		this.getLogger().info("You are currently running MbEssentials version: " + version);
 		
