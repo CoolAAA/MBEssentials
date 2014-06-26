@@ -142,10 +142,11 @@ public class MBEPlugin extends MBServerPlugin{
 	    boolean success = f.delete();
 	    
 	    if (!success) {
-	    	this.getLogger().info("Changelog File Deletion Failed! You must manually remove it yourself, by deleting this file:");
+	    	this.getLogger().info("IMPORTANT: YOU MUST DELETE THE FILE LOCATED HERE IMMEDIATELY:");
 	    	this.getLogger().info(paths[2]);
+	    	this.getLogger().info("THIS IS ONLY BECAUSE OF UPDATER ISSUES - THIS WILL NEVER HAVE TO BE DONE IN THE FUTURE");
 	    	try {
-				Thread.sleep(3000);
+				Thread.sleep(10000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
