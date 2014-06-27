@@ -31,6 +31,7 @@ import plugins.mbes.commands.Coords;
 import plugins.mbes.commands.UpdateCmds;
 import plugins.mbes.commands.WebsiteCmds;
 import plugins.mbes.commands.Nickname;
+import plugins.mbes.commands.MbesVer;
 import plugins.mbes.handler.AccountMaker;
 import plugins.mbes.handler.ChatReplacerHandler;
 import plugins.mbes.handler.FreezeHandler;
@@ -443,6 +444,10 @@ public class MBEPlugin extends MBServerPlugin{
 		 this.getPluginManager().registerEventHandler(new UpdateNotifyHandler(version, paths, pUrl));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: UpdateNotifyHandler");
+			 
+		this.getPluginManager().registerCommand("mbesver",new MbesVer(version));
+		
+		
 		 
 		 
 		 this.getPluginManager().registerEventHandler(new NameHandler(playerNameDB));
