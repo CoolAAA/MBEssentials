@@ -66,8 +66,8 @@ public class MBEPlugin extends MBServerPlugin{
 	private final float version = (float) 1.15;
 	private FreezeManager FreezeMan;
 	public final static String MANIFEST_NAME = "MbEssentials";
-	private final String vUrl = "http://mbessentials.bl.ee/test/version.txt";
-	private final String pUrl = "http://mbessentials.bl.ee/test/MbEssentials.jar";
+	private final String vUrl = "http://mbessentials.bl.ee/update/version.txt";
+	private final String pUrl = "http://mbessentials.bl.ee/update/MbEssentials.jar";
 	private final String wnUrl = "http://mbessentials.bl.ee/update/whatsnew.txt";
 	
 	//////////////////////////////////////////////
