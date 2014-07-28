@@ -104,9 +104,9 @@ public class LogHandler implements Listener{
         		String log = "ERROR!";
 			
         		try{
-        			log = " " +name + " placed a block of " + event1.getMaterial().getName();
+        			log = " ["+event1.getLocation().getBlockX() + "," + event1.getLocation().getBlockY() + "," + event1.getLocation().getBlockZ() + "] " +name + " placed a block of " + event1.getMaterial().getName();
         		}catch(NullPointerException err1){
-				log = " " + name + " placed a block (ID) of " + event1.getBlock().getBlockID();
+				log = " ["+event1.getLocation().getBlockX() + "," + event1.getLocation().getBlockY() + "," + event1.getLocation().getBlockZ() + "] " +name + " placed a block (ID) of " + event1.getBlock().getBlockID();
         		}
 			
 			try {
@@ -118,7 +118,7 @@ public class LogHandler implements Listener{
 				Sign sign1 = (Sign) event1.getBlock().getBlockData();
 				String message = sign1.getText();
 				//String message = event1.getBlock().getBlockData().toString();
-				String log2 = " " + name + " placed a sign saying: " + message;
+				String log2 = " ["+event1.getLocation().getBlockX() + "," + event1.getLocation().getBlockY() + "," + event1.getLocation().getBlockZ() + "] " +name + " placed a sign saying: " + message;
 				try {
 					logger.writeLog(log2,ID[3],true);
 				} catch (IOException e1) {
@@ -136,9 +136,9 @@ public class LogHandler implements Listener{
         		String log = "ERROR!";
     			
         		try{
-        			log = " " +name + " broke a block of " + event2.getMaterial().getName();
+        			log = " ["+event2.getLocation().getBlockX() + "," + event2.getLocation().getBlockY() + "," + event2.getLocation().getBlockZ() + "] " +name + " broke a block of " + event2.getMaterial().getName();
         		}catch(NullPointerException err1){
-				log = " " + name + " broke a block (ID) of " + event2.getBlock().getBlockID();
+				log = " ["+event2.getLocation().getBlockX() + "," + event2.getLocation().getBlockY() + "," + event2.getLocation().getBlockZ() + "] " +name + " broke a block (ID) of " + event2.getBlock().getBlockID();
         		}
         		
 			try {
