@@ -17,6 +17,7 @@ import java.util.HashMap;
 
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
+
 import plugins.mbes.commands.ChatReplaceCmds;
 import plugins.mbes.commands.DelNickname;
 import plugins.mbes.commands.Freeze;
@@ -63,7 +64,7 @@ public class MBEPlugin extends MBServerPlugin{
 		
 	private HashMap<String,Object>data;
 	private NameDataBase playerNameDB;
-	private final float version = (float) 1.15;
+	private final float version = (float) 1.20;
 	private FreezeManager FreezeMan;
 	public final static String MANIFEST_NAME = "MbEssentials";
 	private final String vUrl = "http://mbessentials.bl.ee/update/version.txt";
@@ -159,15 +160,31 @@ public class MBEPlugin extends MBServerPlugin{
 			    
 			    if (!success) {
 			    	
-			    	this.getLogger().info("IMPORTANT: YOU MUST DELETE THE FILE LOCATED HERE IMMEDIATELY:");
-			    	this.getLogger().info("plugins/MbEssentials/Data/wn.dat");
-			    	this.getLogger().info("THIS IS ONLY BECAUSE OF UPDATER ISSUES - THIS WILL NEVER HAVE TO BE DONE IN THE FUTURE");
-			    	
+			    	this.getLogger().info("Unfortunately, due to updater issues, you must delete the file located here:");
 			    	try {
-						Thread.sleep(10000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+						Thread.sleep(5000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
 					}
+			    	this.getLogger().info("plugins/MbEssentials/Data/wn.dat");
+			    	try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+			    	this.getLogger().info("Please ensure that you do this before you restart the server");
+			    	try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+			    	this.getLogger().info("We are sorry, but this issue only exists because of the previously bugged updater");
+			    	try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+			    	
 			    	
 			    }
 		    	
