@@ -120,6 +120,9 @@ public class MBEPlugin extends MBServerPlugin{
 	@Override
 	public void onEnable() {
 		
+		config = this.getConfig();
+		this.saveConfig();
+		
 		if(enableUpdater == true){
 			File cln = new File("plugins/MbEssentials/version.dat");
 			if(cln.exists()) {
@@ -131,10 +134,12 @@ public class MBEPlugin extends MBServerPlugin{
 				cln.delete();
 			}
 		}
+		
 		if(enableUpdater == true){
 			File f = new File("plugins/MbEssentials/Data/wn.dat");
 			
 			if(f.exists()) {
+				if(config.isEnableChangeLog()){
 				this.getLogger().info("What's new in this version:");
 				this.getLogger().info("");
 				try{
@@ -156,40 +161,17 @@ public class MBEPlugin extends MBServerPlugin{
 					  e.printStackTrace();
 				}
 			    
-			    boolean success = f.delete();
-			    
-			    if (!success) {
-			    	
-			    	this.getLogger().info("Unfortunately, due to updater issues, you must delete the file located here:");
-			    	try {
-						Thread.sleep(5000);
-					} catch (InterruptedException e1) {
-						e1.printStackTrace();
-					}
-			    	this.getLogger().info("plugins/MbEssentials/Data/wn.dat");
-			    	try {
-						Thread.sleep(5000);
-					} catch (InterruptedException e1) {
-						e1.printStackTrace();
-					}
-			    	this.getLogger().info("Please ensure that you do this before you restart the server");
-			    	try {
-						Thread.sleep(5000);
-					} catch (InterruptedException e1) {
-						e1.printStackTrace();
-					}
-			    	this.getLogger().info("We are sorry, but this issue only exists because of the previously bugged updater");
-			    	try {
-						Thread.sleep(5000);
-					} catch (InterruptedException e1) {
-						e1.printStackTrace();
-					}
-			    	
-			    	
-			    }
+				
 		    	
 			}
+			boolean success = f.delete();
+			    
+			if (!success) {
+			    this.getLogger().info("Changelog deletion failed - please delete it from: plugins/MbEssentials/Data/wn.dat");
+			}
+			}
 		}
+		
 		
 		this.getLogger().info("You are currently running MbEssentials version: " + version);
 		if(enableUpdater == true){
@@ -198,13 +180,13 @@ public class MBEPlugin extends MBServerPlugin{
 			try { 
 				if(Downloader.checkUpdate(pUrl, vUrl, wnUrl, paths[0],paths[1],paths[2],version)){
 					this.getLogger().info("MbEssentials was successfully updated  to the latest version!");
-					Thread.sleep(4000);
+					Thread.sleep(3000);
 					this.getLogger().warning("In order to apply the new MbEssentials update, the server must restart.");
-					Thread.sleep(4000);
+					Thread.sleep(3000);
 					this.getLogger().warning("Your server will now shut down in order to apply the update.");
-					Thread.sleep(4000);
+					Thread.sleep(3000);
 					this.getLogger().warning("When you start it up again, the latest version of MbEssentials will be installed!");
-					Thread.sleep(4000);
+					Thread.sleep(3000);
 					
 					this.getPluginManager().registerEventHandler(new UpdateHandler());
 						
@@ -238,8 +220,7 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getLogger().info("Thanks for using MBEssentials by AAAA, Abiram and TheMushyPeas!");
 		this.getLogger().info("Please report any bugs and glitches to the forums!");
 		this.getLogger().info("Don't forget to check out our website as well for lots of help and instructions: mbessentials.bl.ee");
-		config = this.getConfig();
-		this.saveConfig();
+		
 		chatrp = this.getServer().getConfigurationManager().load(this,ChatReplacer.class);
 		if(chatrp == null)
 			chatrp = new ChatReplacer();
