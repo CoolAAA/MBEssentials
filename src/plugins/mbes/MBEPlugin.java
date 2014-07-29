@@ -146,7 +146,7 @@ public class MBEPlugin extends MBServerPlugin{
 						  this.getLogger().info("");
 						  this.getLogger().info(strLine);
 						  this.getLogger().info("");
-						  Thread.sleep(5000);
+						  Thread.sleep(1000);
 					  }
 					  in.close();
 				}
