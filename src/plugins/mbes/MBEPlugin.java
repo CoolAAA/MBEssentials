@@ -217,10 +217,6 @@ public class MBEPlugin extends MBServerPlugin{
 			this.getLogger().info("All updates to this plugin are therefore handled by SW.");
 		}
 		
-		this.getLogger().info("Thanks for using MBEssentials by AAAA, Abiram and TheMushyPeas!");
-		this.getLogger().info("Please report any bugs and glitches to the forums!");
-		this.getLogger().info("Don't forget to check out our website as well for lots of help and instructions: mbessentials.bl.ee");
-		
 		chatrp = this.getServer().getConfigurationManager().load(this,ChatReplacer.class);
 		if(chatrp == null)
 			chatrp = new ChatReplacer();
@@ -527,7 +523,6 @@ public class MBEPlugin extends MBServerPlugin{
 			this.getLogger().info("Successfully saved report manager and NameDataBase!");
 			
 		this.getLogger().info("Have a nice day - from the MBEssentials Team!");
-		this.getLogger().info("Your feedback is welcome - post it on our forums!");
 		
 		if(enableUpdater == true){
 			if(new File("plugins/MbEssentials/Data/MbEssentials.jar").isFile()){
