@@ -1,9 +1,12 @@
 package plugins.mbes.handler;
 
+import com.mbserver.api.dynamic.ChatColor;
 import com.mbserver.api.events.EventHandler;
 import com.mbserver.api.events.Listener;
 import com.mbserver.api.events.PlayerChatEvent;
+
 import plugins.mbes.Config;
+
 import com.mbserver.api.game.Player;
 
 
@@ -17,19 +20,19 @@ public class NicknameHandler implements Listener {
     @EventHandler
     public void setMessage( PlayerChatEvent player ) {
         
-    	Player name = player.getPlayer(); 
-    	String sender = name.getDisplayName();
-        String message = player.getMessage();
-        String nickname = this.config.getPlayerNickname(name);
-        
-        if (nickname == null){
-        player.overrideFormat(sender + ": " + message);
+    	Player name = player.getPlayer();
+    	String nickname = this.config.getPlayerNickname(name);
+    	if (nickname == null){
+            //Do nothing
         }
-        else {
-        	 
-        player.overrideFormat(config.getNicknamePrefix() + nickname + ": " + message);
+    	else {
+            String message = player.getMessage();
+            ChatColor color = player.getServer().getPermissionsHandler().getColor(name);
+    		player.setColor(color);
+        	player.overrideFormat(color + config.getNicknamePrefix() + nickname + ": " + ChatColor.WHITE + message);
+        	
         }
-        
+    	
         }		
 	}
     
