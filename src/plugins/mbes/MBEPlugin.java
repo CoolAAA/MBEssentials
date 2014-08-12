@@ -64,7 +64,7 @@ public class MBEPlugin extends MBServerPlugin{
 		
 	private HashMap<String,Object>data;
 	private NameDataBase playerNameDB;
-	private final float version = (float) 1.20;
+	private final float version = (float) 1.21;
 	private FreezeManager FreezeMan;
 	public final static String MANIFEST_NAME = "MbEssentials";
 	private final String vUrl = "http://mbessentials.bl.ee/update/version.txt";
