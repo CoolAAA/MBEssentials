@@ -4,10 +4,8 @@ import com.mbserver.api.dynamic.ChatColor;
 import com.mbserver.api.events.EventHandler;
 import com.mbserver.api.events.Listener;
 import com.mbserver.api.events.PlayerChatEvent;
-
 import plugins.mbes.Config;
 
-import com.mbserver.api.game.Player;
 
 
 public class NicknameHandler implements Listener {
@@ -17,35 +15,19 @@ public class NicknameHandler implements Listener {
         this.config = config;
     }
 
-	// player = the event :| WHY?!
     @EventHandler
     public void setMessage( PlayerChatEvent player ) {
-        final String message = player.getMessage();
-        final String alterTag = "MBES_ALTER"
-        if(!message.contains(alterTag)){
-            player.setCancelled(true);	
-            
-            final Player name = player.getPlayer();
-    	    final String nickname = this.config.getPlayerNickname(name);
-    	    final Server server = player.getServer();
-    	    
-    	    if (nickname == null){
-            //Do nothing
-            return;
-            }
-            //ChatColor color = player.getServer().getPermissionsHandler().getColor(name);
-    	    //player.setColor(color);
-            //player.setMessage(color + config.getNicknamePrefix() + nickname + ": " + ChatColor.WHITE + message);
         
-            PlayerChatEvent newEvent = new PlayerChatEvent(name, message + alterTag, ChatColor.WHITE);
-	    server.getPluginManager().triggerEvent(newEvent);
-	    if(newEvent.isCancelled()){
-		//boo :(
-	    }else{
-		server.broadcast(color + config.getNicknamePrefix() + nickname + ": " + ChatColor.WHITE + message.replace(alterTag,""));
-	    }
+    	final String message = player.getMessage();
         
-        
-  
-    }		
+        if(!this.config.getPlayerNickname(player.getPlayer()).equals("")) { // If the player has a nickname
+        	
+        	player.setCancelled(true);
+        	ChatColor color = player.getServer().getPermissionsHandler().getColor(player.getPlayer());
+        	player.getServer().broadcast(color + config.getNicknamePrefix() + this.config.getPlayerNickname(player.getPlayer()) + ": " + ChatColor.WHITE + message);
+        	
+        }
+       
+    }
+    
 }
