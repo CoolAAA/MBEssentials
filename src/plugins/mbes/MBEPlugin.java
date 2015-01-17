@@ -1,22 +1,28 @@
 package plugins.mbes;
 
+
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
+
 import plugins.mbes.commands.ChatReplaceCmds;
+import plugins.mbes.commands.Commands;
 import plugins.mbes.commands.DelNickname;
 import plugins.mbes.commands.Freeze;
+import plugins.mbes.commands.MbesVer;
 import plugins.mbes.commands.ModCmds;
 import plugins.mbes.commands.MoneyCmds;
 import plugins.mbes.commands.Mute;
@@ -32,7 +38,6 @@ import plugins.mbes.commands.Nickname;
 import plugins.mbes.handler.AccountMaker;
 import plugins.mbes.handler.ChatReplacerHandler;
 import plugins.mbes.handler.FreezeHandler;
-import plugins.mbes.handler.KillHandler;
 import plugins.mbes.handler.LogHandler;
 import plugins.mbes.handler.MuteHandler;
 import plugins.mbes.handler.NameHandler;
@@ -54,15 +59,21 @@ import plugins.mbes.misc.WorldBackup;
 @Manifest(name="MbEssentials",authors = {"TheMushyPeas","AAAA","Abiram"},config = Config.class)
 
 public class MBEPlugin extends MBServerPlugin{
+	
+	
+		
 	private HashMap<String,Object>data;
 	private NameDataBase playerNameDB;
-	private final float version = (float) 1.15;
+	private final float version = (float) 1.21;
 	private FreezeManager FreezeMan;
 	public final static String MANIFEST_NAME = "MbEssentials";
 	private final String vUrl = "http://mbessentials.bl.ee/update/version.txt";
 	private final String pUrl = "http://mbessentials.bl.ee/update/MbEssentials.jar";
 	private final String wnUrl = "http://mbessentials.bl.ee/update/whatsnew.txt";
 	
+	//////////////////////////////////////////////
+	public boolean enableUpdater = true; // Only set this to "false" if the plugin is being compiled for the SW hosted servers - e.g your name is RENS
+	////////////////////////////////////////////// This option can NOT be specified in the config, as it is a nessecary part of the plugin.
 	
 	private final String[] paths = {"plugins/MbEssentials/Data/MbEssentials.jar","plugins/MbEssentials/Data/ver.dat","plugins/MbEssentials/Data/wn.dat"};
 	private LogManager logm;
@@ -94,95 +105,118 @@ public class MBEPlugin extends MBServerPlugin{
 			if(!file.exists())
 				file.mkdir();
 		}
-		if(!new File("plugins/MbEssentials/Data").isDirectory()){
-		new File("plugins/MbEssentials/Data").mkdirs();
+		
+		if(enableUpdater == true){
+			if(!new File("plugins/MbEssentials/Data").isDirectory()){
+				new File("plugins/MbEssentials/Data").mkdirs();
+			}
 		}
+		else{
+			new File("plugins/MbEssentials/Data").delete();
+		}
+		
 	}
 	
 	@Override
 	public void onEnable() {
 		
-		this.getLogger().info("You are currently running MbEssentials version: " + version);
-		
-		File f = new File("plugins/MbEssentials/Data/wn.dat");
-		if(f.exists()) {
-		this.getLogger().info("What's new in this version:");
-		this.getLogger().info("");
-		try{
-			  //Reading the what's new file.
-			  FileInputStream fstream = new FileInputStream("plugins/MbEssentials/Data/wn.dat");
-			  DataInputStream in = new DataInputStream(fstream);
-			  BufferedReader br = new BufferedReader(new InputStreamReader(in));
-			  String strLine;
-			  while ((strLine = br.readLine()) != null)   {
-				  this.getLogger().info("");
-				  this.getLogger().info(strLine);
-				  this.getLogger().info("");
-				  Thread.sleep(5000);
-			  }
-			  in.close();
-		}
-		catch (Exception e){
-			  e.printStackTrace();
-		}
-	    
-	    boolean success = f.delete();
-	    
-	    if (!success) {
-	    	this.getLogger().info("Changelog File Deletion Failed! You must manually remove it yourself, by deleting this file:");
-	    	this.getLogger().info(paths[2]);
-	    	try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-	    	
-	    }
-	    	
-		}
-		
-		this.getLogger().info("Checking for an update to MbEssentials...");
-		
-		try { 
-			if(Downloader.checkUpdate(pUrl, vUrl, wnUrl, paths[0],paths[1],paths[2],version)){
-				this.getLogger().info("MbEssentials was successfully updated  to the latest version!");
-				Thread.sleep(4000);
-				this.getLogger().warning("In order to apply the new MbEssentials update, the server must restart.");
-				Thread.sleep(4000);
-				this.getLogger().warning("Your server will now shut down in order to apply the update.");
-				Thread.sleep(4000);
-				this.getLogger().warning("When you start it up again, the latest version of MbEssentials will be installed!");
-				Thread.sleep(4000);
-				
-				 this.getPluginManager().registerEventHandler(new UpdateHandler());
-					
-			}else{
-				this.getLogger().info("You are already running the latest version of MbEssentials!");
-			}
-		} catch (IOException e1) {
-			try {
-				File lFile = new File("plugins/MbEssentials/Download-Error-" + new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date()));
-				lFile.createNewFile();
-				PrintWriter err = new PrintWriter(lFile);
-				e1.printStackTrace(err);
-				this.getLogger().warning("Could not update MbEssentials. An error log was created at:" + lFile.getPath());
-			} catch (FileNotFoundException e2) {
-				e2.printStackTrace();
-				this.getLogger().warning("Please report this error to the MbEssentials forums, and we will try and help you!");
-			} catch (IOException e2) {
-				e2.printStackTrace();
-				this.getLogger().warning("Please report this error to the MbEssentials forums, and we will try and help you!");
-			}
-		} catch (InterruptedException e1) {
-
-			e1.printStackTrace();
-		}
-		
-		this.getLogger().info("Thanks for using MBEssentials by AAAA, Abiram and TheMushyPeas!");
-		this.getLogger().info("Please report any bugs and glitches to the forums!");
-		this.getLogger().info("Don't forget to check out our website as well for lots of help and instructions: mbessentials.bl.ee");
 		config = this.getConfig();
 		this.saveConfig();
+		
+		if(enableUpdater == true){
+			File cln = new File("plugins/MbEssentials/version.dat");
+			if(cln.exists()) {
+				try {
+					Downloader.downloadFile("http://mbessentials.bl.ee/update/whatsnew.txt", "plugins/MbEssentials/Data/wn.dat");
+				} catch (IOException e) {
+						e.printStackTrace();
+				}
+				cln.delete();
+			}
+		}
+		
+		if(enableUpdater == true){
+			File f = new File("plugins/MbEssentials/Data/wn.dat");
+			
+			if(f.exists()) {
+				if(config.isEnableChangeLog()){
+				this.getLogger().info("What's new in this version:");
+				this.getLogger().info("");
+				try{
+					  FileInputStream fstream = new FileInputStream("plugins/MbEssentials/Data/wn.dat");
+					  DataInputStream in = new DataInputStream(fstream);
+					  BufferedReader br = new BufferedReader(new InputStreamReader(in));
+					  String strLine;
+					  while ((strLine = br.readLine()) != null)   {
+						  this.getLogger().info("");
+						  this.getLogger().info(strLine);
+						  this.getLogger().info("");
+						  Thread.sleep(1000);
+					  }
+					  in.close();
+				}
+				
+				catch (Exception e){
+					
+					  e.printStackTrace();
+				}
+			    
+				
+		    	
+			}
+			boolean success = f.delete();
+			    
+			if (!success) {
+			    this.getLogger().info("Changelog deletion failed - please delete it from: plugins/MbEssentials/Data/wn.dat");
+			}
+			}
+		}
+		
+		
+		this.getLogger().info("You are currently running MbEssentials version: " + version);
+		if(enableUpdater == true){
+			this.getLogger().info("Checking for an update to MbEssentials...");
+			
+			try { 
+				if(Downloader.checkUpdate(pUrl, vUrl, wnUrl, paths[0],paths[1],paths[2],version)){
+					this.getLogger().info("MbEssentials was successfully updated  to the latest version!");
+					Thread.sleep(3000);
+					this.getLogger().warning("In order to apply the new MbEssentials update, the server must restart.");
+					Thread.sleep(3000);
+					this.getLogger().warning("Your server will now shut down in order to apply the update.");
+					Thread.sleep(3000);
+					this.getLogger().warning("When you start it up again, the latest version of MbEssentials will be installed!");
+					Thread.sleep(3000);
+					
+					this.getPluginManager().registerEventHandler(new UpdateHandler());
+						
+				}else{
+					this.getLogger().info("You are already running the latest version of MbEssentials!");
+				}
+			} catch (IOException e1) {
+				try {
+					File lFile = new File("plugins/MbEssentials/Download-Error-" + new SimpleDateFormat("dd_MMM_yy_HH_mm_ss").format(new Date()));
+					lFile.createNewFile();
+					PrintWriter err = new PrintWriter(lFile);
+					e1.printStackTrace(err);
+					this.getLogger().warning("Could not update MbEssentials. An error log was created at:" + lFile.getPath());
+				} catch (FileNotFoundException e2) {
+					e2.printStackTrace();
+					this.getLogger().warning("Please report this error to the MbEssentials forums, and we will try and help you!");
+				} catch (IOException e2) {
+					e2.printStackTrace();
+					this.getLogger().warning("Please report this error to the MbEssentials forums, and we will try and help you!");
+				}
+			} catch (InterruptedException e1) {
+
+				e1.printStackTrace();
+			}
+		}
+		else{
+			this.getLogger().info("It appears that you are using a SW hosted minebuilder server!");
+			this.getLogger().info("All updates to this plugin are therefore handled by SW.");
+		}
+		
 		chatrp = this.getServer().getConfigurationManager().load(this,ChatReplacer.class);
 		if(chatrp == null)
 			chatrp = new ChatReplacer();
@@ -193,14 +227,9 @@ public class MBEPlugin extends MBServerPlugin{
 		if(playerNameDB == null)
 			playerNameDB = new NameDataBase();
 		
-		//Cleanup from old versions of Mbes.
-		File cln = new File("plugins/MbEssentials/version.dat");
-		if(cln.exists()) {
-			cln.delete();
-		}
-        	//this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
-         	// if(config.isEnableDebug())
-        		// this.getLogger().info("Successfully registered command: /kill");
+        this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
+         	if(config.isEnableDebug())
+        		this.getLogger().info("Successfully registered command: /kill");
 
 		
 		this.getPluginManager().registerCommand("sudo",new ModCmds(this.getServer()));
@@ -222,6 +251,8 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getPluginManager().registerCommand("tphere",new Tphere(this.getServer()));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered command: /tphere");
+		 
+		 this.getPluginManager().registerCommand("mbesver",new MbesVer(version));
 			 
 		this.getPluginManager().registerCommand("coords",new Coords(this.getServer()));
 		 if(config.isEnableDebug())
@@ -263,6 +294,10 @@ public class MBEPlugin extends MBServerPlugin{
 		this.getPluginManager().registerCommand("mute",new Mute(this.getServer(),data));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered command: /mute");
+		
+		this.getPluginManager().registerCommand("unmute",new Mute(this.getServer(),data));
+		 if(config.isEnableDebug())
+			 this.getLogger().info("Successfully registered command: /unmute");
 		
 		this.getPluginManager().registerEventHandler(new MuteHandler(data));
 		 if(config.isEnableDebug())
@@ -391,13 +426,15 @@ public class MBEPlugin extends MBServerPlugin{
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: ChatReplacerHandler");
 		 
-		 this.getPluginManager().registerCommand("forceupdate", new UpdateCmds(pUrl, vUrl,this.getServer(), version, paths, pUrl));
-		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered command: /forceupdate");
-		 
-		 this.getPluginManager().registerCommand("checkupdate", new UpdateCmds(pUrl, vUrl,this.getServer(), version, paths, pUrl));
-		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered command: /checkupdate");
+		 if(enableUpdater == true){ //These commands are only needed for manually hosted servers
+			 this.getPluginManager().registerCommand("forceupdate", new UpdateCmds(pUrl, vUrl,this.getServer(), version, paths, pUrl));
+			 if(config.isEnableDebug())
+				 this.getLogger().info("Successfully registered command: /forceupdate");
+			 
+			 this.getPluginManager().registerCommand("checkupdate", new UpdateCmds(pUrl, vUrl,this.getServer(), version, paths, pUrl));
+			 if(config.isEnableDebug())
+				 this.getLogger().info("Successfully registered command: /checkupdate");
+		 }
 		 
 		 this.getPluginManager().registerCommand("freeze",new String[] {"frz"},new Freeze(this.getServer(),FreezeMan));
 		 if(config.isEnableDebug())
@@ -415,10 +452,6 @@ public class MBEPlugin extends MBServerPlugin{
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: FreezeHandler");
 		 
-		 this.getPluginManager().registerEventHandler(new KillHandler());
-		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered handler: KillHandler");
-		 
 		 this.getPluginManager().registerEventHandler(new NicknameHandler(config));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: NicknameHandler");
@@ -427,10 +460,11 @@ public class MBEPlugin extends MBServerPlugin{
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: PMBlockHandler");
 		 
-		 this.getPluginManager().registerEventHandler(new UpdateNotifyHandler(version, paths, pUrl));
-		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered handler: UpdateNotifyHandler");
-		 
+		 if(enableUpdater == true){ //These commands are only needed for manually hosted servers
+			 this.getPluginManager().registerEventHandler(new UpdateNotifyHandler(version, paths, pUrl));
+			 if(config.isEnableDebug())
+				 this.getLogger().info("Successfully registered handler: UpdateNotifyHandler");
+		 }
 		 
 		 this.getPluginManager().registerEventHandler(new NameHandler(playerNameDB));
 		 this.getPluginManager().registerCommand("fullnames", new String[] {"fullnames","fn","names"},new NameDB(playerNameDB));
@@ -455,9 +489,7 @@ public class MBEPlugin extends MBServerPlugin{
 				e.printStackTrace();
 			}
 		}
-		else{
-			this.getLogger().info("World Backup is Disabled. It is highly recommended that you turn it on!");
-		}
+		
 	}
 	
 	@Override
@@ -487,13 +519,39 @@ public class MBEPlugin extends MBServerPlugin{
 			this.getLogger().info("Successfully saved report manager and NameDataBase!");
 			
 		this.getLogger().info("Have a nice day - from the MBEssentials Team!");
-		this.getLogger().info("Your feedback is welcome - post it on our forums!");
 		
-		if(new File("plugins/MbEssentials/Data/MbEssentials.jar").isFile()){
-			File mbes = new File("plugins/MbEssentials.jar");
-			new File("plugins/MbEssentials/Data/MbEssentials.jar").renameTo(mbes);
-			new File("plugins/MbEssentials/Data/MbEssentials.jar").delete();
+		if(enableUpdater == true){
+			if(new File("plugins/MbEssentials/Data/MbEssentials.jar").isFile()){
+				
+			    FileChannel sourceChannel = null;
+			    FileChannel destChannel = null;
+			    File source = new File("plugins/MbEssentials/Data/MbEssentials.jar");
+			    File dest = new File("plugins/MbEssentials.jar");
+			    dest.delete();
+			    try {
+			    	
+			        sourceChannel = new FileInputStream(source).getChannel();
+			        destChannel = new FileOutputStream(dest).getChannel();
+			        destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
+			       } catch (IOException e) {
+					e.printStackTrace();
+				}finally{
+			           try {
+						sourceChannel.close();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+			           try {
+						destChannel.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+			       }
+			
+	
+			source.delete();
 			this.getLogger().warning("All MbEssentials Update Files Were Downloaded And Installed Successfully");
+		}
 		}
 		
 	}

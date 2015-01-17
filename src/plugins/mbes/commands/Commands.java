@@ -26,11 +26,7 @@ public class Commands implements CommandExecutor{
 				if(sender.hasPermission("mbes.cmds.kill") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.cmds.*"))
 				{
 					Player p = (Player)sender;
-					p.getLocation().getWorld().setBlockWithoutUpdate(p.getLocation(),Material.BEDROCK);
-					p.getLocation().getWorld().setBlockWithoutUpdate(p.getLocation().getBlockX(),p.getLocation().getBlockY() + 1,p.getLocation().getBlockZ(),Material.BEDROCK);
-					
-					p.setMetaData(Keys.kill_key,true);
-					p.setMetaData(Keys.kill_location_key,p.getLocation());
+					p.kill();
 				}
 				
 				else
@@ -49,9 +45,7 @@ public class Commands implements CommandExecutor{
 						sender.sendMessage("The player '" + args[0] + "' was not found!");
 					else
 					{
-						//needs alternative
-						temp.teleport(temp.getLocation().getWorld(),temp.getLocation().getBlockX(),-5,temp.getLocation().getBlockZ());
-						sender.sendMessage("The player '" + temp.getDisplayName() + "' has been killed!");
+						temp.kill();
 						
 					}
 				}

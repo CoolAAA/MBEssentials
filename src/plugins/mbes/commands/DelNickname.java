@@ -16,6 +16,11 @@ public class DelNickname implements CommandExecutor {
 	public void execute(String command, CommandSender sender, String[] args,
 			String label) {
 		
+		if(!(sender instanceof Player)){
+			sender.sendMessage("This command can only be executed by players!");
+			return;
+		}
+		
 		Player player = null;
     	player = (Player)sender; 
     	this.config.setPlayerNickname(player, null);

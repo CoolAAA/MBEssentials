@@ -3,13 +3,16 @@ package plugins.mbes.misc;
 import java.util.ArrayList;
 
 import com.mbserver.api.dynamic.Resource;
+import com.mbserver.api.dynamic.StatusBar;
 import com.mbserver.api.dynamic.UILine;
+import com.mbserver.api.game.Equipment;
 import com.mbserver.api.game.EquipmentSlot;
 import com.mbserver.api.game.GameMode;
 import com.mbserver.api.game.ItemStack;
 import com.mbserver.api.game.Location;
 import com.mbserver.api.game.Material;
 import com.mbserver.api.game.Player;
+import com.mbserver.api.game.PlayerAnimationState;
 import com.mbserver.api.game.World;
 
 public class CmdSender implements Player{
@@ -120,16 +123,6 @@ public class CmdSender implements Player{
 	}
 
 	@Override
-	public void setEquipmentSlot(EquipmentSlot slot, ItemStack newItem) {
-		ref.setEquipmentSlot(slot, newItem);
-	}
-
-	@Override
-	public ItemStack getEquippedItem(EquipmentSlot slot) {
-		return ref.getEquippedItem(slot);
-	}
-
-	@Override
 	public boolean giveItem(ItemStack stack, boolean sendPacket) {
 		return ref.giveItem(stack, sendPacket);
 	}
@@ -222,6 +215,103 @@ public class CmdSender implements Player{
 	
 	public String[] getMessage(){
 		return msg.toArray(new String[0]);
+	}
+
+	@Override
+	public float damage(float damage) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public float damageWithKnockback(float damage, Location source,
+			float knockback) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void heal(float healing) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void kill() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public float getHealth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public float getDefaultHealth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public float getHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isLoggedIn() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void switchToTempPlayer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void switchToNormalPlayer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public PlayerAnimationState getState() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setEquipmentSlot(EquipmentSlot slot, Equipment equipment) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Equipment getEquippedItem(EquipmentSlot slot) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void playSound(String sound, float volume) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sendMessage(String format, Object... args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public StatusBar getStatusBar() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

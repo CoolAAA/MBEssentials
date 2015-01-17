@@ -25,6 +25,7 @@ public class Config {
 	 	private boolean enableReportSystem;
 	 	private boolean enableWorldBackupStart;
 	 	private boolean enableWorldBackupSave;
+	 	private boolean enableChangeLog;
 		private int[] blockedBlockIDs;
 	    	private int[] blockedToolIDs;
 	    	private int amountOfBackupsPerDay;
@@ -54,6 +55,7 @@ public class Config {
 	           this.setFirstUse(true);
 	           this.setAmountOfBackupsPerDay(2);
 	           this.setNicknamePrefix("~");
+	           this.setEnableChangeLog(true);
 	           
 	 	}
 	 	
@@ -203,6 +205,14 @@ public class Config {
 		}
 		public String getNicknamePrefix() {
 			return nicknamePrefix;
+		}
+		
+		public void setEnableChangeLog(boolean changelog) {
+			this.enableChangeLog=changelog;
+		}
+
+		public boolean isEnableChangeLog() {
+			return enableChangeLog;
 		}
 		
 

@@ -8,7 +8,6 @@ import com.mbserver.api.events.BlockBreakEvent;
 import com.mbserver.api.events.BlockPlaceEvent;
 import com.mbserver.api.events.EventHandler;
 import com.mbserver.api.events.Listener;
-import com.mbserver.api.events.PlayerDeathEvent;
 import com.mbserver.api.events.PlayerPvpEvent;
 import com.mbserver.api.events.PreCommandEvent;
 import com.mbserver.api.game.Location;
@@ -32,6 +31,7 @@ public class LogHandler implements Listener{
 		this.ID = ID;
 	}
 
+	/* Temporary fix - player death event no longer exists
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e){
 		if(config.isEnableDeathLog())
@@ -46,6 +46,7 @@ public class LogHandler implements Listener{
 			}
 		}
 	}
+	*/
 
 
 	@EventHandler
@@ -104,9 +105,9 @@ public class LogHandler implements Listener{
         		String log = "ERROR!";
 			
         		try{
-        			log = " " +name + " placed a block of " + event1.getMaterial().getName();
+        			log = " ["+event1.getLocation().getBlockX() + "," + event1.getLocation().getBlockY() + "," + event1.getLocation().getBlockZ() + "] " +name + " placed a block of " + event1.getMaterial().getName();
         		}catch(NullPointerException err1){
-				log = " " + name + " placed a block (ID) of " + event1.getBlock().getBlockID();
+				log = " ["+event1.getLocation().getBlockX() + "," + event1.getLocation().getBlockY() + "," + event1.getLocation().getBlockZ() + "] " +name + " placed a block (ID) of " + event1.getBlock().getBlockID();
         		}
 			
 			try {
@@ -118,7 +119,7 @@ public class LogHandler implements Listener{
 				Sign sign1 = (Sign) event1.getBlock().getBlockData();
 				String message = sign1.getText();
 				//String message = event1.getBlock().getBlockData().toString();
-				String log2 = " " + name + " placed a sign saying: " + message;
+				String log2 = " ["+event1.getLocation().getBlockX() + "," + event1.getLocation().getBlockY() + "," + event1.getLocation().getBlockZ() + "] " +name + " placed a sign saying: " + message;
 				try {
 					logger.writeLog(log2,ID[3],true);
 				} catch (IOException e1) {
@@ -136,9 +137,9 @@ public class LogHandler implements Listener{
         		String log = "ERROR!";
     			
         		try{
-        			log = " " +name + " broke a block of " + event2.getMaterial().getName();
+        			log = " ["+event2.getLocation().getBlockX() + "," + event2.getLocation().getBlockY() + "," + event2.getLocation().getBlockZ() + "] " +name + " broke a block of " + event2.getMaterial().getName();
         		}catch(NullPointerException err1){
-				log = " " + name + " broke a block (ID) of " + event2.getBlock().getBlockID();
+				log = " ["+event2.getLocation().getBlockX() + "," + event2.getLocation().getBlockY() + "," + event2.getLocation().getBlockZ() + "] " +name + " broke a block (ID) of " + event2.getBlock().getBlockID();
         		}
         		
 			try {
