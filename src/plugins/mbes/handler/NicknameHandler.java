@@ -29,7 +29,7 @@ public class NicknameHandler implements Listener {
             String message = player.getMessage();
             ChatColor color = player.getServer().getPermissionsHandler().getColor(name);
     		player.setColor(color);
-        	player.setMessage(color + config.getNicknamePrefix() + nickname + ": " + ChatColor.WHITE + message);
+        	player.overrideFormat(color + config.getNicknamePrefix() + nickname + ": " + ChatColor.WHITE + message);
         	
         }
     	
