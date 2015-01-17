@@ -1,10 +1,12 @@
 package plugins.mbes.commands;
 
+import plugins.mbes.MBEPlugin;
 import plugins.mbes.misc.CmdSender;
 
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
 import com.mbserver.api.Server;
+import com.mbserver.api.dynamic.ChatColor;
 import com.mbserver.api.game.Player;
 
 public class ModCmds implements CommandExecutor{
@@ -47,11 +49,11 @@ public class ModCmds implements CommandExecutor{
 					
 					sender.sendMessage("Player '" + tmp.getDisplayName() + "' has been kicked!");
 				}
-				sender.sendMessage("All players have been kicked!");
+				sender.sendMessage(MBEPlugin.tag + "All players have been kicked!");
 				
 			}
 			else
-				sender.sendMessage("You don't have permission to use this command!");
+				sender.sendMessage(MBEPlugin.tag + "You don't have permission to use this command!");
 		}
 		
 		else if(command.equals("sudo"))
@@ -59,7 +61,7 @@ public class ModCmds implements CommandExecutor{
 			if(sender.hasPermission("mbes.mod.sudo") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				if(args.length < 2) {
-					sender.sendMessage("Syntax:/sudo <playerName> <command> [args]");
+					sender.sendMessage(MBEPlugin.tag + "Syntax: " + ChatColor.RED + "/sudo " + ChatColor.GREEN + "<playerName> <command> [args]");
 					return;
 				}
 				
@@ -78,7 +80,7 @@ public class ModCmds implements CommandExecutor{
 						}
 						CmdSender sudo = new CmdSender(temp);
 						sudo.executeCommand(args[1], arg);
-						sender.sendMessage("Returned:");
+						sender.sendMessage(MBEPlugin.tag + "Returned:");
 						
 						for(String e : sudo.getMessage())
 						{
@@ -92,16 +94,16 @@ public class ModCmds implements CommandExecutor{
 						sudo.executeCommand(args[1],new String[] {""});
 						for(String e : sudo.getMessage())
 						{
-							sender.sendMessage(e);
+							sender.sendMessage(MBEPlugin.tag + e);
 						}
 					}
 				}
 				else
-					sender.sendMessage("The Player '" + args[0] + "' was not found!");
+					sender.sendMessage(MBEPlugin.tag + "The Player '" + ChatColor.RED + args[0] + ChatColor.WHITE +  "' was not found!");
 			}
 			
 			else
-				sender.sendMessage("You don't have permission to use this command!");
+				sender.sendMessage(MBEPlugin.tag + "You don't have permission to use this command!");
 		}
 		
 		else if(command.equals("sayas"))
@@ -109,20 +111,19 @@ public class ModCmds implements CommandExecutor{
 			if(sender.hasPermission("mbes.mod.sayas") || sender.hasPermission("mbes.mod.*") || sender.hasPermission("mbes.*"))
 			{
 				if(args.length < 2)
-					sender.sendMessage("Usage: /sayas <player> <message>");
+					sender.sendMessage(MBEPlugin.tag + "Syntax: " + ChatColor.RED + "/sayas " + ChatColor.GREEN + "<playerName> <message>");
 				
 				else
 				{
 					Player target = s.getPlayer(args[0]);
 					
 					if(target == null)
-						sender.sendMessage("The player '" + args[0] + "' was not found!");
-					
+						sender.sendMessage(MBEPlugin.tag + "The Player '" + ChatColor.RED + args[0] + ChatColor.WHITE +  "' was not found!");
 					
 				}
 			}
 			else
-				sender.sendMessage("You don't have permission to use this command!");
+				sender.sendMessage(MBEPlugin.tag + "You don't have permission to use this command!");
 		}
 	}
 

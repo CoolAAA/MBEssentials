@@ -1,9 +1,11 @@
 package plugins.mbes.commands;
 
 import plugins.mbes.Config;
+import plugins.mbes.MBEPlugin;
 
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
+import com.mbserver.api.dynamic.ChatColor;
 import com.mbserver.api.game.Player;
 
 public class Nickname implements CommandExecutor {
@@ -17,7 +19,7 @@ public class Nickname implements CommandExecutor {
 			String label) {
 		
 		if(!(sender instanceof Player)){
-			sender.sendMessage("This command can only be executed by players!");
+			sender.sendMessage(MBEPlugin.tag + "This command can only be executed by players!");
 			return;
 		}
 		
@@ -30,10 +32,10 @@ public class Nickname implements CommandExecutor {
 			
 			String nicktemp = this.config.getPlayerNickname(player);
 			if (nicktemp == null){
-				sender.sendMessage("You do not currently have a nickname");
+				sender.sendMessage(MBEPlugin.tag + "You do not currently have a nickname");
 			}
 			else {
-			sender.sendMessage("Your current nickname is: " + nicktemp );
+			sender.sendMessage(MBEPlugin.tag + "Your current nickname is: " + ChatColor.RED + nicktemp );
 			}
 			
 		}
@@ -41,14 +43,14 @@ public class Nickname implements CommandExecutor {
 		else{
 			
 			this.config.setPlayerNickname(player, args[0]);
-			sender.sendMessage("Your new nickname is: " + this.config.getPlayerNickname(player));
+			sender.sendMessage(MBEPlugin.tag + "Your new nickname is: " + ChatColor.RED + this.config.getPlayerNickname(player));
 					
 			
 			}
     	}
     	else{
     		
-    		sender.sendMessage("You do not have permission to use /nick");
+    		sender.sendMessage(MBEPlugin.tag + "You do not have permission to use /nick");
     		
     	}
 }

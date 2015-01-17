@@ -1,11 +1,11 @@
 package plugins.mbes.commands;
 
-import plugins.mbes.misc.Keys;
+import plugins.mbes.MBEPlugin;
 
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
 import com.mbserver.api.Server;
-import com.mbserver.api.game.Material;
+import com.mbserver.api.dynamic.ChatColor;
 import com.mbserver.api.game.Player;
 
 public class Commands implements CommandExecutor{
@@ -25,13 +25,16 @@ public class Commands implements CommandExecutor{
 			{
 				if(sender.hasPermission("mbes.cmds.kill") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.cmds.*"))
 				{
+					
+					sender.sendMessage(MBEPlugin.tag + "you have been killed!");
 					Player p = (Player)sender;
 					p.kill();
+					
 				}
 				
 				else
 				{
-					sender.sendMessage("You don't have permission to use this command!");
+					sender.sendMessage(MBEPlugin.tag + "You don't have permission to use this command!");
 				}
 			}
 			
@@ -42,16 +45,18 @@ public class Commands implements CommandExecutor{
 					Player temp = s.getPlayer(args[0]);
 					
 					if(temp == null)
-						sender.sendMessage("The player '" + args[0] + "' was not found!");
+						sender.sendMessage(MBEPlugin.tag + "The player '" + ChatColor.RED + args[0] + ChatColor.WHITE +  "' was not found!");
 					else
 					{
 						temp.kill();
+						sender.sendMessage(MBEPlugin.tag + "The player '" + ChatColor.RED + args[0] + ChatColor.WHITE +  "' was killed!" );
 						
 					}
 				}
 			}
 			
 		}
+		
 	}
 	
 

@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import plugins.mbes.MBEPlugin;
 import plugins.mbes.misc.Downloader;
 
 import com.mbserver.api.CommandExecutor;
@@ -52,7 +53,7 @@ public class UpdateCmds implements CommandExecutor{
 				
 			}
 			else
-				sender.sendMessage("You don't have permission to use this command!");
+				sender.sendMessage(MBEPlugin.tag + "You don't have permission to use this command!");
 		}
 		
 		else if(command.equals("checkupdate"))
@@ -60,7 +61,7 @@ public class UpdateCmds implements CommandExecutor{
 			if(sender.hasPermission("mbes.cmds.update") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.cmds.*"))
 			{
 				
-				sender.sendMessage("You have started an MbEssentials update check!");
+				sender.sendMessage(MBEPlugin.tag + "You have started an MbEssentials update check!");
 				s.getLogger().info("Checking for an update to MBEssentials!");
 				
 				Thread th = new Thread(){
@@ -87,7 +88,7 @@ public class UpdateCmds implements CommandExecutor{
 			}
 			
 			else
-				sender.sendMessage("You don't have permission to use this command!");
+				sender.sendMessage(MBEPlugin.tag + "You don't have permission to use this command!");
 		}
 	}
 

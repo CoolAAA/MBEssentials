@@ -1,11 +1,13 @@
 package plugins.mbes.commands;
 
+import plugins.mbes.MBEPlugin;
 import plugins.mbes.managers.ReportManager;
 import plugins.mbes.misc.Report;
 
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
 import com.mbserver.api.Server;
+import com.mbserver.api.dynamic.ChatColor;
 import com.mbserver.api.game.Player;
 
 public class ReportCmds implements CommandExecutor{
@@ -42,22 +44,22 @@ public class ReportCmds implements CommandExecutor{
 							}
 							
 							report.newReport(new Report((Player)sender,rp,reason));
-							sender.sendMessage("Your report has been sent to be reviewed by the moderators!");
+							sender.sendMessage(MBEPlugin.tag + "Your report has been sent to be reviewed by the moderators!");
 						}
 						
 						else
-							sender.sendMessage("The player '" + args[0] + "' was not found!");
+							sender.sendMessage(MBEPlugin.tag + "The player '" + ChatColor.RED + args[0] + ChatColor.WHITE + "' was not found!");
 					}
 					else
-						sender.sendMessage("Syntax:/report <player> <reason>");
+						sender.sendMessage(MBEPlugin.tag + "Syntax: " + ChatColor.RED + "/report " + ChatColor.GREEN + "<player> <reason>");
 				}
 				
 				else
-					sender.sendMessage("You don't have permission to use this command!");
+					sender.sendMessage(MBEPlugin.tag + "You don't have permission to use this command!");
 			}
 			
 			else
-				sender.sendMessage("This command can only be executed as a player!");
+				sender.sendMessage(MBEPlugin.tag + "This command can only be executed as a player!");
 		}
 		
 		else if(command.equals("vwreport") && args.length == 0)
@@ -67,11 +69,11 @@ public class ReportCmds implements CommandExecutor{
 				Report[] rps = report.getAll();
 				
 				if(rps == null)
-					sender.sendMessage("There are no reports!");
+					sender.sendMessage(MBEPlugin.tag + "There are no reports!");
 				
 				else
 				{
-					sender.sendMessage("  Reports\n-------------");
+					sender.sendMessage(MBEPlugin.tag + "  Reports\n-------------");
 					for(Report e : rps)
 					{
 						sender.sendMessage( e.getId() + " " + e.getName());
@@ -79,7 +81,7 @@ public class ReportCmds implements CommandExecutor{
 				}
 			}
 			else
-				sender.sendMessage("You don't have permission to use this command!");
+				sender.sendMessage(MBEPlugin.tag + "You don't have permission to use this command!");
 		}
 		
 		else if(command.equals("vwreport"))
@@ -93,19 +95,19 @@ public class ReportCmds implements CommandExecutor{
 					Report rp = report.getReport(new Report(vnum));
 					
 					if(rp == null)
-						sender.sendMessage("The report '" + vnum + "' was not found!");
+						sender.sendMessage(MBEPlugin.tag + "The report '" + ChatColor.RED + vnum + ChatColor.WHITE + "' was not found!");
 					
 					else
 					{
-						sender.sendMessage("'" + rp.getName() + "' reported " + rp.getReported() + "' for:");
-						sender.sendMessage(rp.getReason());
+						sender.sendMessage(MBEPlugin.tag + "'" + ChatColor.RED + rp.getName() + ChatColor.WHITE + "' reported " + ChatColor.RED + rp.getReported() + ChatColor.WHITE + "' for:");
+						sender.sendMessage(MBEPlugin.tag + ChatColor.RED + rp.getReason());
 					}
 				}catch(NumberFormatException e){
-					sender.sendMessage("Enter a valid number");
+					sender.sendMessage(MBEPlugin.tag + "Enter a valid number");
 				}
 			}
 			else
-				sender.sendMessage("You don't have permission to use this command!");
+				sender.sendMessage(MBEPlugin.tag + "You don't have permission to use this command!");
 		}
 		
 		else if(command.equals("delreport"))
@@ -113,7 +115,7 @@ public class ReportCmds implements CommandExecutor{
 			if(sender.hasPermission("mbes.mod.delreport") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				if(args.length == 0)
-					sender.sendMessage("Syntax:/delreport <number>");
+					sender.sendMessage(MBEPlugin.tag + "Syntax: " + ChatColor.RED + "/delreport " + ChatColor.GREEN + "<number>");
 				
 				else
 				{
@@ -121,18 +123,18 @@ public class ReportCmds implements CommandExecutor{
 						int vnum = Integer.parseInt(args[0]);
 						
 						if(report.delReport(new Report(vnum))){
-							sender.sendMessage("The report was deleted!");
+							sender.sendMessage(MBEPlugin.tag + "The report was deleted!");
 							report.update();
 						}
 						else
-							sender.sendMessage("The report '" + vnum + "' was not found!");
+							sender.sendMessage(MBEPlugin.tag + "The report '" + ChatColor.RED + vnum + ChatColor.WHITE + "' was not found!");
 					}catch(NumberFormatException e){
-						sender.sendMessage("Enter a valid number!");
+						sender.sendMessage(MBEPlugin.tag + "Enter a valid number!");
 					}
 				}
 			}
 			else
-				sender.sendMessage("You don't have permission to use this command!");
+				sender.sendMessage(MBEPlugin.tag + "You don't have permission to use this command!");
 		}
 		
 	}

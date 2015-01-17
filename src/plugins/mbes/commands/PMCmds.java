@@ -1,10 +1,13 @@
 package plugins.mbes.commands;
 
+import plugins.mbes.MBEPlugin;
 import plugins.mbes.misc.Keys;
 import plugins.mbes.misc.events.PMEvent;
+
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
 import com.mbserver.api.Server;
+import com.mbserver.api.dynamic.ChatColor;
 import com.mbserver.api.game.Player;
 
 import java.util.Arrays;
@@ -32,14 +35,14 @@ public class PMCmds implements CommandExecutor{
 					
 					if(target == null)
 					{
-						sender.sendMessage("The player '" + args[0] + "' was not found!");
+						sender.sendMessage(MBEPlugin.tag + "The player '" + ChatColor.RED + args[0] + ChatColor.WHITE + "' was not found!");
 						return;
 					}
 					
 					if(target.getMetaData(Keys.pm_blocked_key + sender.getName(),false) &&
 							sender instanceof Player)
 					{
-						sender.sendMessage("The player '" + target.getDisplayName() + "' has blocked you " +
+						sender.sendMessage(MBEPlugin.tag + "The player '" + ChatColor.RED + target.getDisplayName() + ChatColor.WHITE + "' has blocked you " +
 								"from sending them pm's");
 						return;
 					}
@@ -55,11 +58,11 @@ public class PMCmds implements CommandExecutor{
 					if(pm.isCancelled())
 						return;
 					
-					target.sendMessage(String.format("Pm from '%s': %s",sender.getName(),msg));
-					sender.sendMessage("Your pm has been sent to '" + target.getDisplayName() + "'");
+					target.sendMessage(MBEPlugin.tag + String.format("Pm from '%s': %s",sender.getName(),msg));
+					sender.sendMessage(MBEPlugin.tag + "Your pm has been sent to '" + ChatColor.RED + target.getDisplayName() + ChatColor.WHITE + "'");
 				}
 				else
-					sender.sendMessage("Usage: /pm <sendTo> <message>");
+					sender.sendMessage(MBEPlugin.tag + "Usage: " + ChatColor.RED + "/pm " + ChatColor.GREEN + "<sendTo> <message>");
 			}
 			else
 				denied(sender);
@@ -70,7 +73,7 @@ public class PMCmds implements CommandExecutor{
 		{
 			if(!(sender instanceof Player))
 			{
-				sender.sendMessage("This command can only be exectuted as a player");
+				sender.sendMessage(MBEPlugin.tag + "This command can only be exectuted as a player");
 				return;
 			}
 			
@@ -82,7 +85,7 @@ public class PMCmds implements CommandExecutor{
 					
 					if(target == null)
 					{
-						sender.sendMessage("The player '" + args[0] + "' was not found!");
+						sender.sendMessage(MBEPlugin.tag + "The player '" + ChatColor.RED + args[0] + ChatColor.WHITE + "' was not found!");
 						return;
 					}
 					
@@ -95,7 +98,7 @@ public class PMCmds implements CommandExecutor{
 				}
 				else
 				{
-					sender.sendMessage("Usage: /block <player>");
+					sender.sendMessage(MBEPlugin.tag + "Usage: " + ChatColor.RED + "/block " + ChatColor.GREEN + "<player>");
 				}
 			}
 			else
@@ -106,7 +109,7 @@ public class PMCmds implements CommandExecutor{
 		{
 			if(!(sender instanceof Player))
 			{
-				sender.sendMessage("This command can only be exectuted as a player");
+				sender.sendMessage(MBEPlugin.tag + "This command can only be exectuted as a player");
 				return;
 			}
 			
@@ -119,7 +122,7 @@ public class PMCmds implements CommandExecutor{
 					send.removeMetaData(Keys.pm_blocked_key + e.getDisplayName());
 				}
 				send.removeMetaData(Keys.pm_blockall_key);
-				sender.sendMessage("Every player online has been unblocked!");
+				sender.sendMessage(MBEPlugin.tag + "Every player online has been unblocked!");
 				return;
 			}
 			else
@@ -130,7 +133,7 @@ public class PMCmds implements CommandExecutor{
 		{
 			if(!(sender instanceof Player))
 			{
-				sender.sendMessage("This command can only be exectuted as a player");
+				sender.sendMessage(MBEPlugin.tag + "This command can only be exectuted as a player");
 				return;
 			}
 			
@@ -142,18 +145,18 @@ public class PMCmds implements CommandExecutor{
 					
 					if(target == null)
 					{
-						sender.sendMessage("The player '" + args[0] + "' was not found!");
+						sender.sendMessage(MBEPlugin.tag + "The player '" + ChatColor.RED + args[0] + ChatColor.WHITE + "' was not found!");
 						return;
 					}
 					
 					
 					Player send = (Player)sender;
 					send.removeMetaData(Keys.pm_blocked_key + target.getDisplayName());
-					sender.sendMessage("The player '" + target.getDisplayName() + "' has been unblocked");
+					sender.sendMessage(MBEPlugin.tag + "The player '" + ChatColor.RED + target.getDisplayName() + ChatColor.WHITE + "' has been unblocked");
 				}
 				else
 				{
-					sender.sendMessage("Usage: /unblock <player>");
+					sender.sendMessage(MBEPlugin.tag + "Usage: " + ChatColor.RED + "/unblock " + ChatColor.GREEN + "<player>");
 				}
 			}
 			else
@@ -164,7 +167,7 @@ public class PMCmds implements CommandExecutor{
 		{
 			if(!(sender instanceof Player))
 			{
-				sender.sendMessage("This command can only be exectuted as a player");
+				sender.sendMessage(MBEPlugin.tag + "This command can only be exectuted as a player");
 				return;
 			}
 			
@@ -175,7 +178,7 @@ public class PMCmds implements CommandExecutor{
 				for(Player e : server.getPlayers())
 				{
 					send.setMetaData(Keys.pm_blocked_key + e.getDisplayName(),true);
-					send.sendMessage(e.getDisplayName() + " has been blocked from sending you PM's");
+					send.sendMessage(MBEPlugin.tag + ChatColor.RED + e.getDisplayName() + ChatColor.WHITE + " has been blocked from sending you PM's");
 				}
 				
 				send.setMetaData(Keys.pm_blockall_key,true);
@@ -187,7 +190,7 @@ public class PMCmds implements CommandExecutor{
 	}
 	
 	private void denied(CommandSender s){
-		s.sendMessage("You don't have permission to use this command!");
+		s.sendMessage(MBEPlugin.tag +"You don't have permission to use this command!");
 	}
 	
 }

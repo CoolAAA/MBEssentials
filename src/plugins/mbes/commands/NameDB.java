@@ -1,5 +1,6 @@
 package plugins.mbes.commands;
 
+import plugins.mbes.MBEPlugin;
 import plugins.mbes.managers.NameDataBase;
 
 import com.mbserver.api.CommandExecutor;
@@ -24,7 +25,7 @@ public class NameDB implements CommandExecutor{
 				String[] data = db.getNames(args[0]);
 				
 				if(data == null)
-					sender.sendMessage("No players were found!");
+					sender.sendMessage(MBEPlugin.tag + "No players were found!");
 				
 				else
 					for(String e : data)
@@ -35,7 +36,7 @@ public class NameDB implements CommandExecutor{
 				
 				String[] data = db.getNames();
 				if(data == null)
-					sender.sendMessage("No players were found");
+					sender.sendMessage(MBEPlugin.tag + "No players were found");
 				
 				else
 					for(String e : data)
@@ -44,7 +45,7 @@ public class NameDB implements CommandExecutor{
 		}
 		else
 		{
-			sender.sendMessage("You don't have permission to use this command!");
+			sender.sendMessage(MBEPlugin.tag + "You don't have permission to use this command!");
 		}
 		
 	}

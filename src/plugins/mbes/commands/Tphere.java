@@ -1,7 +1,10 @@
 package plugins.mbes.commands;
 
+import plugins.mbes.MBEPlugin;
+
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
+import com.mbserver.api.dynamic.ChatColor;
 import com.mbserver.api.game.Location;
 import com.mbserver.api.game.Player;
 import com.mbserver.api.Server;
@@ -21,7 +24,7 @@ public class Tphere implements CommandExecutor {
     	if(args.length != 0)
     	{
     		if(!(sender instanceof Player))
-    			sender.sendMessage("Cannot execute as console!");
+    			sender.sendMessage(MBEPlugin.tag + "Cannot execute as console!");
     			
     		
     		else
@@ -38,24 +41,24 @@ public class Tphere implements CommandExecutor {
                 		
         				sendplayer.teleport(loc);
                 		
-                		sender.sendMessage(args[0] + " was teleported to you");
+                		sender.sendMessage(MBEPlugin.tag + ChatColor.RED + args[0] + ChatColor.WHITE + " was teleported to you");
                 		
         				}
                 	
                 	else{
-                			sender.sendMessage("The specified player could not be found");
+                			sender.sendMessage(MBEPlugin.tag + "The specified player could not be found");
                 		}
         	}
 
         	else {
-        	sender.sendMessage("You don't have permission to use this command!");
+        	sender.sendMessage(MBEPlugin.tag + "You don't have permission to use this command!");
         	}
     	}
         
     	}
     	
     	else
-    		sender.sendMessage("Syntax:/tphere <playerName>");
+    		sender.sendMessage(MBEPlugin.tag + "Syntax: " + ChatColor.RED + "/tphere " + ChatColor.GREEN + "<playerName>");
 
     }
 }

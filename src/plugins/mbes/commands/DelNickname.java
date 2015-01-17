@@ -1,6 +1,7 @@
 package plugins.mbes.commands;
 
 import plugins.mbes.Config;
+import plugins.mbes.MBEPlugin;
 
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
@@ -17,14 +18,14 @@ public class DelNickname implements CommandExecutor {
 			String label) {
 		
 		if(!(sender instanceof Player)){
-			sender.sendMessage("This command can only be executed by players!");
+			sender.sendMessage(MBEPlugin.tag + "This command can only be executed by players!");
 			return;
 		}
 		
 		Player player = null;
     	player = (Player)sender; 
     	this.config.setPlayerNickname(player, null);
-    	sender.sendMessage("Your nickname has been cleared!");
+    	sender.sendMessage(MBEPlugin.tag + "Your nickname has been cleared!");
 	}
 }
 		    

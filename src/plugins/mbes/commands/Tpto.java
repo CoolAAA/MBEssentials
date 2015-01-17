@@ -6,8 +6,11 @@
 
 package plugins.mbes.commands;
 
+import plugins.mbes.MBEPlugin;
+
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
+import com.mbserver.api.dynamic.ChatColor;
 import com.mbserver.api.game.Location;
 import com.mbserver.api.game.Player;
 import com.mbserver.api.Server;
@@ -27,7 +30,7 @@ public class Tpto implements CommandExecutor {
     	if(args.length != 0)
     	{
     		if(!(sender instanceof Player))
-    			sender.sendMessage("Cannot execute as console!");
+    			sender.sendMessage(MBEPlugin.tag + "Cannot execute as console!");
     			
     		
     		else
@@ -44,24 +47,24 @@ public class Tpto implements CommandExecutor {
                 		
         				player.teleport(loc);
                 		
-                		sender.sendMessage("You were teleported to " + args[0]);
+                		sender.sendMessage(MBEPlugin.tag + "You were teleported to " + ChatColor.RED + args[0]);
                 		
         				}
                 	
                 	else{
-                			sender.sendMessage("The specified player could not be found");
+                			sender.sendMessage(MBEPlugin.tag + "The specified player could not be found");
                 		}
         	}
 
         	else {
-        	sender.sendMessage("You don't have permission to use this command!");
+        	sender.sendMessage(MBEPlugin.tag + "You don't have permission to use this command!");
         	}
     	}
         
     	}
     	
     	else
-    		sender.sendMessage("Syntax:/tpto <playerName>");
+    		sender.sendMessage(MBEPlugin.tag + "Syntax: " + ChatColor.RED + "/tpto " + ChatColor.GREEN + "<playerName>");
 
     }
 }

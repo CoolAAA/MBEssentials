@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import plugins.mbes.MBEPlugin;
+
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
 import com.mbserver.api.game.Player;
@@ -27,11 +29,11 @@ public class WebsiteCmds implements CommandExecutor{
 			String label) {
 
 		if(sender instanceof Player)
-			sender.sendMessage("This command can only be executed as the console!");
+			sender.sendMessage(MBEPlugin.tag + "This command can only be executed as the console!");
 		
 		else
 		{
-			sender.sendMessage("Opening the MbEssentials Website...");
+			sender.sendMessage(MBEPlugin.tag + "Opening the MbEssentials Website...");
 			if(Desktop.isDesktopSupported())
 			{
 				try {
@@ -42,7 +44,7 @@ public class WebsiteCmds implements CommandExecutor{
 			}
 			
 			else
-				sender.sendMessage("Could not open browser! This may be because your desktop is not supported!");
+				sender.sendMessage(MBEPlugin.tag + "Could not open browser! This may be because your desktop is not supported!");
 			
 		}
 		

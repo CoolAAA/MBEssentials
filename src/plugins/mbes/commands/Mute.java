@@ -2,11 +2,13 @@ package plugins.mbes.commands;
 
 import java.util.HashMap;
 
+import plugins.mbes.MBEPlugin;
 import plugins.mbes.misc.Keys;
 
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
 import com.mbserver.api.Server;
+import com.mbserver.api.dynamic.ChatColor;
 import com.mbserver.api.game.Player;
 
 public class Mute implements CommandExecutor{
@@ -28,24 +30,24 @@ public class Mute implements CommandExecutor{
 			if(sender.hasPermission("mbes.mod.mute") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				if(args.length == 0)
-					sender.sendMessage("Syntax:/mute <name>");
+					sender.sendMessage(MBEPlugin.tag + "Syntax: " + ChatColor.RED + "/mute  " + ChatColor.GREEN + "<name>");
 				else
 				{
 					Player p = server.getPlayer(args[0]);
 				
 					if(p == null)
-						sender.sendMessage("The player '" + args[0] + "' was not found!");
+						sender.sendMessage(MBEPlugin.tag + "The player '" + ChatColor.RED + args[0] + ChatColor.WHITE + "' was not found!");
 				
 					else
 					{
 						data.put(p.getLoginName() + Keys.mute_key,true);
-						sender.sendMessage("The player '" + p.getDisplayName()+ "' was muted!");
+						sender.sendMessage(MBEPlugin.tag + "The player '" + ChatColor.RED + p.getDisplayName() + ChatColor.WHITE + "' has been muted!");
 					}
 				}
 			}
 		
 			else
-				sender.sendMessage("You don't have permission to use this command!");
+				sender.sendMessage(MBEPlugin.tag + "You don't have permission to use this command!");
 		}
 		
 		else if(command.equals("unmute"))
@@ -53,24 +55,24 @@ public class Mute implements CommandExecutor{
 			if(sender.hasPermission("mbes.mod.unmute") || sender.hasPermission("mbes.*") || sender.hasPermission("mbes.mod.*"))
 			{
 				if(args.length <= 0)
-					sender.sendMessage("Syntax:/unmute <name>");
+					sender.sendMessage(MBEPlugin.tag + "Syntax: " + ChatColor.RED + "/unmute  " + ChatColor.GREEN + "<name>");
 				else
 				{
 					Player p = server.getPlayer(args[0]);
 				
 					if(p == null)
-						sender.sendMessage("The player '" + args[0] + "' was not found!");
+						sender.sendMessage(MBEPlugin.tag + "The player '" + ChatColor.RED + args[0] + ChatColor.WHITE + "' was not found!");
 				
 					else
 					{
 						data.remove(p.getLoginName() + Keys.mute_key);
-						sender.sendMessage("The player '" + p.getDisplayName()+ "' has been unmuted!");
+						sender.sendMessage(MBEPlugin.tag + "The player '" + ChatColor.RED + p.getDisplayName() + ChatColor.WHITE + "' has been unmuted!");
 					}
 				}
 			}
 		
 			else
-				sender.sendMessage("You don't have permission to use this command!");
+				sender.sendMessage(MBEPlugin.tag + "You don't have permission to use this command!");
 		}
 	}
 
