@@ -8,7 +8,6 @@ import com.mbserver.api.events.BlockBreakEvent;
 import com.mbserver.api.events.BlockPlaceEvent;
 import com.mbserver.api.events.EventHandler;
 import com.mbserver.api.events.Listener;
-import com.mbserver.api.events.PlayerDeathEvent;
 import com.mbserver.api.events.PlayerPvpEvent;
 import com.mbserver.api.events.PreCommandEvent;
 import com.mbserver.api.game.Location;
@@ -32,6 +31,7 @@ public class LogHandler implements Listener{
 		this.ID = ID;
 	}
 
+	/* Temporary fix - player death event no longer exists
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e){
 		if(config.isEnableDeathLog())
@@ -46,6 +46,7 @@ public class LogHandler implements Listener{
 			}
 		}
 	}
+	*/
 
 
 	@EventHandler

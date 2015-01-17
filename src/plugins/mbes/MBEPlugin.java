@@ -19,6 +19,7 @@ import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
 
 import plugins.mbes.commands.ChatReplaceCmds;
+import plugins.mbes.commands.Commands;
 import plugins.mbes.commands.DelNickname;
 import plugins.mbes.commands.Freeze;
 import plugins.mbes.commands.MbesVer;
@@ -37,7 +38,6 @@ import plugins.mbes.commands.Nickname;
 import plugins.mbes.handler.AccountMaker;
 import plugins.mbes.handler.ChatReplacerHandler;
 import plugins.mbes.handler.FreezeHandler;
-import plugins.mbes.handler.KillHandler;
 import plugins.mbes.handler.LogHandler;
 import plugins.mbes.handler.MuteHandler;
 import plugins.mbes.handler.NameHandler;
@@ -227,9 +227,9 @@ public class MBEPlugin extends MBServerPlugin{
 		if(playerNameDB == null)
 			playerNameDB = new NameDataBase();
 		
-        //this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
-         	// if(config.isEnableDebug())
-        		//this.getLogger().info("Successfully registered command: /kill");
+        this.getPluginManager().registerCommand("kill",new Commands(this.getServer()));
+         	if(config.isEnableDebug())
+        		this.getLogger().info("Successfully registered command: /kill");
 
 		
 		this.getPluginManager().registerCommand("sudo",new ModCmds(this.getServer()));
@@ -451,10 +451,6 @@ public class MBEPlugin extends MBServerPlugin{
 		 this.getPluginManager().registerEventHandler(new FreezeHandler(FreezeMan));
 		 if(config.isEnableDebug())
 			 this.getLogger().info("Successfully registered handler: FreezeHandler");
-		 
-		 this.getPluginManager().registerEventHandler(new KillHandler());
-		 if(config.isEnableDebug())
-			 this.getLogger().info("Successfully registered handler: KillHandler");
 		 
 		 this.getPluginManager().registerEventHandler(new NicknameHandler(config));
 		 if(config.isEnableDebug())
