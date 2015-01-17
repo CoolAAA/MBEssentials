@@ -1,5 +1,6 @@
 package plugins.mbes.handler;
 
+import com.mbserver.api.Server;
 import com.mbserver.api.dynamic.ChatColor;
 import com.mbserver.api.events.EventHandler;
 import com.mbserver.api.events.Listener;
@@ -23,7 +24,7 @@ public class NicknameHandler implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void setMessage( PlayerChatEvent player ) {
         final String message = player.getMessage();
-        final String alterTag = "MBES_ALTER"
+        final String alterTag = "MBES_ALTER";
         if(!message.contains(alterTag)){
             player.setCancelled(true);	
             
@@ -33,12 +34,12 @@ public class NicknameHandler implements Listener {
     	    
     	    if (nickname == null){
             //Do nothing
-            event.setCancelled(false);
+            player.setCancelled(false);
             //^ this should fix it :)
             return;
             }
             
-            //ChatColor color = player.getServer().getPermissionsHandler().getColor(name);
+            ChatColor color = player.getServer().getPermissionsHandler().getColor(name);
     	    //player.setColor(color);
             //player.setMessage(color + config.getNicknamePrefix() + nickname + ": " + ChatColor.WHITE + message);
         
@@ -51,6 +52,6 @@ public class NicknameHandler implements Listener {
 	    }
         
         
-  
+        }
     }		
 }
