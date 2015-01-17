@@ -21,7 +21,7 @@ public class NicknameHandler implements Listener {
 
 	// player = the event :| WHY?!\
 	// Supports usage for other plugins as well
-    @EventHandler(priority = EventPriority.LOWEST)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void setMessage( PlayerChatEvent player ) {
         final String message = player.getMessage();
         final String alterTag = "MBES_ALTER";
